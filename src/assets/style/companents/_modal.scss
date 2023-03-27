@@ -1,0 +1,85 @@
+.ant-modal .ant-modal-content {
+    background: $sidebarColor;
+}
+.modal {
+    &__main {
+        padding: 36px 60px;
+    }
+    &__title {
+        text-align: center;
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 22, 20, 1);
+        @include adaptive-value(line-height, 28, 24, 1);
+        color: $textColor;
+        padding-bottom: 26px;
+    }
+    &__form {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__item {
+        display: flex !important;
+    }
+    &__text {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        color: $textColor;
+        padding-bottom: 8px;
+    }
+}
+.ant-form-item-control-input-content {
+    width: 307px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: $backgroundColor;
+    @include adaptive-value(padding-block, 6, 4, 1);
+    @include adaptive-value(padding-inline, 10, 8, 1);
+    border-radius: 20px;
+}
+
+.ant-input {
+    background: $backgroundColor;
+    outline: none;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: #939393;
+    &:focus {
+        box-shadow: none;
+        border: none;
+    }
+}
+.ant-picker-suffix {
+    display: none !important;
+}
+.ant-picker {
+    background: $backgroundColor;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    @include adaptive-value(font-size, 12, 10, 1);
+    @include adaptive-value(line-height, 14, 12, 1);
+    color: $inputColor;
+}
+.ant-picker .ant-picker-input > input {
+    color: $inputColor;
+}
+.modal__gander_transparent .ant-form-item-control-input-content {
+    background: none;
+}
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+    background: #9b74f0;
+    border: 2px solid #9b74f0;
+}
+.ant-radio-wrapper {
+    color: $inputColor;
+}
+.ant-modal-close-x {
+    color: $inputColor;
+}

@@ -1,0 +1,50 @@
+.member-ship {
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 22, 20, 1);
+        @include adaptive-value(line-height, 28, 24, 1);
+        @include adaptive-value(padding-bottom, 28, 22, 1);
+    }
+    &__text {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 28px;
+        color: $textColor;
+    }
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 30px;
+        background: $sidebarColor;
+        border-radius: 20px;
+    }
+    &__text {
+        display: flex;
+        gap: 36px;
+        p {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 28px;
+            color: $textColor;
+        }
+        span {
+            @include adaptive-value(padding-inline, 10, 6, 1);
+            @include adaptive-value(padding-block, 5, 3, 1);
+            background: #369b46;
+            border-radius: 20px;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 14px;
+        }
+    }
+}

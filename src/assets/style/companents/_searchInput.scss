@@ -1,0 +1,19 @@
+.search {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: $sidebarColor;
+    background: #343743;
+    border-radius: 20px;
+    padding: 10px;
+    width: 424px;
+    input {
+        background: $sidebarColor;
+        outline: none;
+        font-style: normal;
+        font-weight: 400;
+        @include adaptive-value(font-size, 14, 12, 1);
+        @include adaptive-value(line-height, 16, 14, 1);
+        color: #ccb9f5;
+    }
+}

@@ -1,0 +1,31 @@
+.success {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: $sidebarColor;
+    padding: 11px 16px;
+    border-radius: 12px;
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 16, 14, 1);
+        @include adaptive-value(line-height, 19, 16, 1);
+        color: #369b46;
+    }
+}
+
+.wrong {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: $sidebarColor;
+    padding: 11px 16px;
+    border-radius: 12px;
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 16, 14, 1);
+        @include adaptive-value(line-height, 19, 16, 1);
+        color: #be2828;
+    }
+}

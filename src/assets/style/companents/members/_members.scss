@@ -1,0 +1,39 @@
+.members {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    &__btn {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 10px;
+        background: #343743;
+        border-radius: 20px;
+        padding: 10px 30px;
+    }
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 16, 14, 1);
+        @include adaptive-value(line-height, 19, 17, 1);
+        color: $textColor;
+    }
+    &__table {
+        padding-top: 26px;
+    }
+    &__success {
+        position: absolute;
+        bottom: 60px;
+        z-index: 999;
+    }
+}

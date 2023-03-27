@@ -1,0 +1,50 @@
+.filter {
+    position: relative;
+    &__header {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: $sidebarColor;
+        padding: 10px 30px;
+        border-radius: 20px;
+        margin-bottom: 5px;
+    }
+    &__title {
+        font-style: normal;
+        font-weight: 400;
+        @include adaptive-value(font-size, 14, 12, 1);
+        @include adaptive-value(line-height, 16, 14, 1);
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        color: $textColor;
+    }
+    &__list {
+        max-height: 0;
+        cursor: pointer;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        background: $Hover;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 900;
+    }
+    &__item {
+        font-style: normal;
+        font-weight: 400;
+        @include adaptive-value(font-size, 12, 10, 1);
+        @include adaptive-value(line-height, 14, 12, 1);
+        color: $textColor;
+        padding: 10px 16px;
+        &:hover {
+            background: $sidebarColor;
+        }
+    }
+}
+.vis {
+    opacity: 1;
+    visibility: visible;
+}
