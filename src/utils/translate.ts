@@ -20,6 +20,18 @@ interface Trans {
     female: string;
     addmem: string;
     memberType: string;
+    term: string;
+    date: string;
+    end: string;
+    status: string;
+    membership: string;
+    total: string;
+    payment: string;
+    card: string;
+    summary: string;
+    member: string;
+    mPayment: string;
+    stock: string;
 }
 const uz: Trans = {
     home: "Asosiy",
@@ -43,6 +55,18 @@ const uz: Trans = {
     female: "Ayol",
     addmem: "A'ZOLIK QO'SHISH",
     memberType: "A'zolik turi",
+    term: "Muddati",
+    date: "Boshlanash sanasi",
+    end: "Tugash sanasi",
+    status: "Holat",
+    membership: "A'ZOLIK QO'SHISH",
+    total: "JAMI",
+    payment: "To'lov usuli",
+    card: "Savatchaga qo'shish",
+    summary: "SOTISH XULOSASI",
+    member: "A'zo",
+    mPayment: "To'lovni o'tiring",
+    stock: "STOK IN",
 };
 const ru: Trans = {
     home: "Главная",
@@ -66,6 +90,18 @@ const ru: Trans = {
     female: "Женский",
     addmem: "ДОБАВИТЬ ЧЛЕНСТВО",
     memberType: "Тип членства",
+    term: "Срок",
+    date: "Дата начала",
+    end: "Дата окончания",
+    status: "Положение дел",
+    membership: "ДОБАВИТЬ ЧЛЕНСТВО",
+    total: "ОБЩИЙ",
+    payment: "Способ оплаты",
+    card: "В корзину",
+    summary: "ОБЗОР ПРОДАЖИ",
+    member: "Член",
+    mPayment: "ПРОИЗВОДИТЬ ОПЛАТУ",
+    stock: "В НАЛИЧИИ",
 };
 const eng: Trans = {
     home: "Home",
@@ -89,6 +125,18 @@ const eng: Trans = {
     female: "Female",
     addmem: "ADD MEMBERSHIP",
     memberType: "Membership Type",
+    term: "Term",
+    date: "Start Date",
+    end: "End Date",
+    status: "Status",
+    membership: "ADD MEMBERSHIP",
+    total: "TOTAL",
+    payment: "Payment Method",
+    card: "Add to Card",
+    summary: "SALE SUMMARY",
+    member: "Member",
+    mPayment: "MAKE PAYMENT",
+    stock: "STOCK IN",
 };
 interface LanguageKeyValuePairs {
     [key: string]: Trans;

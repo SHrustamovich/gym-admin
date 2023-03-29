@@ -1,0 +1,87 @@
+.ant-drawer-wrapper-body {
+    background: $sidebarColor;
+}
+.member-driver {
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 22, 20, 1);
+        @include adaptive-value(line-height, 28, 26, 1);
+        color: $textColor;
+        @include adaptive-value(padding-bottom, 32, 26, 1);
+    }
+    &__body {
+        @include adaptive-value(padding-top, 80, 60, 1);
+    }
+    &__text {
+        font-style: normal;
+        font-weight: 400;
+        @include adaptive-value(font-size, 12, 10, 1);
+        @include adaptive-value(line-height, 14, 12, 1);
+        color: $textColor;
+        @include adaptive-value(padding-bottom, 8, 6, 1);
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+    &__price {
+        display: flex;
+        justify-content: end;
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 16, 14, 1);
+        @include adaptive-value(line-height, 19, 16, 1);
+        color: $textColor;
+    }
+    &__btn .ant-form-item-control-input-content {
+        background: none;
+        display: flex;
+        justify-content: end;
+    }
+    &__cancel {
+        background: inherit;
+        border: none;
+        span {
+            font-style: normal;
+            font-weight: 700;
+            @include adaptive-value(font-size, 16, 14, 1);
+            @include adaptive-value(line-height, 19, 16, 1);
+            color: $textColor;
+        }
+        &:hover {
+            color: $buttonColor;
+        }
+    }
+    &__submit {
+        background: #9b74f0;
+        border-radius: 20px;
+        span {
+            font-style: normal;
+            font-weight: 700;
+            @include adaptive-value(font-size, 16, 14, 1);
+            @include adaptive-value(line-height, 19, 16, 1);
+            color: $textColor;
+        }
+    }
+    &__select {
+        width: 100%;
+        color: $textColor;
+        color: $textColor;
+        &:hover {
+            border: none;
+        }
+    }
+}
+.ant-select-selector {
+    background: inherit !important;
+    border: none !important;
+    color: $textColor;
+}
+.ant-select:hover {
+    border-color: inherit;
+}
+.ant-select-selection-item {
+    color: $textColor;
+}

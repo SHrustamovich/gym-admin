@@ -1,9 +1,9 @@
 import { Button, Space, Table } from "antd";
 import { FC } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import useLanguage from "../../hooks/useLanguage";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
-export const MemberShipTable: FC = () => {
+export const InventoryTable: FC = () => {
     const translate = useLanguage();
 
     const handlyProductEdit = (item: any) => {
@@ -44,9 +44,8 @@ export const MemberShipTable: FC = () => {
             ),
         },
     ];
-
     return (
-        <div className='ship-table'>
+        <div className='inven-table'>
             <Table columns={columns} pagination={false} />
         </div>
     );

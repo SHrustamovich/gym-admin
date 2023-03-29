@@ -106,3 +106,24 @@ export const sortData = [
         title: "Sort by ABC",
     },
 ];
+
+export const cardData = [
+    {
+        id: 1,
+        title: "Fitness Gloves",
+        brand: "Adidas",
+        quality: "High",
+    },
+    {
+        id: 2,
+        title: "Fitness Gloves",
+        brand: "Adidas",
+        quality: "High",
+    },
+    {
+        id: 3,
+        title: "Fitness Gloves",
+        brand: "Adidas",
+        quality: "High",
+    },
+];

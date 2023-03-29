@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink, Route, Router, Routes } from "react-router-dom";
 import { Avatarca, LogOut, ParametrIcon } from "../assets/icons/icons";
 import { LogoIcon } from "../assets/icons/logo";
-import { LanguageContext } from "../context/languageContext";
 import useLanguage from "../hooks/useLanguage";
 import { sideBarData } from "../utils/data";
 import { SelectLang } from "./LangSelect/LangSelect";

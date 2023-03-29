@@ -1,0 +1,31 @@
+.inventory {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__filter {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    &__btn {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 10px;
+        background: $sidebarColor;
+        border-radius: 20px;
+        padding: 12px 30px;
+        &__text {
+            font-style: normal;
+            font-weight: 700;
+            @include adaptive-value(font-size, 16, 14, 1);
+            @include adaptive-value(line-height, 19, 17, 1);
+            color: $textColor;
+        }
+    }
+    &__body {
+        padding-top: 26px;
+    }
+}
