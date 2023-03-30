@@ -1,5 +1,6 @@
 import { LoginInputIcon, LoginPasswordIcon } from "../assets/icons/icons";
 import { LogoIcon } from "../assets/icons/logo";
+
 export const LogIn = () => {
     return (
         <div className='login'>
@@ -28,7 +29,7 @@ export const LogIn = () => {
                             className='login__password'
                         />
                         <div className='login__icon'>
-                            <LoginPasswordIcon/>
+                            <LoginPasswordIcon />
                         </div>
                     </div>
                     <div className='login__remember'>

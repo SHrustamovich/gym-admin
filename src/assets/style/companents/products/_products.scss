@@ -1,0 +1,16 @@
+.products {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__filter {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    &__body {
+        padding-top: 26px;
+    }
+}
+

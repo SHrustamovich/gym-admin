@@ -3,15 +3,12 @@ import { WrongIcon } from "../../assets/icons/icons";
 import useLanguage from "../../hooks/useLanguage";
 
 export const Wrong: FC = () => {
+    const translate = useLanguage();
 
-    const translate = useLanguage()
-    
     return (
-        <div className="wrong">
+        <div className='wrong'>
             <WrongIcon />
-            <div className="wrong__title">
-               {translate("wrong")}
-            </div>
+            <div className='wrong__title'>{translate("wrong")}</div>
         </div>
-    )
-}
+    );
+};

@@ -1,10 +1,9 @@
-import React from "react";
-import { NavLink, Route, Router, Routes } from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
+import useLanguage from "../hooks/useLanguage";
+import { SelectLang } from "./LangSelect/LangSelect";
+import { sideBarData } from "../utils/data";
 import { Avatarca, LogOut, ParametrIcon } from "../assets/icons/icons";
 import { LogoIcon } from "../assets/icons/logo";
-import useLanguage from "../hooks/useLanguage";
-import { sideBarData } from "../utils/data";
-import { SelectLang } from "./LangSelect/LangSelect";
 
 export const Root = () => {
     const translate = useLanguage();
@@ -21,7 +20,7 @@ export const Root = () => {
                             <li className='menu__item' key={item.id}>
                                 <NavLink to={item.path} className='menu__link'>
                                     <div className='menu__icon'>
-                                        {React.createElement(item.icon)}
+                                        {item.icon}
                                     </div>
                                     <span className='menu__title'>
                                         {translate(item.title)}
@@ -60,7 +59,7 @@ export const Root = () => {
                             <Route
                                 key={item.id}
                                 path={item.path}
-                                element={React.createElement(item.companents)}
+                                element={item.companents}
                             />
                         ))}
                     </Routes>

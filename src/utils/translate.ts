@@ -32,6 +32,8 @@ interface Trans {
     member: string;
     mPayment: string;
     stock: string;
+    quantity: string;
+    praductT: string;
 }
 const uz: Trans = {
     home: "Asosiy",
@@ -67,6 +69,8 @@ const uz: Trans = {
     member: "A'zo",
     mPayment: "To'lovni o'tiring",
     stock: "STOK IN",
+    quantity: "Miqdori",
+    praductT: "Mahsulot turi",
 };
 const ru: Trans = {
     home: "Главная",
@@ -102,6 +106,8 @@ const ru: Trans = {
     member: "Член",
     mPayment: "ПРОИЗВОДИТЬ ОПЛАТУ",
     stock: "В НАЛИЧИИ",
+    quantity: "Количество",
+    praductT: "Тип продукта",
 };
 const eng: Trans = {
     home: "Home",
@@ -137,6 +143,8 @@ const eng: Trans = {
     member: "Member",
     mPayment: "MAKE PAYMENT",
     stock: "STOCK IN",
+    quantity: "Quantity",
+    praductT: "Product Type",
 };
 interface LanguageKeyValuePairs {
     [key: string]: Trans;

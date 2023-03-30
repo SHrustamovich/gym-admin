@@ -32,9 +32,9 @@ export const Members = () => {
                         <FilterPart />
                     </div>
                     <div className='members__add'>
-                        <button className='members__btn' onClick={showModal}>
+                        <button className='btn' onClick={showModal}>
                             <PlusIcon />
-                            <div className='members__title'>
+                            <div className='title'>
                                 {translate("add")}
                             </div>
                         </button>

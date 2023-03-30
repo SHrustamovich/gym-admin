@@ -1,12 +1,5 @@
-import {
-    HomeIcon,
-    AddIcon,
-    KarzinkaIcon,
-    IntererIcon,
-    ProductIcon,
-    HistoryIcon,
-    PaymentIcon,
-} from "../assets/icons/icons";
+import React, { ReactElement } from "react";
+
 import { History } from "../pages/History";
 import { Home } from "../pages/Home";
 import { Inventory } from "../pages/Inventory";
@@ -15,56 +8,73 @@ import { MemberShip } from "../pages/MemberShip";
 import { Payments } from "../pages/Payments";
 import { Products } from "../pages/Products";
 import { Sales } from "../pages/Sales";
+import {
+    AddIcon,
+    KarzinkaIcon,
+    IntererIcon,
+    ProductIcon,
+    HistoryIcon,
+    PaymentIcon,
+    HomeIcon,
+} from "../assets/icons/icons";
 
-export const sideBarData = [
+interface ISidebarData {
+    id: number;
+    title: string;
+    path: string;
+    icon: ReactElement;
+    companents: ReactElement;
+}
+
+export const sideBarData: ISidebarData[] = [
     {
         id: 1,
         title: "home",
         path: "/",
-        icon: HomeIcon,
-        companents: Home,
+        icon: <HomeIcon />,
+        companents: <Home />,
     },
     {
         id: 2,
         title: "members",
         path: "/members",
-        icon: AddIcon,
-        companents: MemberShip,
+        icon: <AddIcon />,
+        companents: <MemberShip />,
     },
     {
         id: 3,
         title: "sales",
         path: "/sales",
-        icon: KarzinkaIcon,
-        companents: Sales,
+        icon: <KarzinkaIcon />,
+        companents: <Sales />,
     },
     {
         id: 4,
         title: "inventory",
         path: "/inventory",
-        icon: IntererIcon,
-        companents: Inventory,
+        icon: <IntererIcon />,
+        companents: <Inventory />,
     },
     {
         id: 5,
         title: "products",
         path: "/products",
-        icon: ProductIcon,
-        companents: Products,
+        icon: <ProductIcon />,
+        companents: <Products />,
     },
     {
         id: 6,
         title: "history",
         path: "/history",
-        icon: HistoryIcon,
-        companents: History,
+        icon: <HistoryIcon />,
+        companents: <History />,
     },
     {
         id: 7,
         title: "payments",
         path: "/payments",
-        icon: PaymentIcon,
-        companents: Payments,
+        icon: <PaymentIcon />,
+        companents: <Payments />,
     },
 ];
 export const LangData = [

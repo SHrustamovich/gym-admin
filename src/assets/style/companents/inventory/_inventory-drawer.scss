@@ -1,0 +1,21 @@
+.inventory-drawer {
+    &__body {
+        padding-top: 70px;
+    }
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 22, 20, 1);
+        @include adaptive-value(line-height, 28, 26, 1);
+        color: $textColor;
+        @include adaptive-value(padding-bottom, 32, 26, 1);
+    }
+    &__label {
+        font-style: normal;
+        font-weight: 400;
+        @include adaptive-value(font-size, 12, 10, 1);
+        @include adaptive-value(line-height, 14, 12, 1);
+        color: $textColor;
+        @include adaptive-value(padding-bottom, 8, 6, 1);
+    }
+}
