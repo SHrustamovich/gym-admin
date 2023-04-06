@@ -46,7 +46,7 @@ export const Members = () => {
                 </div>
             </div>
             <div className='members__table'>
-                <TableMain />
+                <TableMain showModal={showModal} />
             </div>
             <div className='members__success'>
                 <Wrong />

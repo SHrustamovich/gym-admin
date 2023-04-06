@@ -1,10 +1,21 @@
+import { useState } from "react";
 import { PlusIcon } from "../assets/icons/icons";
 import { FilterPart } from "../components/FilterPart/FilterPart";
+import { ProductDrawer } from "../components/ProductDrawer/ProductDrawer";
 import { ProductTable } from "../components/ProductTable/ProducTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
 import useLanguage from "../hooks/useLanguage";
 
 export const Products = () => {
+    const [open, setOpen] = useState(false);
+
+    const showDrawer = () => {
+        setOpen(true);
+    };
+
+    const onClose = () => {
+        setOpen(false);
+    };
     const translate = useLanguage();
 
     return (
@@ -15,12 +26,13 @@ export const Products = () => {
                 </div>
                 <div className='products__filter'>
                     <FilterPart />
-                    <div className='btn'>
+                    <button className='btn' onClick={showDrawer}>
                         <PlusIcon />
-                        <span className='title'>{translate("add")}</span>
-                    </div>
+                        <div className='title'>{translate("add")}</div>
+                    </button>
                 </div>
             </div>
+            <ProductDrawer open={open} onClose={onClose} />
             <div className='products__body'>
                 <ProductTable />
             </div>

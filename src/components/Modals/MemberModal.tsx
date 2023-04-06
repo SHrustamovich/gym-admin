@@ -1,4 +1,12 @@
-import { DatePicker, Form, Input, Modal, Radio, RadioChangeEvent } from "antd";
+import {
+    Button,
+    DatePicker,
+    Form,
+    Input,
+    Modal,
+    Radio,
+    RadioChangeEvent,
+} from "antd";
 import { FC, useState } from "react";
 import { CaleIcon, PersonIcon, PhoneIcon } from "../../assets/icons/icons";
 import useLanguage from "../../hooks/useLanguage";
@@ -29,6 +37,7 @@ export const MemberModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
                 onOk={handleOk}
                 onCancel={removeModal}
                 width={825}
+                footer={null}
             >
                 <div className='modal__main'>
                     <div className='modal__title'>{translate("newadd")}</div>
@@ -117,6 +126,11 @@ export const MemberModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
                                     </Radio.Group>
                                 </Form.Item>
                             </div>
+
+                            <Form.Item className='modal__btn'>
+                                <Button className="member-modal__cancel">{translate("cancel")}</Button>
+                                <Button className="member-modal__create">{translate("create")}</Button>
+                            </Form.Item>
                         </div>
                     </Form>
                 </div>

@@ -40,21 +40,11 @@
         @include adaptive-value(padding-bottom, 26, 22, 1);
         color: $textColor;
     }
-    &__part {
+    &__form {
+        width: 100%;
         display: flex;
         flex-direction: column;
-        position: relative;
-    }
-    &__icon {
-        position: absolute;
-        top: 28px;
-        left: 13px;
-    }
-    &__bottomPart {
-        display: flex;
-        flex-direction: column;
-        @include adaptive-value(margin-top, 25, 20, 1);
-        position: relative;
+        align-items: stretch !important;
     }
     &__label {
         font-style: normal;
@@ -64,61 +54,55 @@
         color: $textColor;
     }
     &__input {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: $sidebarColor;
         border-radius: 20px;
-        background-color: $sidebarColor;
-        outline: none;
-        @include adaptive-value(padding-block, 11, 10, 1);
-        @include adaptive-value(padding-left, 46, 10, 1);
-        @include adaptive-value(margin-top, 8, 6, 1);
-        color: $textColor;
-        &::placeholder {
-            font-style: normal;
-            font-weight: 400;
-            @include adaptive-value(font-size, 12, 10, 1);
-            @include adaptive-value(line-height, 14, 12, 1);
-        }
+        padding: 6px 10px;
     }
     &__password {
-        border-radius: 20px;
-        background-color: $sidebarColor;
-        outline: none;
-        @include adaptive-value(padding-block, 11, 10, 1);
-        @include adaptive-value(padding-left, 46, 10, 1);
-        @include adaptive-value(margin-top, 8, 6, 1);
-        color: $textColor;
-        &::placeholder {
-            font-style: normal;
-            font-weight: 400;
-            @include adaptive-value(font-size, 12, 10, 1);
-            @include adaptive-value(line-height, 14, 12, 1);
-        }
-    }
-    &__check {
-        accent-color: $buttonColor;
-        border-radius: 50% !important;
-    }
-    &__remember {
         display: flex;
-        gap: 10px;
-        @include adaptive-value(padding-top, 28, 22, 1);
-        @include adaptive-value(padding-bottom, 36, 30, 1);
-    }
-    &__checkLabel {
-        font-style: normal;
-        font-weight: 400;
-        @include adaptive-value(font-size, 12, 10, 1);
-        @include adaptive-value(line-height, 14, 12, 1);
-        color: $textColor;
+        align-items: center;
+        gap: 12px;
+        background: $sidebarColor;
+        border-radius: 20px;
+        padding: 6px 10px;
     }
     &__btn {
-        background-color: $buttonColor;
-        @include adaptive-value(padding-block, 14, 10, 1);
-        @include adaptive-value(padding-inline, 151, 140, 1);
+        width: 100%;
         border-radius: 20px;
         font-style: normal;
         font-weight: 700;
-        @include adaptive-value(font-size, 16, 12, 1);
-        @include adaptive-value(line-height, 19, 12, 1);
+        @include adaptive-value(font-size, 16, 14, 1);
+        @include adaptive-value(line-height, 19, 16, 1);
         color: $textColor;
+        background: $buttonColor;
+        outline: none;
+        border: none;
     }
+}
+
+.login__input .ant-input {
+    background: $sidebarColor;
+}
+.ant-input-affix-wrapper {
+    background: $sidebarColor;
+    border: none;
+}
+.login__password .ant-input {
+    background: $sidebarColor;
+    padding: 0;
+}
+
+.login__password .ant-input-affix-wrapper {
+    padding: 0;
+}
+
+.login__password > .ant-input-affix-wrapper:focus {
+    border-color: $sidebarColor !important;
+}
+.ant-input-password:focus {
+    border: none !important;
+    outline: none !important;
 }

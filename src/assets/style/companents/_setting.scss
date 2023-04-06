@@ -1,0 +1,45 @@
+.setting {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 22, 18, 1);
+        @include adaptive-value(line-height, 28, 26, 1);
+    }
+    &__btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: $sidebarColor;
+        border-radius: 20px;
+        padding: 10px 30px;
+    }
+    &__text {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 16, 14, 1);
+        @include adaptive-value(line-height, 20, 18, 1);
+        color: $textColor;
+    }
+    &__body {
+        padding-top: 34px;
+    }
+}
+
+.setting-drawer {
+    &__body {
+        @include adaptive-value(padding-top, 80, 60, 1);
+    }
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 22, 18, 1);
+        @include adaptive-value(line-height, 28, 26, 1);
+        color: $textColor;
+        @include adaptive-value(padding-bottom, 32, 26, 1);
+    }
+}

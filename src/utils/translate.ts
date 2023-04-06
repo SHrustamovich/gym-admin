@@ -34,6 +34,37 @@ interface Trans {
     stock: string;
     quantity: string;
     praductT: string;
+    newProduct: string;
+    productN: string;
+    unitP: string;
+    disc: string;
+    sup: string;
+    allPayment: string;
+    createDate: string;
+    type: string;
+    paid: string;
+    action: string;
+    info: string;
+    pur: string;
+    close: string;
+    user: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    tPassword: string;
+    nPassword: string;
+    cPassword: string;
+    save: string;
+    cancel: string;
+    fill: string;
+    money: string;
+    fee: string;
+    create: string;
+    membersName: string;
+    visitTime: string;
+    visitDate: string;
+    membershipTypeName: string;
 }
 const uz: Trans = {
     home: "Asosiy",
@@ -71,6 +102,37 @@ const uz: Trans = {
     stock: "STOK IN",
     quantity: "Miqdori",
     praductT: "Mahsulot turi",
+    newProduct: "YANGI MAHSULOT",
+    productN: "Maxsulot nomi",
+    unitP: "Donasining narxi",
+    disc: "Chegirma foizi",
+    sup: "Yetkazib beruvchi",
+    allPayment: "Barcha to'lovlarning umumiy miqdori",
+    createDate: "Yaratilgan sana",
+    type: "Turi",
+    paid: "To'langan",
+    action: "Harakat",
+    info: "SOTIB OLGAN MAHSULOT HAQIDA BATAFSIL",
+    pur: "Sotib olingan miqdor",
+    close: "YOPISH",
+    user: "FOYDALANUVCHI TAVSIFI",
+    password: "PAROLNI O'ZGARTIRISH",
+    firstName: "Ism",
+    lastName: "Familya",
+    email: "Elektron pochta",
+    tPassword: "Joriy parol",
+    nPassword: "Yangi parol",
+    cPassword: "Parolni tasdiqlang",
+    save: "Saqlash",
+    cancel: "Bekor",
+    fill: "To'ldiring",
+    money: "Olingan pul",
+    fee: "Oylik to'lov",
+    create: "Yaratish",
+    membersName: "A'zolar nomi",
+    visitTime: "Tashrif vaqti",
+    visitDate: "Tashrif sanasi",
+    membershipTypeName: "A'zolik turi nomi",
 };
 const ru: Trans = {
     home: "Главная",
@@ -108,6 +170,37 @@ const ru: Trans = {
     stock: "В НАЛИЧИИ",
     quantity: "Количество",
     praductT: "Тип продукта",
+    newProduct: "НОВЫЙ ПРОДУКТ",
+    productN: "Название продукта",
+    unitP: "Цена за единицу",
+    disc: "Процент скидки",
+    sup: "Поставщик",
+    allPayment: "Общая сумма всех платежей",
+    createDate: "Дата создания",
+    type: "Тип",
+    paid: "Оплачивается",
+    action: "Действие",
+    info: "ИНФОРМАЦИЯ О ПРИОБРЕТЕННОМ ПРОДУКТЕ",
+    pur: "Приобретенное количество",
+    close: "ЗАКРЫВАТЬ",
+    user: "ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ",
+    password: "ИЗМЕНИТЬ ПАРОЛЬ",
+    firstName: "Имя",
+    lastName: "Фамилия",
+    email: "Электронная почта",
+    tPassword: "Текущий пароль",
+    nPassword: "Новый пароль",
+    cPassword: "Подтвердите пароль",
+    save: "СОХРАНЯТЬ",
+    cancel: "ОТМЕНА",
+    fill: "Заполнить его",
+    money: "ПОЛУЧЕННЫЕ ДЕНЬГИ",
+    fee: "Ежемесячная оплата",
+    create: "Создавать",
+    membersName: "Имя участника",
+    visitTime: "Время посещения",
+    visitDate: "Дата посещения",
+    membershipTypeName: "Имя типа членства",
 };
 const eng: Trans = {
     home: "Home",
@@ -145,6 +238,37 @@ const eng: Trans = {
     stock: "STOCK IN",
     quantity: "Quantity",
     praductT: "Product Type",
+    newProduct: "NEW PRODUCT",
+    productN: "Product Name",
+    unitP: "Unit Price",
+    disc: "Discount Percentage",
+    sup: "Supplier",
+    allPayment: "Total Amount of all payments",
+    createDate: "Created Date",
+    type: "Type",
+    paid: "Paid by",
+    action: "Action",
+    info: "PURCHASED PRODUCT DETAILS",
+    pur: "Purchased Quantity",
+    close: "CLOSE",
+    user: "USER DETAILS",
+    password: "CHANGE PASSWORD",
+    firstName: "First Name",
+    lastName: "Last Name",
+    email: "E mail",
+    tPassword: "Current Password",
+    nPassword: "New Password",
+    cPassword: "Confirm Password",
+    save: "Save",
+    cancel: "Cancel",
+    fill: "Fill it up",
+    money: "MONEY RECEIVED",
+    fee: "Monthly fee",
+    create: "Create",
+    membersName: "Members Name",
+    visitTime: "Visit Time",
+    visitDate: "Visit Date",
+    membershipTypeName: "Membership Type Name",
 };
 interface LanguageKeyValuePairs {
     [key: string]: Trans;

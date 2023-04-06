@@ -1,5 +1,3 @@
-import React, { ReactElement } from "react";
-
 import { History } from "../pages/History";
 import { Home } from "../pages/Home";
 import { Inventory } from "../pages/Inventory";
@@ -17,14 +15,7 @@ import {
     PaymentIcon,
     HomeIcon,
 } from "../assets/icons/icons";
-
-interface ISidebarData {
-    id: number;
-    title: string;
-    path: string;
-    icon: ReactElement;
-    companents: ReactElement;
-}
+import { ILangData, ISidebarData } from "./type";
 
 export const sideBarData: ISidebarData[] = [
     {
@@ -39,7 +30,7 @@ export const sideBarData: ISidebarData[] = [
         title: "members",
         path: "/members",
         icon: <AddIcon />,
-        companents: <MemberShip />,
+        companents: <Members />,
     },
     {
         id: 3,
@@ -77,7 +68,7 @@ export const sideBarData: ISidebarData[] = [
         companents: <Payments />,
     },
 ];
-export const LangData = [
+export const LangData: ILangData[] = [
     {
         id: 1,
         key: "eng",
@@ -135,5 +126,155 @@ export const cardData = [
         title: "Fitness Gloves",
         brand: "Adidas",
         quality: "High",
+    },
+];
+
+export const paymentData = [
+    {
+        date: "December 25, 2022 14:17",
+        total: "$100.00",
+        paymentM: "Checks",
+        type: "Standart",
+        term: "1 month",
+        paid: "Cody Garbrandt",
+    },
+];
+
+export const allData = [
+    {
+        id: 1,
+        name: "Cody Garbrandt",
+        phone: "+998904299019",
+        status: 0,
+        type: "Standart",
+        expireTime: "in 3 months",
+        startD: "February 22, 2023",
+        endD: "March 22, 2023",
+    },
+    {
+        id: 2,
+        name: "Cody Garbrandt",
+        phone: "+998904299019",
+        status: 1,
+        type: "Standart",
+        expireTime: "in 3 months",
+        startD: "February 22, 2023",
+        endD: "March 22, 2023",
+    },
+    {
+        id: 3,
+        name: "Cody Garbrandt",
+        phone: "+998904299019",
+        status: 0,
+        type: "Standart",
+        expireTime: "in 3 months",
+        startD: "February 22, 2023",
+        endD: "March 22, 2023",
+    },
+    {
+        id: 4,
+        name: "Cody Garbrandt",
+        phone: "+998904299019",
+        status: 1,
+        type: "Standart",
+        expireTime: "in 3 months",
+        startD: "February 22, 2023",
+        endD: "March 22, 2023",
+    },
+];
+
+export const productData = [
+    {
+        id: 1,
+        productType: "Drinks",
+        name: "Aquafina Bottled Water (0.5L)",
+        sup: "Aquafina",
+        stocks: 6,
+        status: 0,
+        price: "20,5",
+    },
+    {
+        id: 2,
+        productType: "Drinks",
+        name: "Aquafina Bottled Water (0.5L)",
+        sup: "Aquafina",
+        stocks: 6,
+        status: 1,
+        price: "20,5",
+    },
+    {
+        id: 3,
+        productType: "Drinks",
+        name: "Aquafina Bottled Water (0.5L)",
+        sup: "Aquafina",
+        stocks: 8,
+        status: 0,
+        price: "20,5",
+    },
+    {
+        id: 4,
+        productType: "Drinks",
+        name: "Aquafina Bottled Water (0.5L)",
+        sup: "Aquafina",
+        stocks: 3,
+        status: 1,
+        price: "20,5",
+    },
+    {
+        id: 5,
+        productType: "Drinks",
+        name: "Aquafina Bottled Water (0.5L)",
+        sup: "Aquafina",
+        stocks: 6,
+        status: 0,
+        price: "20,5",
+    },
+];
+
+export const visitData = [
+    {
+        id: 1,
+        membersName: "Michael Oliveira",
+        visitTime: "3 months ago (At 11:23)",
+        visitData: "December 22, 2022",
+    },
+    {
+        id: 2,
+        membersName: "Michael Oliveira",
+        visitTime: "3 months ago (At 11:23)",
+        visitData: "December 22, 2022",
+    },
+    {
+        id: 3,
+        membersName: "Michael Oliveira",
+        visitTime: "3 months ago (At 11:23)",
+        visitData: "December 22, 2022",
+    },
+    {
+        id: 4,
+        membersName: "Michael Oliveira",
+        visitTime: "3 months ago (At 11:23)",
+        visitData: "December 22, 2022",
+    },
+];
+
+export const typeData = [
+    {
+        id: 1,
+        typeName: "Standart",
+        free: "100",
+        dis: "10$",
+    },
+    {
+        id: 2,
+        typeName: "Standart",
+        free: "100",
+        dis: "10$",
+    },
+    {
+        id: 3,
+        typeName: "Standart",
+        free: "100",
+        dis: "10$",
     },
 ];

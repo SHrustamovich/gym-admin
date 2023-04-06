@@ -1,0 +1,33 @@
+.payment-modal {
+    &__body {
+        @include adaptive-value(padding-block, 12, 6, 1);
+        @include adaptive-value(padding-inline, 8, 6, 1);
+    }
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 22, 20, 1);
+        @include adaptive-value(line-height, 26, 24, 1);
+        color: $textColor;
+        @include adaptive-value(padding-bottom, 32, 15, 1);
+    }
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        @include adaptive-value(padding-top, 68, 50, 1);
+        button {
+            background: $buttonColor;
+            padding: 10px 30px;
+            border-radius: 20px;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 19px;
+            color: $textColor;
+            &:hover {
+                background: $buttonHover;
+            }
+        }
+    }
+}

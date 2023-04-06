@@ -31,9 +31,9 @@
     }
 }
 .ant-form-item-control-input-content {
-    width: 307px;
+    // width: 307px;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 12px;
     background: $backgroundColor;
     @include adaptive-value(padding-block, 6, 4, 1);
@@ -82,4 +82,35 @@
 }
 .ant-modal-close-x {
     color: $inputColor;
+}
+.ant-modal .ant-modal-header {
+    background: inherit;
+}
+
+.modal__btn .ant-form-item-control-input-content {
+    background: none !important;
+}
+
+.member-modal__cancel {
+    background: none !important;
+    border: none !important;
+    span {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        color: $textColor;
+    }
+}
+.member-modal__create {
+    background: $buttonColor;
+    border-radius: 20px;
+    border: none;
+    span {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        color: $textColor;
+    }
 }

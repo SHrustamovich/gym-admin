@@ -8,7 +8,6 @@
         background: $sidebarColor;
         padding: 10px 30px;
         border-radius: 20px;
-        margin-bottom: 5px;
     }
     &__title {
         font-style: normal;
@@ -31,6 +30,7 @@
         opacity: 0;
         visibility: hidden;
         z-index: 900;
+        margin-top: 5px;
     }
     &__item {
         font-style: normal;

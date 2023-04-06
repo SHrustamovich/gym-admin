@@ -13,14 +13,6 @@
     &__body {
         @include adaptive-value(padding-top, 80, 60, 1);
     }
-    &__text {
-        font-style: normal;
-        font-weight: 400;
-        @include adaptive-value(font-size, 12, 10, 1);
-        @include adaptive-value(line-height, 14, 12, 1);
-        color: $textColor;
-        @include adaptive-value(padding-bottom, 8, 6, 1);
-    }
     &__form {
         display: flex;
         flex-direction: column;
@@ -84,4 +76,11 @@
 }
 .ant-select-selection-item {
     color: $textColor;
+}
+.drawer__label {
+    font-weight: 400;
+    @include adaptive-value(font-size, 12, 10, 1);
+    @include adaptive-value(line-height, 14, 12, 1);
+    color: $textColor;
+    @include adaptive-value(padding-bottom, 8, 6, 1);
 }

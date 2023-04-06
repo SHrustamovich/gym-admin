@@ -1,41 +1,72 @@
 import { Button, Space, Table } from "antd";
-import { FC } from "react";
+import { FC, useState } from "react";
 import useLanguage from "../../hooks/useLanguage";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { allData } from "../../utils/data";
+import { DeleteModal } from "../DeleteModal/DeleteModal";
+import { tableI } from "../../pages/types";
+import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
 
-export const TableMain: FC = () => {
+export const TableMain: FC<tableI> = ({ showModal }) => {
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const translate = useLanguage();
 
     const handlyProductEdit = (item: any) => {
-        console.log(item);
+        showModal();
     };
 
     const handlyDelete = (item: any) => {
-        console.log(item);
+        setIsOpenModal(true);
+    };
+
+    const onOkDelete = () => {
+        console.log("delete");
     };
 
     const columns = [
-        { title: `${translate("name")}`, dataIndex: "name_uz", key: "name_uz" },
+        { title: `${translate("name")}`, dataIndex: "name", key: "name_uz" },
         {
-            title: `${translate("phone_number")}`,
-            dataIndex: "image",
-            key: "image",
-            render: (image: string) => <img width={70} src={image} />,
+            title: `${translate("phone")}`,
+            dataIndex: "phone",
         },
-        { title: `${translate("status")}`, dataIndex: "price" },
-        { title: `${translate("type")}`, dataIndex: "price" },
-        { title: `${translate("expire_time")}`, dataIndex: "price" },
+        {
+            title: `${translate("status")}`,
+            dataIndex: "status",
+            key: "status",
+            render: (status: any) => (
+                <>
+                    {status > 0 ? (
+                        <p className='status'>AVAILABLE</p>
+                    ) : (
+                        <p className='status no'>OUT OF STOCK</p>
+                    )}
+                </>
+            ),
+        },
+        { title: `${translate("type")}`, dataIndex: "type" },
+        { title: `${translate("end")}`, dataIndex: "expireTime" },
         {
             title: `${translate("action")}`,
             dataIndex: "",
             render: (record: any) => (
                 <Space size={10}>
-                    <Button onClick={() => handlyProductEdit(record)}>
-                        <EditOutlined />
-                    </Button>
-                    <Button danger onClick={() => handlyDelete(record.id)}>
-                        <DeleteOutlined />
-                    </Button>
+                    <div className='btn__gate'>
+                        <Button className='table__btn'>
+                            <ExitIcon />
+                        </Button>
+                        <Button
+                            onClick={() => handlyProductEdit(record)}
+                            className='table__btn'
+                        >
+                            <EditIcon />
+                        </Button>
+                        <Button
+                            danger
+                            onClick={() => handlyDelete(record.id)}
+                            className='table__btn'
+                        >
+                            <DeleteIcon />
+                        </Button>
+                    </div>
                 </Space>
             ),
         },
@@ -43,7 +74,13 @@ export const TableMain: FC = () => {
 
     return (
         <div className='table-main'>
-            <Table columns={columns} pagination={false} />
+            <Table columns={columns} dataSource={allData} />
+            <DeleteModal
+                title={translate("deletePerson")}
+                visible={isOpenModal}
+                onOkDelete={onOkDelete}
+                onCancel={() => setIsOpenModal(false)}
+            />
         </div>
     );
 };

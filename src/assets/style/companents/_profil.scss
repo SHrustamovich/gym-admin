@@ -1,0 +1,45 @@
+// generals
+
+.label {
+    font-style: normal;
+    font-weight: 400;
+    @include adaptive-value(font-size, 12, 10, 1);
+    @include adaptive-value(line-height, 14, 12, 1);
+    color: $textColor;
+    @include adaptive-value(padding-bottom, 8, 6, 1);
+}
+
+.user {
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 22, 18, 1);
+        @include adaptive-value(line-height, 28, 26, 1);
+        color: $textColor;
+        @include adaptive-value(padding-bottom, 26, 24, 1);
+    }
+    &__input {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: $sidebarColor;
+        border-radius: 20px;
+        padding: 6px 10px;
+    }
+}
+
+.user__input .ant-input {
+    background: $sidebarColor;
+    width: 281px;
+}
+
+.profil {
+    &__form {
+        display: flex;
+        gap: 153px;
+    }
+}
+.item__btn {
+    padding-top: 80px;
+    padding-left: 331px;
+}

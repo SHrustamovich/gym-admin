@@ -25,8 +25,8 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                     </p>
                     <div className='member-driver__alls'>
                         <Form className='member-driver__form'>
-                            <div className='member-driver__item'>
-                                <div className='member-driver__text'>
+                            <div className='drawer__item'>
+                                <div className='drawer__label'>
                                     {translate("memberType")}
                                 </div>
                                 <Form.Item
@@ -41,8 +41,8 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                     <Input />
                                 </Form.Item>
                             </div>
-                            <div className='member-driver__item'>
-                                <div className='member-driver__text'>
+                            <div className='drawer__item'>
+                                <div className='drawer__label'>
                                     {translate("term")}
                                 </div>
                                 <Form.Item
@@ -57,8 +57,8 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                     <Input />
                                 </Form.Item>
                             </div>
-                            <div className='member-driver__item'>
-                                <div className='member-driver__text'>
+                            <div className='drawer__item'>
+                                <div className='drawer__label'>
                                     {translate("date")}
                                 </div>
                                 <Form.Item
@@ -73,8 +73,8 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                     <DatePicker />
                                 </Form.Item>
                             </div>
-                            <div className='member-driver__item'>
-                                <div className='member-driver__text'>
+                            <div className='drawer__item'>
+                                <div className='drawer__label'>
                                     {translate("payment")}
                                 </div>
                                 <Form.Item
@@ -96,8 +96,8 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='member-driver__item'>
-                                <div className='member-driver__text'>
+                            <div className='drawer__item'>
+                                <div className='drawer__label'>
                                     {translate("memberType")}
                                 </div>
                                 <Form.Item
@@ -112,12 +112,12 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                     <Input />
                                 </Form.Item>
                             </div>
-                            <div className='member-driver__item'>
+                            <div className='drawer__item'>
                                 <p className='member-driver__price'>
                                     {translate("total")}:{1234}
                                 </p>
                             </div>
-                            <div className='member-driver__item'>
+                            <div className='drawer__item'>
                                 <Form.Item className='member-driver__btn'>
                                     <Button className='member-driver__cancel'>
                                         Cancel

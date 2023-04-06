@@ -25,9 +25,7 @@ export const MemberShip: FC = () => {
                 </div>
                 <button className='member-ship__btn' onClick={showDrawer}>
                     <PlusIcon />
-                    <span className='members__title'>
-                        {translate("addmem")}
-                    </span>
+                    <span className='title'>{translate("addmem")}</span>
                 </button>
             </div>
             <MemberShipDriver open={open} onClose={onClose} />

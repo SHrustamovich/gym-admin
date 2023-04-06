@@ -1,9 +1,90 @@
-.table-main {
+.status {
+    display: inline;
+    background: $priceColor;
     border-radius: 20px;
+    padding: 5px 10px;
+    font-style: normal;
+    font-weight: 400;
+    @include adaptive-value(font-size, 12, 10, 1);
+    @include adaptive-value(line-height, 14, 12, 1);
+    color: $textColor;
 }
-.table {
-    border-radius: 20px !important;
+.no {
+    background: red;
 }
-.ant-table {
-    border-radius: 20px !important;
+.ant-table-content {
+    background: $sidebarColor;
+    border-radius: 30px !important;
+    table {
+        background: $sidebarColor;
+    }
+}
+.ant-table-cell {
+    color: $textColor;
+}
+.ant-table-cell::before {
+    content: none !important;
+}
+.ant-table-thead {
+    background: $sidebarColor !important;
+}
+.ant-table-wrapper .ant-table-tbody > tr > td {
+    border: none;
+}
+// .ant-table-row-level-0:hover {
+//     background: red !important;
+// }
+.ant-table-wrapper .ant-table-tbody > tr:hover > td {
+    background: $trColor !important;
+}
+.ant-table-wrapper .ant-table-thead > tr > th {
+    background: $sidebarColor;
+    color: $textColor;
+    border: none;
+}
+.anticon .anticon-edit svg {
+    fill: $buttonColor;
+}
+.table__btn {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.table__btn:hover {
+    background: $buttonHover;
+    border: 1px solid $buttonHover;
+}
+
+.btn__gate {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.ant-picker .ant-picker-input > input::placeholder {
+    color: $textColor;
+}
+
+.ant-pagination-item-link {
+    background: $sidebarColor !important;
+    border-radius: 50% !important;
+    border: 1px solid $textColor !important;
+    span {
+        color: $textColor;
+    }
+}
+.ant-pagination-item {
+    background: $sidebarColor !important;
+    border-radius: 50% !important;
+    border: 1px solid $textColor !important;
+    a {
+        color: $textColor;
+    }
+}
+
+.ant-pagination-item-active {
+    background: $buttonColor !important;
+    a {
+        color: $textColor !important;
+    }
 }

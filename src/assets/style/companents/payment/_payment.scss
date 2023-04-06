@@ -1,0 +1,19 @@
+.payment {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__title {
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 22, 20, 1);
+        @include adaptive-value(line-height, 28, 26, 1);
+        color: $textColor;
+        @include adaptive-value(padding-block, 26, 20, 1);
+        text-transform: uppercase;
+    }
+    &__span {
+        color: $priceColor;
+    }
+}

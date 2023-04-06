@@ -78,13 +78,13 @@ export const InventoryDrawer: FC<draverI> = ({ open, onClose }) => {
                         <div className='inventory-drawer__item'>
                             <Form.Item className='member-driver__btn'>
                                 <Button className='member-driver__cancel'>
-                                    Cancel
+                                    {translate("cancel")}
                                 </Button>
                                 <Button
                                     htmlType='submit'
                                     className='member-driver__submit'
                                 >
-                                    Save
+                                    {translate("save")}
                                 </Button>
                             </Form.Item>
                         </div>

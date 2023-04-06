@@ -2,6 +2,7 @@ import { Button, Space, Table } from "antd";
 import { FC } from "react";
 import useLanguage from "../../hooks/useLanguage";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { productData } from "../../utils/data";
 
 export const InventoryTable: FC = () => {
     const translate = useLanguage();
@@ -16,37 +17,33 @@ export const InventoryTable: FC = () => {
 
     const columns = [
         {
-            title: `${translate("memberType")}`,
-            dataIndex: "memberType",
-            key: "memberType",
+            title: `${translate("productT")}`,
+            dataIndex: "productType",
         },
         {
-            title: `${translate("term")}`,
-            dataIndex: "term",
-            key: "term",
-            render: (image: string) => <img width={70} src={image} />,
+            title: `${translate("productN")}`,
+            dataIndex: "name",
         },
-        { title: `${translate("date")}`, dataIndex: "date" },
-        { title: `${translate("end")}`, dataIndex: "end" },
-        { title: `${translate("status")}`, dataIndex: "price" },
+        { title: `${translate("sup")}`, dataIndex: "sup" },
+        { title: `${translate("stock")}`, dataIndex: "stocks" },
         {
-            title: `${translate("action")}`,
-            dataIndex: "",
-            render: (record: any) => (
-                <Space size={10}>
-                    <Button onClick={() => handlyProductEdit(record)}>
-                        <EditOutlined />
-                    </Button>
-                    <Button danger onClick={() => handlyDelete(record.id)}>
-                        <DeleteOutlined />
-                    </Button>
-                </Space>
+            title: `${translate("status")}`,
+            dataIndex: "status",
+            key: "status",
+            render: (status: any) => (
+                <>
+                    {status > 0 ? (
+                        <p className='status'>AVAILABLE</p>
+                    ) : (
+                        <p className='status no'>OUT OF STOCK</p>
+                    )}
+                </>
             ),
         },
     ];
     return (
         <div className='inven-table'>
-            <Table columns={columns} pagination={false} />
+            <Table columns={columns} dataSource={productData} />
         </div>
     );
 };
