@@ -5,4 +5,8 @@ export const domen = "https://unitor-gym-api.main-gate.appx.uz";
 
 export const authRefresh = "/api/auth/refresh";
 export const authLogin = "/api/auth/login";
-export const getauth = "/api/auth"
+export const getauth = "/api/auth";
+
+// members
+
+export const memberGet = "/api/member";

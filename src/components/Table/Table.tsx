@@ -5,10 +5,17 @@ import { allData } from "../../utils/data";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 import { tableI } from "../../pages/types";
 import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
+import { useLoad } from "../../hooks/request";
+import { memberGet } from "../../utils/urls";
 
 export const TableMain: FC<tableI> = ({ showModal }) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const translate = useLanguage();
+
+    const memberRequest = useLoad({ url: memberGet });
+
+    const { response, loading, error } = memberRequest;
+    console.log(response);
 
     const handlyProductEdit = (item: any) => {
         showModal();
