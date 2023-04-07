@@ -7,11 +7,11 @@ export const MemberShipTable: FC = () => {
     const translate = useLanguage();
 
     const handlyProductEdit = (item: any) => {
-        console.log(item);
+        alert(item);
     };
 
     const handlyDelete = (item: any) => {
-        console.log(item);
+        alert(item);
     };
 
     const columns = [

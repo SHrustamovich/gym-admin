@@ -38,7 +38,6 @@ $authHost.interceptors.response.use(
         if (error.response.status === 401) {
             const postAuth = usePostRequest<UserDataI>({ url: authRefresh });
             const { response, error } = postAuth;
-            console.log(postAuth);
         }
         return Promise.reject(error);
     }

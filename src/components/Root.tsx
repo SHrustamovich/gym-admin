@@ -12,7 +12,6 @@ export const Root = () => {
     const translate = useLanguage();
     const { login } = useAuthentication();
 
-    console.log(login);
 
     return login ? (
         <>

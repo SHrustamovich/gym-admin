@@ -87,7 +87,7 @@
     background: $sidebarColor;
 }
 .ant-input-affix-wrapper {
-    background: $sidebarColor;
+    background: $backgroundColor !important;
     border: none;
 }
 .login__password .ant-input {

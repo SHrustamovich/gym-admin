@@ -7,15 +7,15 @@ import { tableI } from "../../pages/types";
 import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
 import { useLoad } from "../../hooks/request";
 import { memberGet } from "../../utils/urls";
+import { membersReqI } from "../type";
 
 export const TableMain: FC<tableI> = ({ showModal }) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const translate = useLanguage();
 
-    const memberRequest = useLoad({ url: memberGet });
+    const memberRequest = useLoad<membersReqI>({ url: memberGet });
 
-    const { response, loading, error } = memberRequest;
-    console.log(response);
+    const { response, loading } = memberRequest;
 
     const handlyProductEdit = (item: any) => {
         showModal();
@@ -26,11 +26,15 @@ export const TableMain: FC<tableI> = ({ showModal }) => {
     };
 
     const onOkDelete = () => {
-        console.log("delete");
+        alert("delete");
     };
 
     const columns = [
-        { title: `${translate("name")}`, dataIndex: "name", key: "name_uz" },
+        {
+            title: `${translate("name")}`,
+            dataIndex: "fullname",
+            key: "name_uz",
+        },
         {
             title: `${translate("phone")}`,
             dataIndex: "phone",
@@ -41,7 +45,7 @@ export const TableMain: FC<tableI> = ({ showModal }) => {
             key: "status",
             render: (status: any) => (
                 <>
-                    {status > 0 ? (
+                    {status == "active" ? (
                         <p className='status'>AVAILABLE</p>
                     ) : (
                         <p className='status no'>OUT OF STOCK</p>
@@ -81,7 +85,17 @@ export const TableMain: FC<tableI> = ({ showModal }) => {
 
     return (
         <div className='table-main'>
-            <Table columns={columns} dataSource={allData} />
+            <Table
+                columns={columns}
+                rowKey='phone'
+                dataSource={response?.data.result.map((item) => ({
+                    fullname: item.fullname,
+                    phone: item.phone,
+                    status: item.status,
+                    type: item.membership.membership_type.name,
+                    expireTime: item.membership.term,
+                }))}
+            />
             <DeleteModal
                 title={translate("deletePerson")}
                 visible={isOpenModal}

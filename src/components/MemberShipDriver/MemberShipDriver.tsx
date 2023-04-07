@@ -7,7 +7,7 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
     const translate = useLanguage();
 
     const handleChange = (value: string) => {
-        console.log(`selected ${value}`);
+        alert(`selected ${value}`);
     };
 
     return (
