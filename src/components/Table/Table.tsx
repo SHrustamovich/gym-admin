@@ -8,15 +8,16 @@ import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
 import { useLoad } from "../../hooks/request";
 import { memberGet } from "../../utils/urls";
 import { membersReqI } from "../type";
+import { Loading } from "../Loading/Loading";
 
 export const TableMain: FC<tableI> = ({ showModal }) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
+    const [currentPage, setCurrentPage] = useState();
     const translate = useLanguage();
 
     const memberRequest = useLoad<membersReqI>({ url: memberGet });
 
     const { response, loading } = memberRequest;
-
     const handlyProductEdit = (item: any) => {
         showModal();
     };
@@ -46,9 +47,9 @@ export const TableMain: FC<tableI> = ({ showModal }) => {
             render: (status: any) => (
                 <>
                     {status == "active" ? (
-                        <p className='status'>AVAILABLE</p>
+                        <p className='status'>ACTIVE</p>
                     ) : (
-                        <p className='status no'>OUT OF STOCK</p>
+                        <p className='status no'>REMOVED</p>
                     )}
                 </>
             ),
@@ -85,17 +86,25 @@ export const TableMain: FC<tableI> = ({ showModal }) => {
 
     return (
         <div className='table-main'>
-            <Table
-                columns={columns}
-                rowKey='phone'
-                dataSource={response?.data.result.map((item) => ({
-                    fullname: item.fullname,
-                    phone: item.phone,
-                    status: item.status,
-                    type: item.membership.membership_type.name,
-                    expireTime: item.membership.term,
-                }))}
-            />
+            {loading ? (
+                <Loading />
+            ) : (
+                <Table
+                    columns={columns}
+                    rowKey='phone'
+                    dataSource={response?.data.result.map((item) => ({
+                        fullname: item.fullname,
+                        phone: item.phone,
+                        status: item.status,
+                        type: item.membership.membership_type.name,
+                        expireTime: item.membership.term,
+                    }))}
+                    pagination={{
+                        total: response?.data.total,
+                        current: response?.data.page,
+                    }}
+                />
+            )}
             <DeleteModal
                 title={translate("deletePerson")}
                 visible={isOpenModal}

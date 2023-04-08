@@ -10,7 +10,7 @@ import useLanguage from "../hooks/useLanguage";
 
 export const Members = () => {
     const translate = useLanguage();
-    
+
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const showModal = () => {
@@ -34,9 +34,7 @@ export const Members = () => {
                     <div className='members__add'>
                         <button className='btn' onClick={showModal}>
                             <PlusIcon />
-                            <div className='title'>
-                                {translate("add")}
-                            </div>
+                            <div className='title'>{translate("add")}</div>
                         </button>
                         <MemberModal
                             isModalOpen={isModalOpen}
@@ -47,9 +45,6 @@ export const Members = () => {
             </div>
             <div className='members__table'>
                 <TableMain showModal={showModal} />
-            </div>
-            <div className='members__success'>
-                <Wrong />
             </div>
         </div>
     );

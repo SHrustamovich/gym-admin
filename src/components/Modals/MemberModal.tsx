@@ -1,8 +1,10 @@
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import {
     Button,
     DatePicker,
     Form,
     Input,
+    message,
     Modal,
     Radio,
     RadioChangeEvent,
@@ -13,54 +15,50 @@ import { CaleIcon, PersonIcon, PhoneIcon } from "../../assets/icons/icons";
 import { useLoad, usePostRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { modalI } from "../../pages/types";
-import { memberGet, memberPost, membershipGet } from "../../utils/urls";
-import {
-    memberShipResI,
-    memberShipResII,
-    membersPostI,
-    membersReqI,
-    membersResI,
-} from "../type";
+import { memberPost, membershipGet } from "../../utils/urls";
+import { memberShipResII, membersPostI } from "../type";
 
 export const MemberModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
-    const [value, setValue] = useState(1);
     const [form] = Form.useForm();
 
     const membershipGetReq = useLoad<memberShipResII>({ url: membershipGet });
 
-    const { response, loading } = membershipGetReq;
+    const { response } = membershipGetReq;
 
     const membersPost = usePostRequest({ url: memberPost });
 
-    const removeModal = () => {
+    const { loading, request } = membersPost;
+
+    const handlyCancel = () => {
+        form.resetFields();
         handleCancel();
     };
 
-    const onChange = (e: RadioChangeEvent) => {
-        form.setFieldValue("gender", e.target.value);
+    const removeModal = () => {
+        form.resetFields();
+        handleCancel();
     };
 
-    const dateChange = (event: any) => {
-        form.setFieldValue("date_of_birth", event);
-    };
     const translate = useLanguage();
 
     const memberFinish = async (e: membersPostI) => {
         const { fullname, phone, gender, date_of_birth, membership_id } = e;
+        let time = new Date(date_of_birth).toISOString();
+        console.log(fullname, phone, gender, time, membership_id);
         const { success, error } = await membersPost.request<membersPostI>({
             data: {
                 fullname,
                 phone,
                 gender,
-                date_of_birth,
+                date_of_birth: time,
                 membership_id,
             },
         });
         if (success) {
-            alert("success");
+            message.success("MEMBER ADDED SUCCESSFULLY");
         }
         if (error) {
-            alert("error");
+            message.error("SOMETHING WENT WRONG");
         }
     };
 
@@ -131,10 +129,7 @@ export const MemberModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
                                         },
                                     ]}
                                 >
-                                    <Radio.Group
-                                        onChange={onChange}
-                                        value={value}
-                                    >
+                                    <Radio.Group>
                                         <Radio value={"male"}>
                                             {translate("male")}
                                         </Radio>
@@ -162,7 +157,6 @@ export const MemberModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
                                 >
                                     <DatePicker
                                         suffixIcon={<CaleIcon />}
-                                        onChange={dateChange}
                                         format='YYYY/MM/DD'
                                     />
                                 </Form.Item>
@@ -196,12 +190,17 @@ export const MemberModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
                             </div>
 
                             <div className='modal__btn'>
-                                <Button className='member-modal__cancel'>
+                                <Button
+                                    className='member-modal__cancel'
+                                    disabled={loading}
+                                    onClick={handlyCancel}
+                                >
                                     {translate("cancel")}
                                 </Button>
                                 <Button
                                     className='member-modal__create'
                                     htmlType='submit'
+                                    loading={loading}
                                 >
                                     {translate("create")}
                                 </Button>

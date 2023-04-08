@@ -32,6 +32,7 @@ export interface membersResI {
     limit: number;
     page: number;
     result: membersI[];
+    total: number;
 }
 export interface membersReqI {
     loading: string;
