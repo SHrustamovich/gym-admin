@@ -9,7 +9,7 @@ import {
     Radio,
     Select,
 } from "antd";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { CaleIcon, PersonIcon, PhoneIcon } from "../../assets/icons/icons";
 import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
@@ -17,6 +17,7 @@ import { modalI } from "../../pages/types";
 import { memberPost, membershipGet, membersPut } from "../../utils/urls";
 import { membersEditI, memberShipResII, membersPostI } from "../type";
 import moment from "moment";
+import { phoneNamberCheck } from "../../utils/helpers";
 
 export const MemberModal: FC<modalI> = ({
     isModalOpen,
@@ -33,13 +34,13 @@ export const MemberModal: FC<modalI> = ({
     const membersPutReq = usePutRequest<membersEditI>({
         url: membersPut(editMembers?.id as number),
     });
-
-    console.log(editMembers);
+    const [form] = Form.useForm();
+    const phoneValue = Form.useWatch("phone", form);
 
     const { loading } = membersPost;
 
     const handlyCancel = () => {
-        // form.resetFields();
+        form.resetFields();
         handleCancel();
     };
 
@@ -47,8 +48,6 @@ export const MemberModal: FC<modalI> = ({
         form.resetFields();
         handleCancel();
     };
-
-    const [form] = Form.useForm();
 
     const translate = useLanguage();
 
@@ -106,6 +105,12 @@ export const MemberModal: FC<modalI> = ({
             });
         }
     }, [editMembers]);
+
+    useEffect(() => {
+        if (phoneValue) {
+            form.setFieldValue("phone", phoneNamberCheck(phoneValue));
+        }
+    }, [phoneValue]);
 
     return (
         <div className='modal-members'>

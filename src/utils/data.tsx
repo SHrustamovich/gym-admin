@@ -97,15 +97,15 @@ export interface SortDataI {
 export const sortData: SortDataI[] = [
     {
         id: 1,
-        label: "Active",
+        label: "active",
     },
     {
         id: 2,
-        label: "inActive",
+        label: "inactive",
     },
     {
         id: 3,
-        label: "Removed",
+        label: "removed",
     },
 ];
 

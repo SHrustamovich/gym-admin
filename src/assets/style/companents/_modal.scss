@@ -42,6 +42,9 @@
     @include adaptive-value(padding-block, 6, 4, 1);
     @include adaptive-value(padding-inline, 10, 8, 1);
     border-radius: 20px;
+    &:hover {
+        box-shadow: 0 0 0 2px rgb(5 145 255 / 10%);
+    }
 }
 
 .ant-input {
@@ -130,4 +133,28 @@
     margin-left: 1px;
     margin-right: 10px;
     order: -1;
+}
+
+.ant-input-affix-wrapper:focus {
+    box-shadow: none !important;
+    border: none;
+}
+
+.ant-input-affix-wrapper:hover {
+    box-shadow: none !important;
+    border: none;
+}
+.ant-picker:hover {
+    border: none;
+}
+.ant-picker-focused {
+    box-shadow: none;
+}
+
+.ant-select-selector:hover {
+    border: none !important;
+}
+
+.ant-select-selector {
+    box-shadow: none !important;
 }

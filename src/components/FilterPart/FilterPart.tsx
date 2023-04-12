@@ -1,28 +1,12 @@
 import { FC, useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { FilterIcon } from "../../assets/icons/icons";
 import { filterI } from "../../pages/types";
 
 export const FilterPart: FC<filterI> = ({ filterData }) => {
     const [open, setOpen] = useState<boolean>(false);
     const sort = useRef<HTMLUListElement | null>(null);
-
-    useEffect(() => {
-        window.addEventListener("click", () => {
-            console.log("-------------------------")
-            if (sort.current !== null) {
-                setOpen(false);
-                sort.current.style.maxHeight = "0px";
-            }
-        });
-        return () => {
-            window.removeEventListener("click", () => {
-                if (sort.current !== null) {
-                    setOpen(false);
-                    sort.current.style.maxHeight = "0px";
-                }
-            });
-        };
-    }, []);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const openFilterBody = (e: any) => {
         e.stopPropagation();
@@ -37,6 +21,26 @@ export const FilterPart: FC<filterI> = ({ filterData }) => {
         }
     };
 
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (sort.current && !sort.current.contains(event.target as Node)) {
+                setOpen(false);
+                sort.current.style.maxHeight = "0px";
+            }
+        };
+
+        document.addEventListener("mousedown", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+        };
+    }, []);
+
+    const SelectFilter = (target: string) => {
+        searchParams.set("status", target);
+        setSearchParams(searchParams);
+    };
+
     return (
         <div className='filter'>
             <div className='filter__header' onClick={openFilterBody}>
@@ -45,7 +49,11 @@ export const FilterPart: FC<filterI> = ({ filterData }) => {
             </div>
             <ul className={`filter__list ${open ? "vis" : ""}`} ref={sort}>
                 {filterData.map((item) => (
-                    <li className='filter__item' key={item.id}>
+                    <li
+                        className='filter__item'
+                        key={item.id}
+                        onClick={() => SelectFilter(item.label)}
+                    >
                         {item.label}
                     </li>
                 ))}

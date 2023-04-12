@@ -1,4 +1,4 @@
-import { FC, useContext, useRef, useState } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 import { LanguageContext } from "../../context/languageContext";
 import { LangData } from "../../utils/data";
 import { getImage, LangEnums } from "../../utils/helpers";
@@ -7,12 +7,20 @@ export const SelectLang: FC = () => {
     const [open, setOpen] = useState<boolean>(false);
     const list = useRef<HTMLUListElement | null>(null);
 
-    window.addEventListener("click", () => {
-        if (list.current !== null) {
-            setOpen(false);
-            list.current.style.maxHeight = "0px";
-        }
-    });
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (list.current && !list.current.contains(event.target as Node)) {
+                setOpen(false);
+                list.current.style.maxHeight = "0px";
+            }
+        };
+
+        document.addEventListener("mousedown", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+        };
+    }, []);
 
     const handlyOpen = (e: any) => {
         e.stopPropagation();

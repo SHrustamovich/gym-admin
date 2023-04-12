@@ -38,7 +38,6 @@ export const TableMain: FC<tableI> = ({
         setEditMembers(item);
         showModal();
     };
-    console.log(response);
     const handlyDelete = (id: number) => {
         setMembers({ ...members, id });
         setIsOpenModal(true);

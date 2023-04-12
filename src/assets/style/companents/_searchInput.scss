@@ -1,14 +1,12 @@
 .search {
-    display: flex;
+    flex: 1 1 auto;
     align-items: center;
     gap: 16px;
     background: $sidebarColor;
     background: #343743;
-    border-radius: 20px;
-    padding: 10px;
     width: 424px;
+    border-radius: 20px;
     input {
-        flex: 1 1 auto;
         background: $sidebarColor;
         outline: none;
         font-style: normal;
@@ -17,4 +15,33 @@
         @include adaptive-value(line-height, 16, 14, 1);
         color: #ccb9f5;
     }
+}
+
+.ant-input-group-addon {
+    display: none !important;
+}
+.search .ant-input-affix-wrapper {
+    background: $sidebarColor !important;
+}
+.ant-input-search .ant-input:hover {
+    border: nones;
+}
+
+.ant-input-affix-wrapper:hover {
+    border: none;
+}
+.search .ant-input {
+    padding: 10px !important;
+    border-radius: 20px !important;
+}
+
+// .search .ant-input-wrapper {
+//     display: flex;
+//     flex-direction: row-reverse;
+// }
+.search .ant-btn {
+    background: $sidebarColor;
+}
+.search .ant-input-affix-wrapper {
+    border-radius: 20px !important;
 }
