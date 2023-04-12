@@ -5,6 +5,7 @@ import { InventoryDrawer } from "../components/InventoryDrawer/InventoryDraver";
 import { InventoryTable } from "../components/InventoryTable/INventoryTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
 import useLanguage from "../hooks/useLanguage";
+import { sortData } from "../utils/data";
 
 export const Inventory = () => {
     const [open, setOpen] = useState(false);
@@ -24,7 +25,7 @@ export const Inventory = () => {
             <div className='inventory__header'>
                 <SearchInput />
                 <div className='inventory__filter'>
-                    <FilterPart />
+                    <FilterPart filterData={sortData} />
                     <button className='inventory__btn' onClick={showDwawer}>
                         <PlusIcon />
                         <span className='inventory__btn__text'>

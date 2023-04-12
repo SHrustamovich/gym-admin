@@ -5,6 +5,7 @@ import { ProductDrawer } from "../components/ProductDrawer/ProductDrawer";
 import { ProductTable } from "../components/ProductTable/ProducTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
 import useLanguage from "../hooks/useLanguage";
+import { sortData } from "../utils/data";
 
 export const Products = () => {
     const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ export const Products = () => {
                     <SearchInput />
                 </div>
                 <div className='products__filter'>
-                    <FilterPart />
+                    <FilterPart filterData={sortData} />
                     <button className='btn' onClick={showDrawer}>
                         <PlusIcon />
                         <div className='title'>{translate("add")}</div>

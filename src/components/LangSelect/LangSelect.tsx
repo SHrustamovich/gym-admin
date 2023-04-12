@@ -7,7 +7,15 @@ export const SelectLang: FC = () => {
     const [open, setOpen] = useState<boolean>(false);
     const list = useRef<HTMLUListElement | null>(null);
 
-    const handlyOpen = () => {
+    window.addEventListener("click", () => {
+        if (list.current !== null) {
+            setOpen(false);
+            list.current.style.maxHeight = "0px";
+        }
+    });
+
+    const handlyOpen = (e: any) => {
+        e.stopPropagation();
         if (list.current !== null) {
             if (open) {
                 setOpen(false);
@@ -23,7 +31,6 @@ export const SelectLang: FC = () => {
         setLang?.(e);
         setOpen(false);
     };
-
 
     return (
         <div className='select'>

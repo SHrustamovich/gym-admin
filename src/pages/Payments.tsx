@@ -2,6 +2,7 @@ import { FilterPart } from "../components/FilterPart/FilterPart";
 import { PaymentTable } from "../components/PaymentTable/PaymentTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
 import useLanguage from "../hooks/useLanguage";
+import { sortData } from "../utils/data";
 
 export const Payments = () => {
     const translate = useLanguage();
@@ -13,7 +14,7 @@ export const Payments = () => {
                     <SearchInput />
                 </div>
                 <div className='payment__filter'>
-                    <FilterPart />
+                    <FilterPart filterData={sortData} />
                 </div>
             </div>
             <div className='payment__title'>

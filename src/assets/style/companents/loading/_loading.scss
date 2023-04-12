@@ -1,0 +1,14 @@
+.ant-message-notice-content {
+    background: $sidebarColor !important;
+    padding: 13px 18px;
+}
+.ant-message-notice-content .ant-message-error {
+    span {
+        color: red;
+    }
+}
+.ant-message-notice-content .ant-message-success {
+    span {
+        color: $priceColor;
+    }
+}

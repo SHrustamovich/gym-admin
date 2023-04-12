@@ -65,6 +65,12 @@ interface Trans {
     visitTime: string;
     visitDate: string;
     membershipTypeName: string;
+    active: string;
+    inActive: string;
+    removed: string;
+    deletePerson: string;
+    yes: string;
+    no: string;
 }
 const uz: Trans = {
     home: "Asosiy",
@@ -133,6 +139,12 @@ const uz: Trans = {
     visitTime: "Tashrif vaqti",
     visitDate: "Tashrif sanasi",
     membershipTypeName: "A'zolik turi nomi",
+    active: "Faol",
+    inActive: "Faol emas",
+    removed: "O'chirildi",
+    deletePerson: "Foydalanuvchini oʻchirish",
+    yes: "HA",
+    no: "YO'Q",
 };
 const ru: Trans = {
     home: "Главная",
@@ -201,6 +213,12 @@ const ru: Trans = {
     visitTime: "Время посещения",
     visitDate: "Дата посещения",
     membershipTypeName: "Имя типа членства",
+    active: "Активный",
+    inActive: "неактивный",
+    removed: "удаленный",
+    deletePerson: "Удалить пользователя",
+    yes: "Да",
+    no: "Нет",
 };
 const eng: Trans = {
     home: "Home",
@@ -269,6 +287,12 @@ const eng: Trans = {
     visitTime: "Visit Time",
     visitDate: "Visit Date",
     membershipTypeName: "Membership Type Name",
+    active: "Acrive",
+    inActive: "inactive",
+    removed: "removed",
+    deletePerson: "Delete user",
+    yes: "Yes",
+    no: "No",
 };
 interface LanguageKeyValuePairs {
     [key: string]: Trans;

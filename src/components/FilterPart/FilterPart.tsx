@@ -1,12 +1,31 @@
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { FilterIcon } from "../../assets/icons/icons";
-import { sortData } from "../../utils/data";
+import { filterI } from "../../pages/types";
 
-export const FilterPart: FC = () => {
+export const FilterPart: FC<filterI> = ({ filterData }) => {
     const [open, setOpen] = useState<boolean>(false);
     const sort = useRef<HTMLUListElement | null>(null);
 
-    const openFilterBody = () => {
+    useEffect(() => {
+        window.addEventListener("click", () => {
+            console.log("-------------------------")
+            if (sort.current !== null) {
+                setOpen(false);
+                sort.current.style.maxHeight = "0px";
+            }
+        });
+        return () => {
+            window.removeEventListener("click", () => {
+                if (sort.current !== null) {
+                    setOpen(false);
+                    sort.current.style.maxHeight = "0px";
+                }
+            });
+        };
+    }, []);
+
+    const openFilterBody = (e: any) => {
+        e.stopPropagation();
         if (sort.current !== null) {
             if (open) {
                 setOpen(false);
@@ -17,6 +36,7 @@ export const FilterPart: FC = () => {
             }
         }
     };
+
     return (
         <div className='filter'>
             <div className='filter__header' onClick={openFilterBody}>
@@ -24,9 +44,9 @@ export const FilterPart: FC = () => {
                 <div className='filter__title'>Filter</div>
             </div>
             <ul className={`filter__list ${open ? "vis" : ""}`} ref={sort}>
-                {sortData.map((item) => (
+                {filterData.map((item) => (
                     <li className='filter__item' key={item.id}>
-                        {item.title}
+                        {item.label}
                     </li>
                 ))}
             </ul>

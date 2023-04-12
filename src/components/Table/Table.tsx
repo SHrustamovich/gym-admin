@@ -1,33 +1,65 @@
-import { Button, Space, Table } from "antd";
 import { FC, useState } from "react";
 import useLanguage from "../../hooks/useLanguage";
-import { allData } from "../../utils/data";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 import { tableI } from "../../pages/types";
-import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
-import { useLoad } from "../../hooks/request";
-import { memberGet } from "../../utils/urls";
-import { membersReqI } from "../type";
 import { Loading } from "../Loading/Loading";
+import { useDeleteRequest } from "../../hooks/request";
+import { Button, message, Space, Table } from "antd";
+import { membersDelete } from "../../utils/urls";
+import { membersEditI } from "../type";
+import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
 
-export const TableMain: FC<tableI> = ({ showModal }) => {
+const membersInitials = {
+    id: null,
+    fullname: "",
+    date_of_birth: "",
+    gender: "",
+    phone: "",
+    type: "",
+};
+
+export const TableMain: FC<tableI> = ({
+    showModal,
+    response,
+    loading,
+    request,
+    setEditMembers,
+    pageTo,
+}) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const [currentPage, setCurrentPage] = useState();
+    const [members, setMembers] = useState<membersEditI>(membersInitials);
+    const [elementLoading, setElementLoading] = useState(false);
+
     const translate = useLanguage();
 
-    const memberRequest = useLoad<membersReqI>({ url: memberGet });
+    const deleteMembers = useDeleteRequest();
 
-    const { response, loading } = memberRequest;
     const handlyProductEdit = (item: any) => {
+        setEditMembers(item);
         showModal();
     };
-
-    const handlyDelete = (item: any) => {
+    console.log(response);
+    const handlyDelete = (id: number) => {
+        setMembers({ ...members, id });
         setIsOpenModal(true);
     };
 
-    const onOkDelete = () => {
-        alert("delete");
+    const onOkDelete = async () => {
+        setElementLoading(true);
+        const { success, error } = await deleteMembers.request({
+            url: membersDelete(members.id as number),
+        });
+        if (!success) {
+            setElementLoading(false);
+            setIsOpenModal(false);
+            request();
+            message.success("MEMBER ADDED SUCCESSFULLY");
+        }
+        if (success) {
+            setElementLoading(false);
+            setIsOpenModal(false);
+            message.error("SOMETHING WENT WRONG");
+        }
     };
 
     const columns = [
@@ -47,9 +79,11 @@ export const TableMain: FC<tableI> = ({ showModal }) => {
             render: (status: any) => (
                 <>
                     {status == "active" ? (
-                        <p className='status'>ACTIVE</p>
+                        <p className='status'>{translate("active")}</p>
+                    ) : status == "inactive" ? (
+                        <p className='status no'>{translate("inActive")}</p>
                     ) : (
-                        <p className='status no'>REMOVED</p>
+                        <p className='status no'>{translate("removed")}</p>
                     )}
                 </>
             ),
@@ -58,7 +92,7 @@ export const TableMain: FC<tableI> = ({ showModal }) => {
         { title: `${translate("end")}`, dataIndex: "expireTime" },
         {
             title: `${translate("action")}`,
-            dataIndex: "",
+            dataIndex: "record",
             render: (record: any) => (
                 <Space size={10}>
                     <div className='btn__gate'>
@@ -83,7 +117,6 @@ export const TableMain: FC<tableI> = ({ showModal }) => {
             ),
         },
     ];
-
     return (
         <div className='table-main'>
             {loading ? (
@@ -98,10 +131,12 @@ export const TableMain: FC<tableI> = ({ showModal }) => {
                         status: item.status,
                         type: item.membership.membership_type.name,
                         expireTime: item.membership.term,
+                        record: item,
                     }))}
                     pagination={{
                         total: response?.data.total,
                         current: response?.data.page,
+                        onChange: (to) => pageTo(to),
                     }}
                 />
             )}

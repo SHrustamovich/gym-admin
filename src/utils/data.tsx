@@ -89,22 +89,23 @@ export const LangData: ILangData[] = [
     },
 ];
 
-export const sortData = [
+export interface SortDataI {
+    id: number;
+    label: string;
+}
+
+export const sortData: SortDataI[] = [
     {
         id: 1,
-        title: "Sort by ABC",
+        label: "Active",
     },
     {
         id: 2,
-        title: "Sort by ABC",
+        label: "inActive",
     },
     {
         id: 3,
-        title: "Sort by ABC",
-    },
-    {
-        id: 4,
-        title: "Sort by ABC",
+        label: "Removed",
     },
 ];
 

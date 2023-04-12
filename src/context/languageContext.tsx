@@ -1,4 +1,4 @@
-import { FC, ReactElement, createContext, useState, useEffect } from "react";
+import { FC, ReactElement, createContext, useState } from "react";
 import { LangEnums } from "../utils/helpers";
 
 interface LanguageProProps {

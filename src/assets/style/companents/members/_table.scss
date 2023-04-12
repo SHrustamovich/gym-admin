@@ -8,9 +8,11 @@
     @include adaptive-value(font-size, 12, 10, 1);
     @include adaptive-value(line-height, 14, 12, 1);
     color: $textColor;
+    text-transform: uppercase;
 }
 .no {
     background: red;
+    text-transform: uppercase;
 }
 .ant-table-content {
     background: $sidebarColor;
@@ -87,4 +89,15 @@
     a {
         color: $textColor !important;
     }
+}
+
+.ant-pagination .ant-pagination-item a {
+    color: $textColor;
+}
+.ant-modal-title {
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
+    color: $textColor !important;
 }

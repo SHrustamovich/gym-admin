@@ -1,6 +1,7 @@
 import { FilterPart } from "../components/FilterPart/FilterPart";
 import { HistoryTable } from "../components/HistoryTable/HistoryTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
+import { sortData } from "../utils/data";
 
 export const History = () => {
     return (
@@ -10,7 +11,7 @@ export const History = () => {
                     <SearchInput />
                 </div>
                 <div className='history__filter'>
-                    <FilterPart />
+                    <FilterPart filterData={sortData} />
                 </div>
             </div>
             <div className='history__body'>

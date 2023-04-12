@@ -28,6 +28,15 @@ export interface membersI {
     membership: memberShipI;
 }
 
+export interface membersEditI {
+    id: number | null;
+    fullname: string;
+    gender: string;
+    phone: string;
+    date_of_birth: string;
+    type: string;
+}
+
 export interface membersResI {
     limit: number;
     page: number;

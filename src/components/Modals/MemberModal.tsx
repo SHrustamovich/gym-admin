@@ -7,30 +7,39 @@ import {
     message,
     Modal,
     Radio,
-    RadioChangeEvent,
     Select,
 } from "antd";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { CaleIcon, PersonIcon, PhoneIcon } from "../../assets/icons/icons";
-import { useLoad, usePostRequest } from "../../hooks/request";
+import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { modalI } from "../../pages/types";
-import { memberPost, membershipGet } from "../../utils/urls";
-import { memberShipResII, membersPostI } from "../type";
+import { memberPost, membershipGet, membersPut } from "../../utils/urls";
+import { membersEditI, memberShipResII, membersPostI } from "../type";
+import moment from "moment";
 
-export const MemberModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
-    const [form] = Form.useForm();
-
+export const MemberModal: FC<modalI> = ({
+    isModalOpen,
+    handleCancel,
+    request,
+    editMembers,
+}) => {
     const membershipGetReq = useLoad<memberShipResII>({ url: membershipGet });
 
     const { response } = membershipGetReq;
 
     const membersPost = usePostRequest({ url: memberPost });
 
-    const { loading, request } = membersPost;
+    const membersPutReq = usePutRequest<membersEditI>({
+        url: membersPut(editMembers?.id as number),
+    });
+
+    console.log(editMembers);
+
+    const { loading } = membersPost;
 
     const handlyCancel = () => {
-        form.resetFields();
+        // form.resetFields();
         handleCancel();
     };
 
@@ -39,35 +48,69 @@ export const MemberModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
         handleCancel();
     };
 
+    const [form] = Form.useForm();
+
     const translate = useLanguage();
 
     const memberFinish = async (e: membersPostI) => {
         const { fullname, phone, gender, date_of_birth, membership_id } = e;
         let time = new Date(date_of_birth).toISOString();
-        console.log(fullname, phone, gender, time, membership_id);
-        const { success, error } = await membersPost.request<membersPostI>({
-            data: {
-                fullname,
-                phone,
-                gender,
-                date_of_birth: time,
-                membership_id,
-            },
-        });
-        if (success) {
-            message.success("MEMBER ADDED SUCCESSFULLY");
-        }
-        if (error) {
-            message.error("SOMETHING WENT WRONG");
+        if (editMembers) {
+            const { success, error } =
+                await membersPutReq.request<membersEditI>({
+                    data: {
+                        fullname,
+                        phone,
+                        gender,
+                        date_of_birth,
+                        membership_id,
+                    },
+                });
+            if (success) {
+                handleCancel();
+                message.success("MEMBER UPDATE SUCCESSFULLY");
+            }
+            if (error) {
+                handleCancel();
+                message.error("SOMETHING WENT WRONG");
+            }
+        } else {
+            const { success, error } = await membersPost.request<membersPostI>({
+                data: {
+                    fullname,
+                    phone,
+                    gender,
+                    date_of_birth: time,
+                    membership_id,
+                },
+            });
+            if (success) {
+                message.success("MEMBER ADDED SUCCESSFULLY");
+                handleCancel();
+                request?.();
+                form.resetFields();
+            }
+            if (error) {
+                message.error("SOMETHING WENT WRONG");
+                handleCancel();
+                form.resetFields();
+            }
         }
     };
+
+    useEffect(() => {
+        if (editMembers != null) {
+            form.setFieldsValue({
+                ...editMembers,
+                date_of_birth: moment(editMembers.date_of_birth),
+            });
+        }
+    }, [editMembers]);
 
     return (
         <div className='modal-members'>
             <Modal
-                // centered
                 open={isModalOpen}
-                // onOk={handleOk}
                 onCancel={removeModal}
                 width={825}
                 footer={null}
@@ -157,7 +200,7 @@ export const MemberModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
                                 >
                                     <DatePicker
                                         suffixIcon={<CaleIcon />}
-                                        format='YYYY/MM/DD'
+                                        format='YYYY-MM-DD'
                                     />
                                 </Form.Item>
                             </div>

@@ -18,7 +18,7 @@ export const usePostRequest = <T>(options = {}) =>
     useRequest<T>({ method: "POST", ...options });
 
 export const usePutRequest = <T>(options = {}) =>
-    useRequest<T>({ method: "PUT", ...options });
+    useRequest<T>({ method: "PATCH", ...options });
 
 export const useGetRequest = <T>(options = {}) =>
     useRequest<T>({ method: "GET", ...options });
@@ -68,7 +68,7 @@ export const useRequest = <T>(options = {}) => {
         response,
     };
 };
-export const useLoad = <T>(options = {}, dependencies = []) => {
+export const useLoad = <T, A = []>(options = {}, dependencies: A[] = []) => {
     const request = useGetRequest<T>({ ...options });
     useEffect(() => {
         request.request();
