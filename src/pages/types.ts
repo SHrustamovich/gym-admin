@@ -4,6 +4,7 @@ import {
     memberShipI,
     MembershipIdType,
     MemberShipResultType,
+    MemberShipTypeI,
     MemberType,
     PaymentI,
 } from "../components/type";
@@ -19,6 +20,13 @@ export interface modalI {
 export interface draverI {
     open: boolean;
     onClose: () => void;
+}
+
+export interface MemberShipDraverI {
+    open: boolean;
+    onClose: () => void;
+    data: MembershipIdType | undefined;
+    req: () => void;
 }
 
 export interface deleteModalI {

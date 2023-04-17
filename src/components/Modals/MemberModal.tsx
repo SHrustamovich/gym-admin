@@ -15,11 +15,7 @@ import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { modalI } from "../../pages/types";
 import { memberPost, membershipGet, membersPut } from "../../utils/urls";
-import {
-    MemberPostType,
-    membersEditI,
-    MemberShipType,
-} from "../type";
+import { MemberPostType, membersEditI, MemberShipType } from "../type";
 import moment from "moment";
 import { phoneNamberCheck } from "../../utils/helpers";
 
@@ -188,29 +184,7 @@ export const MemberModal: FC<modalI> = ({
                                     />
                                 </Form.Item>
                             </div>
-                            {/* <div className='modal__name'>
-                                <div className='modal__text'>
-                                    {translate("memberType")}
-                                </div>
-                                <Form.Item
-                                    className='modal__item'
-                                    name='membership_id'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: translate("valName"),
-                                        },
-                                    ]}
-                                >
-                                    <Select
-                                        className='members__select'
-                                        placeholder='select'
-                                        options={response?.data.result.map(item => (
-                                            item
-                                        ))}
-                                    />
-                                </Form.Item>
-                            </div> */}
+
                             <div className='modal__radio'>
                                 <div className='modal__text'>
                                     {translate("gender")}

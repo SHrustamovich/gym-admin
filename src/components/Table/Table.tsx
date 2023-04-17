@@ -156,7 +156,6 @@ export const TableMain: FC<tableI> = ({
                         current: response?.data.page,
                         onChange: (to) => pageTo(to),
                     }}
-                    // onRow={RowFunc}
                 />
             )}
             <DeleteModal

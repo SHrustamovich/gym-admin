@@ -78,7 +78,7 @@ export interface MemberPostType {
     gender: string;
     date_of_birth: string;
 }
-// mmeberShip -------------------------------------------------------------------------
+// --------------------mmeberShip ---------------------------------------------
 export interface MemberShipResultType {
     created_at: string;
     end_date: string;
@@ -119,7 +119,22 @@ export interface MemberShipTypeDataI {
 export interface MemberShipTypeI {
     data: MemberShipTypeDataI;
 }
-// -----------------------
+// membership post
+export interface MemberShipTypePostI {
+    membership_type_id: number;
+    member_id: number;
+    term: string;
+    start_date: string;
+    end_date: string;
+}
+// membership edit
+export interface MemberShipTypeEditI {
+    id: number | null;
+    membership_type_id: number;
+    term: string;
+    start_date: string;
+    end_date: string;
+}
 
 // membershipId--------------------
 export interface MemberShipIdMembershipTypeI {
@@ -162,19 +177,12 @@ export interface MembershipIdType {
     data: MembershipIdDataType;
 }
 
+// ------------------------
 export interface memberShipResI {
     limit: number;
     page: number;
     result: membersI[];
 }
-// export interface memberShipDataI {
-//     limit: number;
-//     page: number;
-//     result: memberShipInterface[];
-// }
-// export interface memberShipResII {
-//     data: memberShipDataI;
-// }
 
 export interface PaymentType {
     created_at: string;

@@ -16,6 +16,7 @@ import { memberGetU, memberShipGet } from "../utils/urls";
 export const MemberShip: FC = () => {
     const translate = useLanguage();
     const [open, setOpen] = useState(false);
+    const [editMemberShip, setEditMemberShip] = useState(null);
 
     const { id } = useParams();
 
@@ -24,12 +25,6 @@ export const MemberShip: FC = () => {
     });
 
     const { response, loading, request } = memberSHipGetId;
-
-    console.log(response);
-
-    const memberShipsGet = useLoad({ url: memberShipGet });
-
-    const { response: memberShipResponse } = memberShipsGet;
 
     const showDrawer = () => {
         setOpen(true);
@@ -61,7 +56,12 @@ export const MemberShip: FC = () => {
                             <span className='title'>{translate("addmem")}</span>
                         </button>
                     </div>
-                    <MemberShipDriver open={open} onClose={onClose} />
+                    <MemberShipDriver
+                        open={open}
+                        onClose={onClose}
+                        data={response}
+                        req={request}
+                    />
                     <MemberShipTable response={response} />
                 </div>
             )}

@@ -17,6 +17,7 @@ export const membersPut = (id: number) => `api/member/${id}`;
 
 // membership
 export const memberShipGet = "/api/membership";
+export const memberShipPost = "/api/membership"
 
 // membership type
 export const membershipType = "/api/membership-types"

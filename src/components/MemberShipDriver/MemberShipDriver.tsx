@@ -1,18 +1,52 @@
-import { Button, DatePicker, Drawer, Form, Input, Select } from "antd";
+import { Button, DatePicker, Drawer, Form, Input, message, Select } from "antd";
 import { FC } from "react";
-import { useLoad } from "../../hooks/request";
+import { useLoad, usePostRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
-import { draverI } from "../../pages/types";
-import { membershipType } from "../../utils/urls";
-import { MemberShipTypeI } from "../type";
+import { draverI, MemberShipDraverI } from "../../pages/types";
+import { memberShipPost, membershipType } from "../../utils/urls";
+import { MemberShipTypeI, MemberShipTypePostI } from "../type";
 
-export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
+export const MemberShipDriver: FC<MemberShipDraverI> = ({
+    open,
+    onClose,
+    data,
+    req,
+}) => {
     const translate = useLanguage();
 
-  
+    const [form] = Form.useForm();
+
     const memberShipTypeReq = useLoad<MemberShipTypeI>({ url: membershipType });
-    const { response, request, loading } = memberShipTypeReq;
-    console.log(response);
+    const { response, request } = memberShipTypeReq;
+
+    const memberShipPostReq = usePostRequest({ url: memberShipPost });
+
+    const { loading } = memberShipPostReq;
+
+    const MemberShipFinish = async (e: MemberShipTypePostI) => {
+        const { membership_type_id, term, start_date, end_date } = e;
+
+        const { success, error } = await memberShipPostReq.request({
+            data: {
+                membership_type_id,
+                member_id: data?.data.id,
+                term,
+                start_date,
+                end_date,
+            },
+        });
+        if (success) {
+            message.success("MEMBERSHIP ADDED SUCCESSFULLY");
+            onClose();
+            req?.();
+            form.resetFields();
+        }
+        if (error) {
+            message.error("SOMETHING WENT WRONG");
+            onClose();
+            form.resetFields();
+        }
+    };
     return (
         <div className='member-driver'>
             <Drawer
@@ -27,7 +61,11 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                         {translate("membership")}
                     </p>
                     <div className='member-driver__alls'>
-                        <Form className='member-driver__form'>
+                        <Form
+                            className='member-driver__form'
+                            onFinish={MemberShipFinish}
+                            form={form}
+                        >
                             <div className='drawer__item'>
                                 <div className='drawer__label'>
                                     {translate("membershipType")}
@@ -73,7 +111,7 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                     {translate("date")}
                                 </div>
                                 <Form.Item
-                                    name='startDate'
+                                    name='start_date'
                                     rules={[
                                         {
                                             required: true,
@@ -89,7 +127,7 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                     {translate("end")}
                                 </div>
                                 <Form.Item
-                                    name='endDate'
+                                    name='end_date'
                                     rules={[
                                         {
                                             required: true,
@@ -113,6 +151,7 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                     <Button
                                         htmlType='submit'
                                         className='member-driver__submit'
+                                        loading={loading}
                                     >
                                         Submit
                                     </Button>

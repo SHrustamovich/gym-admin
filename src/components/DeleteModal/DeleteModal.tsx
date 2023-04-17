@@ -18,7 +18,6 @@ export const DeleteModal: FC<deleteModalI> = ({
                 centered
                 open={visible}
                 onOk={onOkDelete}
-                // confirmLoading={loading}
                 okText={translate("yes")}
                 cancelText={translate("no")}
                 okType='danger'

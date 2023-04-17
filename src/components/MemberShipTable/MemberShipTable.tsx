@@ -1,21 +1,24 @@
 import { Button, Space, Table } from "antd";
-import { FC } from "react";
+import { FC, useState } from "react";
 import useLanguage from "../../hooks/useLanguage";
 import { DeleteIcon, EditIcon } from "../../assets/icons/icons";
 import { MemberShipTableI } from "../../pages/types";
 
+const memberShipInitial = {};
+
 export const MemberShipTable: FC<MemberShipTableI> = ({ response }) => {
+    const [memberShip, setMemberShip] = useState(null);
     const translate = useLanguage();
 
     const handlyProductEdit = (item: any) => {
-        alert(item);
-    };
-    const handlyDelete = (item: any) => {
-        alert(item);
+        console.log(item, "wwwwwwwwwww");
     };
 
-    // console.log(response);
-
+    const handlyMemberShipDelete = (id: number) => {
+        // setMemberShip(id);
+        console.log(id, "rrrrrrrrrr");
+    };
+    console.log(memberShip, "eeeeeeeeeeee");
     const columns = [
         {
             title: `${translate("memberType")}`,
@@ -31,7 +34,7 @@ export const MemberShipTable: FC<MemberShipTableI> = ({ response }) => {
         { title: `${translate("status")}`, dataIndex: "status" },
         {
             title: `${translate("action")}`,
-            dataIndex: "action",
+            dataIndex: "record",
             render: (record: any) => (
                 <Space size={10}>
                     <Button
@@ -42,7 +45,7 @@ export const MemberShipTable: FC<MemberShipTableI> = ({ response }) => {
                     </Button>
                     <Button
                         danger
-                        onClick={() => handlyDelete(record.id)}
+                        onClick={() => handlyMemberShipDelete(record.id)}
                         className='table__btn'
                     >
                         <DeleteIcon />
@@ -63,6 +66,7 @@ export const MemberShipTable: FC<MemberShipTableI> = ({ response }) => {
                     date: item.start_date || "___",
                     end: item.end_date || "___",
                     status: item.status,
+                    record: item.membership_type,
                 }))}
             />
         </div>
