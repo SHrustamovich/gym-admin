@@ -4,8 +4,10 @@ import { FilterPart } from "../components/FilterPart/FilterPart";
 import { InventoryDrawer } from "../components/InventoryDrawer/InventoryDraver";
 import { InventoryTable } from "../components/InventoryTable/INventoryTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
+import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
 import { sortData } from "../utils/data";
+import { inventoryGet } from "../utils/urls";
 
 export const Inventory = () => {
     const [open, setOpen] = useState(false);
@@ -17,6 +19,11 @@ export const Inventory = () => {
     const onClose = () => {
         setOpen(false);
     };
+
+    const inventoryGetReq = useLoad({ url: inventoryGet });
+
+    const { response, request, loading } = inventoryGetReq;
+
 
     const translate = useLanguage();
 

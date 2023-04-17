@@ -33,10 +33,7 @@ export const InventoryDrawer: FC<draverI> = ({ open, onClose }) => {
                             >
                                 <Select
                                     showSearch
-                                    // placeholder='Select a person'
                                     optionFilterProp='children'
-                                    // onChange={onChange}
-                                    // onSearch={onSearch}
                                     filterOption={(input, option) =>
                                         (option?.label ?? "")
                                             .toLowerCase()

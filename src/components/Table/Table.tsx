@@ -8,7 +8,8 @@ import { Button, message, Space, Table } from "antd";
 import { membersDelete } from "../../utils/urls";
 import { membersEditI } from "../type";
 import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
-
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { membersI } from "../type";
 const membersInitials = {
     id: null,
     fullname: "",
@@ -17,7 +18,6 @@ const membersInitials = {
     phone: "",
     type: "",
 };
-
 export const TableMain: FC<tableI> = ({
     showModal,
     response,
@@ -29,6 +29,9 @@ export const TableMain: FC<tableI> = ({
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [members, setMembers] = useState<membersEditI>(membersInitials);
     const [elementLoading, setElementLoading] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    let navigate = useNavigate();
 
     const translate = useLanguage();
 
@@ -61,11 +64,23 @@ export const TableMain: FC<tableI> = ({
         }
     };
 
+    const changePathFunc = (id: number) => {
+        navigate(`/membership/${id}`);
+    };
+
     const columns = [
         {
             title: `${translate("name")}`,
             dataIndex: "fullname",
-            key: "name_uz",
+            key: "fullname",
+            render: (record: any) => (
+                <button
+                    className='navigateClass'
+                    onClick={() => changePathFunc(record.id)}
+                >
+                    {record.fullname}
+                </button>
+            ),
         },
         {
             title: `${translate("phone")}`,
@@ -75,7 +90,7 @@ export const TableMain: FC<tableI> = ({
             title: `${translate("status")}`,
             dataIndex: "status",
             key: "status",
-            render: (status: any) => (
+            render: (status: string) => (
                 <>
                     {status == "active" ? (
                         <p className='status'>{translate("active")}</p>
@@ -87,7 +102,10 @@ export const TableMain: FC<tableI> = ({
                 </>
             ),
         },
-        { title: `${translate("type")}`, dataIndex: "type" },
+        {
+            title: `${translate("type")}`,
+            dataIndex: "type",
+        },
         { title: `${translate("end")}`, dataIndex: "expireTime" },
         {
             title: `${translate("action")}`,
@@ -116,6 +134,7 @@ export const TableMain: FC<tableI> = ({
             ),
         },
     ];
+
     return (
         <div className='table-main'>
             {loading ? (
@@ -125,11 +144,11 @@ export const TableMain: FC<tableI> = ({
                     columns={columns}
                     rowKey='phone'
                     dataSource={response?.data.result.map((item) => ({
-                        fullname: item.fullname,
+                        fullname: item,
                         phone: item.phone,
                         status: item.status,
-                        type: item.membership.membership_type.name,
-                        expireTime: item.membership.term,
+                        type: item.membership_type || "___",
+                        expireTime: item.end_date || "___",
                         record: item,
                     }))}
                     pagination={{
@@ -137,6 +156,7 @@ export const TableMain: FC<tableI> = ({
                         current: response?.data.page,
                         onChange: (to) => pageTo(to),
                     }}
+                    // onRow={RowFunc}
                 />
             )}
             <DeleteModal

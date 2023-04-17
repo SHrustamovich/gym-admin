@@ -8,9 +8,25 @@ export const authLogin = "/api/auth/login";
 export const getauth = "/api/auth";
 
 // members
-
-export const memberGet = `/api/member?detail=true`;
+export const memberGetU = "/api/member";
+export const memberGet = `/api/member/list`;
 export const memberPost = "/api/member";
 export const membershipGet = "/api/membership?detail=true";
 export const membersDelete = (id: number) => `api/member/${id}`;
 export const membersPut = (id: number) => `api/member/${id}`;
+
+// membership
+export const memberShipGet = "/api/membership";
+
+// membership type
+export const membershipType = "/api/membership-types"
+
+// history
+export const historyGet = "/api/visit";
+
+// payment
+
+export const paymentGet = "/api/payment";
+
+// inventory
+export const inventoryGet = "/api/inventory?detail=true";

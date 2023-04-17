@@ -45,6 +45,7 @@ export const LogIn = () => {
                     <div className='login__item'>
                         <p className='login__label'>Login</p>
                         <Form.Item
+                            className='log'
                             name='username'
                             rules={[
                                 {
@@ -53,15 +54,13 @@ export const LogIn = () => {
                                 },
                             ]}
                         >
-                            <div className='login__input'>
-                                <PersonIcon />
-                                <Input />
-                            </div>
+                            <Input prefix={<PersonIcon />} />
                         </Form.Item>
                     </div>
                     <div className='login__item'>
                         <p className='login__label'>Password</p>
                         <Form.Item
+                            className='log'
                             name='password'
                             rules={[
                                 {
@@ -70,16 +69,13 @@ export const LogIn = () => {
                                 },
                             ]}
                         >
-                            <div className='login__password'>
-                                <LoginPasswordIcon />
-                                <Input.Password />
-                            </div>
+                            <Input.Password prefix={<LoginPasswordIcon />} />
                         </Form.Item>
                     </div>
                     <div className='login__item'>
-                        <Form.Item>
+                        <Form.Item className="login__btnForm">
                             <Button className='login__btn' htmlType='submit'>
-                                LOGIN
+                                <span> LOGIN</span>
                             </Button>
                         </Form.Item>
                     </div>

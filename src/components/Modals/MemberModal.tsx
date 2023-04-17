@@ -15,7 +15,11 @@ import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { modalI } from "../../pages/types";
 import { memberPost, membershipGet, membersPut } from "../../utils/urls";
-import { membersEditI, memberShipResII, membersPostI } from "../type";
+import {
+    MemberPostType,
+    membersEditI,
+    MemberShipType,
+} from "../type";
 import moment from "moment";
 import { phoneNamberCheck } from "../../utils/helpers";
 
@@ -25,7 +29,7 @@ export const MemberModal: FC<modalI> = ({
     request,
     editMembers,
 }) => {
-    const membershipGetReq = useLoad<memberShipResII>({ url: membershipGet });
+    const membershipGetReq = useLoad<MemberShipType>({ url: membershipGet });
 
     const { response } = membershipGetReq;
 
@@ -51,8 +55,8 @@ export const MemberModal: FC<modalI> = ({
 
     const translate = useLanguage();
 
-    const memberFinish = async (e: membersPostI) => {
-        const { fullname, phone, gender, date_of_birth, membership_id } = e;
+    const memberFinish = async (e: MemberPostType) => {
+        const { fullname, phone, gender, date_of_birth } = e;
         let time = new Date(date_of_birth).toISOString();
         if (editMembers) {
             const { success, error } =
@@ -62,7 +66,6 @@ export const MemberModal: FC<modalI> = ({
                         phone,
                         gender,
                         date_of_birth,
-                        membership_id,
                     },
                 });
             if (success) {
@@ -74,15 +77,15 @@ export const MemberModal: FC<modalI> = ({
                 message.error("SOMETHING WENT WRONG");
             }
         } else {
-            const { success, error } = await membersPost.request<membersPostI>({
-                data: {
-                    fullname,
-                    phone,
-                    gender,
-                    date_of_birth: time,
-                    membership_id,
-                },
-            });
+            const { success, error } =
+                await membersPost.request<MemberPostType>({
+                    data: {
+                        fullname,
+                        phone,
+                        gender,
+                        date_of_birth: time,
+                    },
+                });
             if (success) {
                 message.success("MEMBER ADDED SUCCESSFULLY");
                 handleCancel();
@@ -163,6 +166,51 @@ export const MemberModal: FC<modalI> = ({
                                     <Input prefix={<PhoneIcon />} />
                                 </Form.Item>
                             </div>
+                        </div>
+                        <div className='modal__info'>
+                            <div className='modal__name'>
+                                <div className='modal__text'>
+                                    {translate("bday")}
+                                </div>
+                                <Form.Item
+                                    className='modal__item'
+                                    name='date_of_birth'
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: translate("valName"),
+                                        },
+                                    ]}
+                                >
+                                    <DatePicker
+                                        suffixIcon={<CaleIcon />}
+                                        format='YYYY-MM-DD'
+                                    />
+                                </Form.Item>
+                            </div>
+                            {/* <div className='modal__name'>
+                                <div className='modal__text'>
+                                    {translate("memberType")}
+                                </div>
+                                <Form.Item
+                                    className='modal__item'
+                                    name='membership_id'
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: translate("valName"),
+                                        },
+                                    ]}
+                                >
+                                    <Select
+                                        className='members__select'
+                                        placeholder='select'
+                                        options={response?.data.result.map(item => (
+                                            item
+                                        ))}
+                                    />
+                                </Form.Item>
+                            </div> */}
                             <div className='modal__radio'>
                                 <div className='modal__text'>
                                     {translate("gender")}
@@ -187,56 +235,6 @@ export const MemberModal: FC<modalI> = ({
                                     </Radio.Group>
                                 </Form.Item>
                             </div>
-                        </div>
-                        <div className='modal__info'>
-                            <div className='modal__name'>
-                                <div className='modal__text'>
-                                    {translate("bday")}
-                                </div>
-                                <Form.Item
-                                    className='modal__item'
-                                    name='date_of_birth'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: translate("valName"),
-                                        },
-                                    ]}
-                                >
-                                    <DatePicker
-                                        suffixIcon={<CaleIcon />}
-                                        format='YYYY-MM-DD'
-                                    />
-                                </Form.Item>
-                            </div>
-                            <div className='modal__name'>
-                                <div className='modal__text'>
-                                    {translate("memberType")}
-                                </div>
-                                <Form.Item
-                                    className='modal__item'
-                                    name='membership_id'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: translate("valName"),
-                                        },
-                                    ]}
-                                >
-                                    <Select
-                                        className='members__select'
-                                        placeholder='select'
-                                        options={response?.data?.result.map(
-                                            (item) => ({
-                                                label: item.membership_type
-                                                    .name,
-                                                value: item.id,
-                                            })
-                                        )}
-                                    />
-                                </Form.Item>
-                            </div>
-
                             <div className='modal__btn'>
                                 <Button
                                     className='member-modal__cancel'

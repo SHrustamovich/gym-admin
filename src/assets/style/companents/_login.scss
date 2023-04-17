@@ -70,7 +70,10 @@
         padding: 6px 10px;
     }
     &__btn {
-        width: 100%;
+        display: flex;
+        align-items: center;
+        @include adaptive-value(padding-inline, 152, 100, 1);
+        @include adaptive-value(padding-block, 20, 10, 1);
         border-radius: 20px;
         font-style: normal;
         font-weight: 700;
@@ -105,4 +108,26 @@
 .ant-input-password:focus {
     border: none !important;
     outline: none !important;
+}
+
+.log .ant-form-item-control-input-content {
+    background: $sidebarColor;
+}
+.log .ant-input-affix-wrapper {
+    background: $sidebarColor !important;
+}
+.log .ant-input-affix-wrapper:hover {
+    border: none !important;
+}
+
+.log .ant-input {
+    background: $sidebarColor;
+}
+
+.login__btnForm .ant-form-item-control-input-content {
+    box-shadow: none !important;
+}
+
+.login__btnForm .ant-btn {
+    color: $textColor !important;
 }

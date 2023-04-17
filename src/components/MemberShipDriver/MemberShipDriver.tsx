@@ -1,15 +1,18 @@
 import { Button, DatePicker, Drawer, Form, Input, Select } from "antd";
 import { FC } from "react";
+import { useLoad } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { draverI } from "../../pages/types";
+import { membershipType } from "../../utils/urls";
+import { MemberShipTypeI } from "../type";
 
 export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
     const translate = useLanguage();
 
-    const handleChange = (value: string) => {
-        alert(`selected ${value}`);
-    };
-
+  
+    const memberShipTypeReq = useLoad<MemberShipTypeI>({ url: membershipType });
+    const { response, request, loading } = memberShipTypeReq;
+    console.log(response);
     return (
         <div className='member-driver'>
             <Drawer
@@ -27,10 +30,10 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                         <Form className='member-driver__form'>
                             <div className='drawer__item'>
                                 <div className='drawer__label'>
-                                    {translate("memberType")}
+                                    {translate("membershipType")}
                                 </div>
                                 <Form.Item
-                                    name='username'
+                                    name='membership_type_id'
                                     rules={[
                                         {
                                             required: true,
@@ -38,7 +41,15 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                         },
                                     ]}
                                 >
-                                    <Input />
+                                    <Select
+                                        className='member-driver__select'
+                                        options={response?.data.result.map(
+                                            (item) => ({
+                                                value: item.id,
+                                                label: item.name,
+                                            })
+                                        )}
+                                    />
                                 </Form.Item>
                             </div>
                             <div className='drawer__item'>
@@ -46,7 +57,7 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                     {translate("term")}
                                 </div>
                                 <Form.Item
-                                    name='username'
+                                    name='term'
                                     rules={[
                                         {
                                             required: true,
@@ -62,7 +73,7 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                     {translate("date")}
                                 </div>
                                 <Form.Item
-                                    name='username'
+                                    name='startDate'
                                     rules={[
                                         {
                                             required: true,
@@ -75,10 +86,10 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                             </div>
                             <div className='drawer__item'>
                                 <div className='drawer__label'>
-                                    {translate("payment")}
+                                    {translate("end")}
                                 </div>
                                 <Form.Item
-                                    name='username'
+                                    name='endDate'
                                     rules={[
                                         {
                                             required: true,
@@ -86,30 +97,7 @@ export const MemberShipDriver: FC<draverI> = ({ open, onClose }) => {
                                         },
                                     ]}
                                 >
-                                    <Select
-                                        className='member-driver__select'
-                                        onChange={handleChange}
-                                        options={[
-                                            { value: "jack", label: "Jack" },
-                                            { value: "lucy", label: "Lucy" },
-                                        ]}
-                                    />
-                                </Form.Item>
-                            </div>
-                            <div className='drawer__item'>
-                                <div className='drawer__label'>
-                                    {translate("memberType")}
-                                </div>
-                                <Form.Item
-                                    name='username'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: translate("valName"),
-                                        },
-                                    ]}
-                                >
-                                    <Input />
+                                    <DatePicker />
                                 </Form.Item>
                             </div>
                             <div className='drawer__item'>

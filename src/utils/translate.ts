@@ -74,7 +74,7 @@ interface Trans {
 }
 const uz: Trans = {
     home: "Asosiy",
-    members: "A'zolarni qo'shish",
+    members: "A'zolar",
     sales: "Sotish",
     inventory: "Inventarizatsiya",
     products: "Maxsulotlar",
@@ -148,7 +148,7 @@ const uz: Trans = {
 };
 const ru: Trans = {
     home: "Главная",
-    members: "Добавить участников",
+    members: "участники",
     sales: "Продажи",
     inventory: "Инвентарь",
     products: "Продукты",
@@ -222,7 +222,7 @@ const ru: Trans = {
 };
 const eng: Trans = {
     home: "Home",
-    members: "Add Members",
+    members: "Members",
     sales: "Sales",
     inventory: "Inventory",
     products: "Products",
@@ -287,7 +287,7 @@ const eng: Trans = {
     visitTime: "Visit Time",
     visitDate: "Visit Date",
     membershipTypeName: "Membership Type Name",
-    active: "Acrive",
+    active: "Active",
     inActive: "inactive",
     removed: "removed",
     deletePerson: "Delete user",

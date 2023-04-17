@@ -6,7 +6,7 @@ import { SearchInput } from "../components/SearchInput/SearchInput";
 import { TableMain } from "../components/Table/Table";
 import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
-import { membersEditI, membersReqI } from "../components/type";
+import { membersEditI, membersReqI, MemberType } from "../components/type";
 import { memberGet } from "../utils/urls";
 import { PlusIcon } from "../assets/icons/icons";
 import { sortData } from "../utils/data";
@@ -19,16 +19,17 @@ export const Members = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const { search } = useLocation();
-    const page = search.replace("?", "");
 
-    const memberRequest = useLoad<membersReqI, string>(
+    const memberRequest = useLoad<MemberType, string>(
         {
-            url: memberGet + `&${page}`,
+            url: memberGet + `${search}`,
         },
         [search]
     );
 
     const { response, loading, request } = memberRequest;
+
+    console.log(response);
 
     const pageTo = (to: string) => {
         searchParams.set("page", to);

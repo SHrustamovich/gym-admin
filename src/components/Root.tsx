@@ -8,10 +8,10 @@ import { Profil } from "../pages/Profil";
 import { Setting } from "../pages/Setting";
 import useAuthentication from "../hooks/useAuth";
 import { LogIn } from "../pages/LogIn";
+import { MemberShip } from "../pages/MemberShip";
 export const Root = () => {
     const translate = useLanguage();
     const { login } = useAuthentication();
-
 
     return login ? (
         <>
@@ -77,6 +77,10 @@ export const Root = () => {
                             ))}
                             <Route path='/profil' element={<Profil />} />
                             <Route path='/setting' element={<Setting />} />
+                            <Route
+                                path='/membership/:id'
+                                element={<MemberShip />}
+                            />
                         </Routes>
                     </div>
                 </div>

@@ -1,4 +1,12 @@
-import { membersEditI, membersReqI } from "../components/type";
+import {
+    HistoryI,
+    membersEditI,
+    memberShipI,
+    MembershipIdType,
+    MemberShipResultType,
+    MemberType,
+    PaymentI,
+} from "../components/type";
 import { SortDataI } from "../utils/data";
 
 export interface modalI {
@@ -22,7 +30,7 @@ export interface deleteModalI {
 
 export interface tableI {
     showModal: () => void;
-    response: membersReqI | undefined;
+    response: MemberType | undefined;
     loading: boolean;
     request: () => void;
     setEditMembers: (item: any) => void;
@@ -31,4 +39,18 @@ export interface tableI {
 
 export interface filterI {
     filterData: SortDataI[];
+}
+
+export interface MemberShipTableI {
+    response: MembershipIdType | undefined;
+}
+// history table
+export interface HistoryTableI {
+    response: HistoryI | undefined;
+    loading: boolean;
+    pageTo: (to: any) => void;
+}
+// payment table
+export interface PaymentTableI {
+    response: PaymentI | undefined;
 }

@@ -1,11 +1,19 @@
 import { FilterPart } from "../components/FilterPart/FilterPart";
 import { PaymentTable } from "../components/PaymentTable/PaymentTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
+import { PaymentI } from "../components/type";
+import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
 import { sortData } from "../utils/data";
+import { paymentGet } from "../utils/urls";
 
 export const Payments = () => {
     const translate = useLanguage();
+
+    const paymentGetReq = useLoad<PaymentI>({ url: paymentGet });
+
+    const { response, request, loading } = paymentGetReq;
+
 
     return (
         <div className='payments'>
@@ -22,7 +30,7 @@ export const Payments = () => {
                 <span className='payment__span'>{1234}</span>
             </div>
             <div className='payment__body'>
-                <PaymentTable />
+                <PaymentTable response={response} />
             </div>
         </div>
     );

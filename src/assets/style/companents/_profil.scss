@@ -28,18 +28,32 @@
     }
 }
 
-.user__input .ant-input {
-    background: $sidebarColor;
-    width: 281px;
-}
-
 .profil {
-    &__form {
+    &__input {
         display: flex;
         gap: 153px;
     }
+    &__btn {
+        display: flex;
+        justify-content: end;
+    }
 }
-.item__btn {
-    padding-top: 80px;
-    padding-left: 331px;
+
+.profil__btn .ant-form-item-control-input-content:hover {
+    box-shadow: none !important;
+}
+.user__item .ant-form-item-control-input-content {
+    background: $sidebarColor;
+}
+.user__item .ant-input-affix-wrapper {
+    background: $sidebarColor !important;
+}
+.user__item .ant-input {
+    background: $sidebarColor;
+}
+.user__item .ant-input-affix-wrapper:focus {
+    border: none !important;
+}
+.user__item .ant-input-affix-wrapper:hover {
+    border: none !important;
 }

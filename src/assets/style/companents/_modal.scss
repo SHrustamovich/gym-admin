@@ -158,3 +158,20 @@
 .ant-select-selector {
     box-shadow: none !important;
 }
+
+.modal__radio .ant-form-item-control-input-content {
+    box-shadow: none;
+}
+
+.sales-drawer__button .ant-form-item-control-input-content {
+    box-shadow: none;
+}
+.member-driver__btn .ant-form-item-control-input-content {
+    box-shadow: none;
+}
+
+.anticon {
+    svg {
+        fill: $textColor !important;
+    }
+}
