@@ -6,10 +6,10 @@ import { SearchInput } from "../components/SearchInput/SearchInput";
 import { TableMain } from "../components/Table/Table";
 import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
-import { membersEditI, membersReqI, MemberType } from "../components/type";
 import { memberGet } from "../utils/urls";
-import { PlusIcon } from "../assets/icons/icons";
 import { sortData } from "../utils/data";
+import { membersEditI, MemberType } from "../components/type";
+import { PlusIcon } from "../assets/icons/icons";
 
 export const Members = () => {
     const translate = useLanguage();
@@ -29,7 +29,6 @@ export const Members = () => {
 
     const { response, loading, request } = memberRequest;
 
-    console.log(response);
 
     const pageTo = (to: string) => {
         searchParams.set("page", to);

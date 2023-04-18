@@ -1,9 +1,9 @@
 import {
     HistoryI,
     membersEditI,
-    memberShipI,
     MembershipIdType,
     MemberShipResultType,
+    MemberShipTypeEditI,
     MemberShipTypeI,
     MemberType,
     PaymentI,
@@ -27,6 +27,7 @@ export interface MemberShipDraverI {
     onClose: () => void;
     data: MembershipIdType | undefined;
     req: () => void;
+    memberShipEdit: MemberShipTypeEditI | null;
 }
 
 export interface deleteModalI {
@@ -51,6 +52,9 @@ export interface filterI {
 
 export interface MemberShipTableI {
     response: MembershipIdType | undefined;
+    req: () => void;
+    editMemberShip: (item: any) => void;
+    showDrawer: () => void;
 }
 // history table
 export interface HistoryTableI {

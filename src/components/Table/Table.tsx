@@ -8,8 +8,7 @@ import { Button, message, Space, Table } from "antd";
 import { membersDelete } from "../../utils/urls";
 import { membersEditI } from "../type";
 import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { membersI } from "../type";
+import { useNavigate } from "react-router-dom";
 const membersInitials = {
     id: null,
     fullname: "",
@@ -29,7 +28,6 @@ export const TableMain: FC<tableI> = ({
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [members, setMembers] = useState<membersEditI>(membersInitials);
     const [elementLoading, setElementLoading] = useState(false);
-    const [searchParams, setSearchParams] = useSearchParams();
 
     let navigate = useNavigate();
 

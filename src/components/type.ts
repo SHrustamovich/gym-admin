@@ -1,54 +1,4 @@
-export interface memberShipType {
-    id: number;
-    created_at: string;
-    discount_percent: string;
-    name: string;
-    moderator_id: string;
-    price_per_month: string;
-    status: string;
-    updated_at: string;
-}
-export interface memberShipI {
-    id: number;
-    created_at: string;
-    end_date: string;
-    start_date: string;
-    status: string;
-    term: string;
-    membership_type: memberShipType;
-}
-export interface membersI {
-    id: number;
-    created_at: string;
-    fullname: string;
-    gender: string;
-    moderator_id: string;
-    phone: string;
-    status: string;
-    memberships: memberShipI[];
-}
-
-export interface membersEditI {
-    id: number | null;
-    fullname: string;
-    gender: string;
-    phone: string;
-    date_of_birth: string;
-    type: string;
-}
-
-export interface membersResI {
-    limit: number;
-    page: number;
-    result: membersI[];
-    total: number;
-}
-export interface membersReqI {
-    loading: string;
-    data: membersResI;
-}
-
-// member type ---------------------------------------------------------------
+// ---------------------------member type -----------------------------------
 export interface MemberResultType {
     created_at: string;
     date_of_birth: string;
@@ -78,6 +28,16 @@ export interface MemberPostType {
     gender: string;
     date_of_birth: string;
 }
+// edit
+export interface membersEditI {
+    id: number | null;
+    fullname: string;
+    gender: string;
+    phone: string;
+    date_of_birth: string;
+    type: string;
+}
+
 // --------------------mmeberShip ---------------------------------------------
 export interface MemberShipResultType {
     created_at: string;
@@ -106,7 +66,7 @@ export interface MemberShipTypeResultI {
     id: number;
     moderator_id: number;
     name: string;
-    price_per_month: string;
+    price: string;
     status: string;
     updated_at: string;
 }
@@ -130,7 +90,7 @@ export interface MemberShipTypePostI {
 // membership edit
 export interface MemberShipTypeEditI {
     id: number | null;
-    membership_type_id: number;
+    membership_type: MemberShipIdMembershipTypeI;
     term: string;
     start_date: string;
     end_date: string;
@@ -144,7 +104,7 @@ export interface MemberShipIdMembershipTypeI {
     id: number;
     moderator_id: number;
     name: string;
-    price_per_month: string;
+    price: string;
     status: string;
     updated_at: string;
 }
@@ -176,13 +136,7 @@ export interface MembershipIdDataType {
 export interface MembershipIdType {
     data: MembershipIdDataType;
 }
-
-// ------------------------
-export interface memberShipResI {
-    limit: number;
-    page: number;
-    result: membersI[];
-}
+// ----------------------Payment----------------------
 
 export interface PaymentType {
     created_at: string;
@@ -194,51 +148,6 @@ export interface PaymentType {
     total: string;
     updated_at: string;
 }
-export interface TypeMemberShips {
-    created_at: string;
-    end_date: string;
-    id: number;
-    start_date: string;
-    status: string;
-    term: string;
-    updated_at: string;
-}
-
-export interface MemberShipItemI {
-    fullname: string;
-    gender: string;
-    phone: string;
-    status: string;
-    id: number;
-    memberships: TypeMemberShips[];
-    payment: PaymentType[];
-}
-
-export interface memberShipInterfacee {
-    loading: string;
-    data: MemberShipItemI;
-}
-
-// history get type
-export interface HistoryResult {
-    id: number;
-    checked_in_by: string;
-    created_at: string;
-    date: string;
-    moderator_id: number;
-    updated_at: string;
-}
-export interface HistoryDataI {
-    limit: number;
-    page: number;
-    result: HistoryResult[];
-    total: number;
-}
-export interface HistoryI {
-    data: HistoryDataI;
-}
-
-// payment get type
 export interface PaymentResultI {
     created_at: string;
     for_what: string;
@@ -259,5 +168,21 @@ export interface PaymentDataI {
 export interface PaymentI {
     data: PaymentDataI;
 }
-
-// inventory get type
+// --------------------History get type-----------------------
+export interface HistoryResult {
+    id: number;
+    checked_in_by: string;
+    created_at: string;
+    date: string;
+    moderator_id: number;
+    updated_at: string;
+}
+export interface HistoryDataI {
+    limit: number;
+    page: number;
+    result: HistoryResult[];
+    total: number;
+}
+export interface HistoryI {
+    data: HistoryDataI;
+}

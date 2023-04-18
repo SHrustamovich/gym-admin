@@ -18,6 +18,8 @@ export const membersPut = (id: number) => `api/member/${id}`;
 // membership
 export const memberShipGet = "/api/membership";
 export const memberShipPost = "/api/membership"
+export const memberShipDelete = (id: number) => `api/membership/${id}`
+export const memberShipPut = (id:number) => `api/membership/${id}`
 
 // membership type
 export const membershipType = "/api/membership-types"

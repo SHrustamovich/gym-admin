@@ -1,57 +1,117 @@
 import { Button, DatePicker, Drawer, Form, Input, message, Select } from "antd";
-import { FC } from "react";
-import { useLoad, usePostRequest } from "../../hooks/request";
+import { FC, useEffect, useState } from "react";
+import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
-import { draverI, MemberShipDraverI } from "../../pages/types";
-import { memberShipPost, membershipType } from "../../utils/urls";
-import { MemberShipTypeI, MemberShipTypePostI } from "../type";
+import {
+    memberShipPost,
+    memberShipPut,
+    membershipType,
+} from "../../utils/urls";
+import {
+    MemberShipTypeEditI,
+    MemberShipTypeI,
+    MemberShipTypePostI,
+} from "../type";
+import { MemberShipDraverI } from "../../pages/types";
+import moment from "moment";
 
 export const MemberShipDriver: FC<MemberShipDraverI> = ({
     open,
     onClose,
     data,
     req,
+    memberShipEdit,
 }) => {
     const translate = useLanguage();
+    const [price, setPrice] = useState("0");
 
     const [form] = Form.useForm();
 
+    const onCloseDriver = () => {
+        form.resetFields();
+        onClose();
+    };
+
     const memberShipTypeReq = useLoad<MemberShipTypeI>({ url: membershipType });
-    const { response, request } = memberShipTypeReq;
+    const { response } = memberShipTypeReq;
+
+    console.log(memberShipEdit, "lllllllll");
+
+    const memberShipPutReq = usePutRequest<MemberShipTypeEditI>({
+        url: memberShipPut(memberShipEdit?.id as number),
+    });
 
     const memberShipPostReq = usePostRequest({ url: memberShipPost });
 
     const { loading } = memberShipPostReq;
 
+    const changeMemberShip = (id: number) => {
+        response?.data.result.map((item) => {
+            if (item.id === id) {
+                setPrice(item.price);
+            }
+        });
+    };
+
     const MemberShipFinish = async (e: MemberShipTypePostI) => {
         const { membership_type_id, term, start_date, end_date } = e;
 
-        const { success, error } = await memberShipPostReq.request({
-            data: {
-                membership_type_id,
-                member_id: data?.data.id,
-                term,
-                start_date,
-                end_date,
-            },
-        });
-        if (success) {
-            message.success("MEMBERSHIP ADDED SUCCESSFULLY");
-            onClose();
-            req?.();
-            form.resetFields();
-        }
-        if (error) {
-            message.error("SOMETHING WENT WRONG");
-            onClose();
-            form.resetFields();
+        if (memberShipEdit) {
+            const { success, error } =
+                await memberShipPutReq.request<MemberShipTypeEditI>({
+                    data: {
+                        membership_type_id,
+                        term,
+                        start_date,
+                        end_date,
+                    },
+                });
+            if (success) {
+                onCloseDriver();
+                req?.();
+                message.success("MEMBERSHIP UPDATE SUCCESSFULLY");
+            }
+            if (error) {
+                onCloseDriver();
+                message.error("SOMETHING WENT WRONG");
+            }
+        } else {
+            const { success, error } = await memberShipPostReq.request({
+                data: {
+                    membership_type_id,
+                    member_id: data?.data.id,
+                    start_date,
+                },
+            });
+            if (success) {
+                message.success("MEMBERSHIP ADDED SUCCESSFULLY");
+                onClose();
+                req?.();
+                form.resetFields();
+            }
+            if (error) {
+                message.error("SOMETHING WENT WRONG");
+                onClose();
+                form.resetFields();
+            }
         }
     };
+
+    useEffect(() => {
+        if (memberShipEdit != null) {
+            form.setFieldsValue({
+                membership_type_id: memberShipEdit.membership_type.id,
+                start_date: moment(memberShipEdit.start_date),
+            });
+            setPrice(memberShipEdit.membership_type.price);
+        }
+    }, [memberShipEdit]);
+
     return (
         <div className='member-driver'>
             <Drawer
                 placement='right'
-                onClose={onClose}
+                onClose={onCloseDriver}
                 open={open}
                 closable={false}
                 className='member-driver__main'
@@ -81,6 +141,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                 >
                                     <Select
                                         className='member-driver__select'
+                                        onChange={changeMemberShip}
                                         options={response?.data.result.map(
                                             (item) => ({
                                                 value: item.id,
@@ -90,7 +151,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='drawer__item'>
+                            {/* <div className='drawer__item'>
                                 <div className='drawer__label'>
                                     {translate("term")}
                                 </div>
@@ -105,7 +166,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                 >
                                     <Input />
                                 </Form.Item>
-                            </div>
+                            </div> */}
                             <div className='drawer__item'>
                                 <div className='drawer__label'>
                                     {translate("date")}
@@ -122,7 +183,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     <DatePicker />
                                 </Form.Item>
                             </div>
-                            <div className='drawer__item'>
+                            {/* <div className='drawer__item'>
                                 <div className='drawer__label'>
                                     {translate("end")}
                                 </div>
@@ -137,10 +198,10 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                 >
                                     <DatePicker />
                                 </Form.Item>
-                            </div>
+                            </div> */}
                             <div className='drawer__item'>
                                 <p className='member-driver__price'>
-                                    {translate("total")}:{1234}
+                                    {translate("total")}:{price}
                                 </p>
                             </div>
                             <div className='drawer__item'>

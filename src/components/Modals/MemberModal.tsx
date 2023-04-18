@@ -1,14 +1,4 @@
-import { isDisabled } from "@testing-library/user-event/dist/utils";
-import {
-    Button,
-    DatePicker,
-    Form,
-    Input,
-    message,
-    Modal,
-    Radio,
-    Select,
-} from "antd";
+import { Button, DatePicker, Form, Input, message, Modal, Radio } from "antd";
 import { FC, useEffect } from "react";
 import { CaleIcon, PersonIcon, PhoneIcon } from "../../assets/icons/icons";
 import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
@@ -25,10 +15,6 @@ export const MemberModal: FC<modalI> = ({
     request,
     editMembers,
 }) => {
-    const membershipGetReq = useLoad<MemberShipType>({ url: membershipGet });
-
-    const { response } = membershipGetReq;
-
     const membersPost = usePostRequest({ url: memberPost });
 
     const membersPutReq = usePutRequest<membersEditI>({

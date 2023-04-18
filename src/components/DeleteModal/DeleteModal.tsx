@@ -8,6 +8,7 @@ export const DeleteModal: FC<deleteModalI> = ({
     visible,
     onOkDelete,
     onCancel,
+    
 }) => {
     const translate = useLanguage();
 

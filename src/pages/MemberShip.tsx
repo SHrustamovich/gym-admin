@@ -1,22 +1,19 @@
 import { FC, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { PlusIcon } from "../assets/icons/icons";
+import { useParams } from "react-router-dom";
 import { Loading } from "../components/Loading/Loading";
 import { MemberShipDriver } from "../components/MemberShipDriver/MemberShipDriver";
 import { MemberShipTable } from "../components/MemberShipTable/MemberShipTable";
-import {
-    MembershipIdType,
-    memberShipInterfacee,
-    MemberType,
-} from "../components/type";
-import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
-import { memberGetU, memberShipGet } from "../utils/urls";
+import { useLoad } from "../hooks/request";
+import { memberGetU } from "../utils/urls";
+import { MembershipIdType, MemberShipTypeEditI } from "../components/type";
+import { PlusIcon } from "../assets/icons/icons";
 
 export const MemberShip: FC = () => {
     const translate = useLanguage();
     const [open, setOpen] = useState(false);
-    const [editMemberShip, setEditMemberShip] = useState(null);
+    const [editMemberShip, setEditMemberShip] =
+        useState<MemberShipTypeEditI | null>(null);
 
     const { id } = useParams();
 
@@ -61,8 +58,14 @@ export const MemberShip: FC = () => {
                         onClose={onClose}
                         data={response}
                         req={request}
+                        memberShipEdit={editMemberShip}
                     />
-                    <MemberShipTable response={response} />
+                    <MemberShipTable
+                        response={response}
+                        req={request}
+                        editMemberShip={setEditMemberShip}
+                        showDrawer={showDrawer}
+                    />
                 </div>
             )}
         </>

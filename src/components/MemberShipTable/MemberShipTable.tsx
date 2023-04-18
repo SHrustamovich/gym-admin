@@ -1,33 +1,61 @@
-import { Button, Space, Table } from "antd";
 import { FC, useState } from "react";
+import { Button, message, Space, Table } from "antd";
 import useLanguage from "../../hooks/useLanguage";
-import { DeleteIcon, EditIcon } from "../../assets/icons/icons";
+import { DeleteModal } from "../DeleteModal/DeleteModal";
+import { useDeleteRequest } from "../../hooks/request";
+import { memberShipDelete } from "../../utils/urls";
 import { MemberShipTableI } from "../../pages/types";
+import { DeleteIcon, EditIcon } from "../../assets/icons/icons";
 
-const memberShipInitial = {};
-
-export const MemberShipTable: FC<MemberShipTableI> = ({ response }) => {
-    const [memberShip, setMemberShip] = useState(null);
+export const MemberShipTable: FC<MemberShipTableI> = ({
+    response,
+    req,
+    editMemberShip,
+    showDrawer,
+}) => {
+    const [isOpenModal, setIsOpenModal] = useState(false);
+    const [elementLoading, setElementLoading] = useState(false);
+    const [memberShip, setMemberShip] = useState<number | null>(null);
     const translate = useLanguage();
 
     const handlyProductEdit = (item: any) => {
-        console.log(item, "wwwwwwwwwww");
+        editMemberShip(item);
+        showDrawer();
     };
 
+    const deleteMemberShip = useDeleteRequest();
+
     const handlyMemberShipDelete = (id: number) => {
-        // setMemberShip(id);
-        console.log(id, "rrrrrrrrrr");
+        setMemberShip(id);
+        setIsOpenModal(true);
     };
-    console.log(memberShip, "eeeeeeeeeeee");
+
+    const onOkDelete = async () => {
+        setElementLoading(true);
+        const { success, error } = await deleteMemberShip.request({
+            url: memberShipDelete(memberShip as number),
+        });
+        if (!success) {
+            setElementLoading(false);
+            setIsOpenModal(false);
+            req();
+            message.success("DELETE MEMBERSHIP");
+        }
+        if (success) {
+            setElementLoading(false);
+            setIsOpenModal(false);
+            message.error("SOMETHING WENT WRONG");
+        }
+    };
     const columns = [
         {
             title: `${translate("memberType")}`,
-            dataIndex: "memberType",
+            dataIndex: "name",
             key: "memberType",
         },
         {
-            title: `${translate("term")}`,
-            dataIndex: "term",
+            title: `${translate("price")}`,
+            dataIndex: "price",
         },
         { title: `${translate("date")}`, dataIndex: "date" },
         { title: `${translate("end")}`, dataIndex: "end" },
@@ -61,13 +89,19 @@ export const MemberShipTable: FC<MemberShipTableI> = ({ response }) => {
                 columns={columns}
                 pagination={false}
                 dataSource={response?.data.memberships.map((item) => ({
-                    memberType: item.membership_type.name,
-                    term: item.term,
+                    name: item.membership_type.name,
+                    price: item.membership_type.price,
                     date: item.start_date || "___",
                     end: item.end_date || "___",
                     status: item.status,
-                    record: item.membership_type,
+                    record: item,
                 }))}
+            />
+            <DeleteModal
+                title={translate("deletePerson")}
+                visible={isOpenModal}
+                onOkDelete={onOkDelete}
+                onCancel={() => setIsOpenModal(false)}
             />
         </div>
     );
