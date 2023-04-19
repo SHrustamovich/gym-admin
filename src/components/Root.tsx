@@ -9,9 +9,18 @@ import { Setting } from "../pages/Setting";
 import useAuthentication from "../hooks/useAuth";
 import { LogIn } from "../pages/LogIn";
 import { MemberShip } from "../pages/MemberShip";
+import { LogoutPage } from "./Logout/Logout";
+import { usePostRequest } from "../hooks/request";
+import { logout } from "../utils/urls";
 export const Root = () => {
     const translate = useLanguage();
     const { login } = useAuthentication();
+
+    const logoutPost = usePostRequest({ url: logout });
+
+    const LogoutClick = () => {
+        logoutPost.request();
+    };
 
     return login ? (
         <>
@@ -40,14 +49,14 @@ export const Root = () => {
                         </ul>
                     </div>
                     <div className='menu__logout'>
-                        <NavLink to='/logout' className='menu__link'>
+                        <button className='menu__link' onClick={LogoutClick}>
                             <div className='menu__icon'>
                                 <LogOut />
                             </div>
                             <span className='menu__title'>
                                 {translate("logout")}
                             </span>
-                        </NavLink>
+                        </button>
                     </div>
                 </div>
                 <div className='all'>

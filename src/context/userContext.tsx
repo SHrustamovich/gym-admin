@@ -18,9 +18,7 @@ const UserProvider: FC<UserProviderI> = ({ children }) => {
             setUserData(null);
         }
     }, [response]);
-
     
-
     return (
         <UserContext.Provider
             value={{ user: userData, setUserData: setUserData }}

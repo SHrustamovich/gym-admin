@@ -33,3 +33,7 @@ export const paymentGet = "/api/payment";
 
 // inventory
 export const inventoryGet = "/api/inventory?detail=true";
+
+// logout
+
+export const logout ="/api/auth/logout"
