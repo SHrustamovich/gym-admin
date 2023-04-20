@@ -36,4 +36,7 @@ export const inventoryGet = "/api/inventory?detail=true";
 
 // logout
 
-export const logout ="/api/auth/logout"
+export const logout = "/api/auth/logout"
+
+// product 
+export const productGet = "/api/product"

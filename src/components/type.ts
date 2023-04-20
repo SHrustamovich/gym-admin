@@ -186,3 +186,23 @@ export interface HistoryDataI {
 export interface HistoryI {
     data: HistoryDataI;
 }
+
+// --------------Product Type -------------------------------
+export interface ProductResultI {
+    id: number;
+    photo: string;
+    poduct_type: string;
+    price: string;
+    product_name: string;
+    quantity: number;
+    supplier: string;
+}
+export interface ProductDataI {
+    limit: number;
+    page: number;
+    result: ProductResultI[];
+    total: number;
+}
+export interface ProductI {
+    data: ProductDataI;
+}

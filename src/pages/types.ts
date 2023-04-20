@@ -7,6 +7,7 @@ import {
     MemberShipTypeI,
     MemberType,
     PaymentI,
+    ProductI,
 } from "../components/type";
 import { SortDataI } from "../utils/data";
 
@@ -65,4 +66,10 @@ export interface HistoryTableI {
 // payment table
 export interface PaymentTableI {
     response: PaymentI | undefined;
+}
+// product table
+export interface ProductTableI {
+    response: ProductI | undefined;
+    loading: boolean;
+    pageTo: (to: any) => void;
 }

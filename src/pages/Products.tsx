@@ -1,14 +1,34 @@
 import { useState } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { PlusIcon } from "../assets/icons/icons";
 import { FilterPart } from "../components/FilterPart/FilterPart";
 import { ProductDrawer } from "../components/ProductDrawer/ProductDrawer";
 import { ProductTable } from "../components/ProductTable/ProducTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
+import { ProductI } from "../components/type";
+import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
 import { sortData } from "../utils/data";
+import { productGet } from "../utils/urls";
 
 export const Products = () => {
     const [open, setOpen] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const translate = useLanguage();
+
+    const { search } = useLocation();
+
+    const productGetList = useLoad<ProductI, string>(
+        { url: productGet + `${search}` },
+        [search]
+    );
+
+    const { response, request, loading } = productGetList;
+
+    const pageTo = (to: string) => {
+        searchParams.set("page", to);
+        setSearchParams(searchParams);
+    };
 
     const showDrawer = () => {
         setOpen(true);
@@ -17,7 +37,6 @@ export const Products = () => {
     const onClose = () => {
         setOpen(false);
     };
-    const translate = useLanguage();
 
     return (
         <div className='products'>
@@ -35,7 +54,7 @@ export const Products = () => {
             </div>
             <ProductDrawer open={open} onClose={onClose} />
             <div className='products__body'>
-                <ProductTable />
+                <ProductTable response={response} loading={loading} pageTo={pageTo} />
             </div>
         </div>
     );

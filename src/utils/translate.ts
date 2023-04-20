@@ -71,6 +71,7 @@ interface Trans {
     deletePerson: string;
     yes: string;
     no: string;
+    stockin: string;
 }
 const uz: Trans = {
     home: "Asosiy",
@@ -145,6 +146,7 @@ const uz: Trans = {
     deletePerson: "Foydalanuvchini oʻchirish",
     yes: "HA",
     no: "YO'Q",
+    stockin: "Stok in",
 };
 const ru: Trans = {
     home: "Главная",
@@ -219,6 +221,7 @@ const ru: Trans = {
     deletePerson: "Удалить пользователя",
     yes: "Да",
     no: "Нет",
+    stockin: "в наличии",
 };
 const eng: Trans = {
     home: "Home",
@@ -293,6 +296,7 @@ const eng: Trans = {
     deletePerson: "Delete user",
     yes: "Yes",
     no: "No",
+    stockin: "Stock in",
 };
 interface LanguageKeyValuePairs {
     [key: string]: Trans;

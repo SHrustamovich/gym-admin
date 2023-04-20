@@ -11,6 +11,8 @@ const UserProvider: FC<UserProviderI> = ({ children }) => {
     const authGetRequest = useLoad<UserDataI>({ url: getauth });
     const { response } = authGetRequest;
 
+    // console.log(response, "response");
+
     useEffect(() => {
         if (response?.status == "active") {
             setUserData(response);
@@ -18,7 +20,7 @@ const UserProvider: FC<UserProviderI> = ({ children }) => {
             setUserData(null);
         }
     }, [response]);
-    
+
     return (
         <UserContext.Provider
             value={{ user: userData, setUserData: setUserData }}

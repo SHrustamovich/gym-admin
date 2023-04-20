@@ -9,7 +9,6 @@ import { Setting } from "../pages/Setting";
 import useAuthentication from "../hooks/useAuth";
 import { LogIn } from "../pages/LogIn";
 import { MemberShip } from "../pages/MemberShip";
-import { LogoutPage } from "./Logout/Logout";
 import { usePostRequest } from "../hooks/request";
 import { logout } from "../utils/urls";
 export const Root = () => {
