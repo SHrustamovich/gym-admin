@@ -2,6 +2,7 @@ import { Table } from "antd";
 import { FC } from "react";
 import useLanguage from "../../hooks/useLanguage";
 import { HistoryTableI } from "../../pages/types";
+import { Loading } from "../Loading/Loading";
 
 export const HistoryTable: FC<HistoryTableI> = ({
     response,
@@ -25,15 +26,19 @@ export const HistoryTable: FC<HistoryTableI> = ({
     ];
     return (
         <div className='history-table'>
-            <Table
-                columns={columns}
-                dataSource={response?.data.result}
-                pagination={{
-                    total: response?.data.total,
-                    current: response?.data.page,
-                    onChange: (to) => pageTo(to),
-                }}
-            />
+            {loading ? (
+                <Loading />
+            ) : (
+                <Table
+                    columns={columns}
+                    dataSource={response?.data.result}
+                    pagination={{
+                        total: response?.data.total,
+                        current: response?.data.page,
+                        onChange: (to) => pageTo(to),
+                    }}
+                />
+            )}
         </div>
     );
 };

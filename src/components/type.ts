@@ -206,3 +206,59 @@ export interface ProductDataI {
 export interface ProductI {
     data: ProductDataI;
 }
+// post
+export interface ProductPostI {
+    product_type_id: number;
+    product_name: string;
+    supplier: string;
+    photo: string;
+    price: number;
+    discount_percent: number;
+}
+// edit
+export interface ProductEditI {
+    id: number;
+    product_type_id: number;
+    product_name: string;
+    supplier: string;
+    photo: string;
+    price: number;
+    discount_percent: number;
+}
+// product type
+export interface ProductTypeResultI {
+    id: number;
+    moderator_id: number;
+    name: string;
+    status: string;
+}
+export interface ProductTypeDataI {
+    limit: number;
+    page: number;
+    result: ProductTypeResultI[];
+    total: number;
+}
+export interface ProductTypeI {
+    data: ProductTypeDataI;
+}
+
+// -----------Inventory-----------------
+export interface InventoryResultI {
+    id: number;
+    product_name: string;
+    product_type: string;
+    status: string;
+    stocks: number;
+    supplier: string;
+}
+export interface InventoryDataI {
+    limit: number;
+    page: number;
+    result: InventoryResultI[];
+    total: number;
+}
+
+export interface InventoryI {
+    data: InventoryDataI;
+}
+

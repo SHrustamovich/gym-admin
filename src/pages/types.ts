@@ -1,5 +1,6 @@
 import {
     HistoryI,
+    InventoryI,
     membersEditI,
     MembershipIdType,
     MemberShipResultType,
@@ -7,7 +8,9 @@ import {
     MemberShipTypeI,
     MemberType,
     PaymentI,
+    ProductEditI,
     ProductI,
+    ProductResultI,
 } from "../components/type";
 import { SortDataI } from "../utils/data";
 
@@ -21,6 +24,19 @@ export interface modalI {
 export interface draverI {
     open: boolean;
     onClose: () => void;
+}
+
+export interface InventoryDraverI {
+    open: boolean;
+    onClose: () => void;
+    req: () => void;
+}
+
+export interface ProductDriver {
+    open: boolean;
+    onClose: () => void;
+    editProduct: ProductResultI | null;
+    req: () => void;
 }
 
 export interface MemberShipDraverI {
@@ -72,4 +88,17 @@ export interface ProductTableI {
     response: ProductI | undefined;
     loading: boolean;
     pageTo: (to: any) => void;
+    setEditProduct: (item: any) => void;
+    showDrawer: () => void;
+}
+// inventory
+export interface InventoryTableI {
+    response: InventoryI | undefined;
+    pageTo: (to: any) => void;
+    loading: boolean;
+}
+// inventory post
+export interface InventoryPostI {
+    product_id: number;
+    quantity: number;
 }

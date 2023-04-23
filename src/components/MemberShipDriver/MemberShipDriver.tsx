@@ -141,22 +141,6 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     />
                                 </Form.Item>
                             </div>
-                            {/* <div className='drawer__item'>
-                                <div className='drawer__label'>
-                                    {translate("term")}
-                                </div>
-                                <Form.Item
-                                    name='term'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: translate("valName"),
-                                        },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                            </div> */}
                             <div className='drawer__item'>
                                 <div className='drawer__label'>
                                     {translate("date")}
@@ -173,22 +157,6 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     <DatePicker />
                                 </Form.Item>
                             </div>
-                            {/* <div className='drawer__item'>
-                                <div className='drawer__label'>
-                                    {translate("end")}
-                                </div>
-                                <Form.Item
-                                    name='end_date'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: translate("valName"),
-                                        },
-                                    ]}
-                                >
-                                    <DatePicker />
-                                </Form.Item>
-                            </div> */}
                             <div className='drawer__item'>
                                 <p className='member-driver__price'>
                                     {translate("total")}:{priceB}

@@ -9,11 +9,14 @@ export const ProductTable: FC<ProductTableI> = ({
     response,
     loading,
     pageTo,
+    setEditProduct,
+    showDrawer,
 }) => {
     const translate = useLanguage();
 
     const handlyProductEdit = (item: any) => {
-        console.log(item);
+        setEditProduct(item);
+        showDrawer();
     };
 
     const handlyDelete = (item: any) => {

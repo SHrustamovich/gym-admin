@@ -3,28 +3,26 @@ import { FC } from "react";
 import useLanguage from "../../hooks/useLanguage";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { productData } from "../../utils/data";
+import { InventoryTableI } from "../../pages/types";
+import { Loading } from "../Loading/Loading";
 
-export const InventoryTable: FC = () => {
+export const InventoryTable: FC<InventoryTableI> = ({
+    response,
+    pageTo,
+    loading,
+}) => {
     const translate = useLanguage();
-
-    const handlyProductEdit = (item: any) => {
-        alert(item);
-    };
-
-    const handlyDelete = (item: any) => {
-        alert(item);
-    };
 
     const columns = [
         {
             title: `${translate("productT")}`,
-            dataIndex: "productType",
+            dataIndex: "product_type",
         },
         {
             title: `${translate("productN")}`,
-            dataIndex: "name",
+            dataIndex: "product_name",
         },
-        { title: `${translate("sup")}`, dataIndex: "sup" },
+        { title: `${translate("sup")}`, dataIndex: "supplier" },
         { title: `${translate("stock")}`, dataIndex: "stocks" },
         {
             title: `${translate("status")}`,
@@ -32,18 +30,26 @@ export const InventoryTable: FC = () => {
             key: "status",
             render: (status: any) => (
                 <>
-                    {status > 0 ? (
-                        <p className='status'>AVAILABLE</p>
-                    ) : (
-                        <p className='status no'>OUT OF STOCK</p>
-                    )}
+                    <p className='status'>{status}</p>
                 </>
             ),
         },
     ];
     return (
         <div className='inven-table'>
-            <Table columns={columns} dataSource={productData} />
+            {loading ? (
+                <Loading />
+            ) : (
+                <Table
+                    columns={columns}
+                    dataSource={response?.data.result}
+                    pagination={{
+                        total: response?.data.total,
+                        current: response?.data.page,
+                        onChange: (to) => pageTo(to),
+                    }}
+                />
+            )}
         </div>
     );
 };

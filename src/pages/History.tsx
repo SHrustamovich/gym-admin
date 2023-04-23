@@ -6,19 +6,19 @@ import { HistoryI } from "../components/type";
 import { useLoad } from "../hooks/request";
 import { sortData } from "../utils/data";
 import { historyGet } from "../utils/urls";
+import { HistoryTableI } from "./types";
 
 export const History = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const { search } = useLocation();
 
-    const historyGetReq = useLoad<HistoryI, string>(
-        {
-            url: historyGet + `${search}`,
-        },
+    const VisitList = useLoad<HistoryI, string>(
+        { url: historyGet + `${search}` },
         [search]
     );
-    const { response, request, loading } = historyGetReq;
+    const { response, loading } = VisitList;
+
     const pageTo = (to: string) => {
         searchParams.set("page", to);
         setSearchParams(searchParams);

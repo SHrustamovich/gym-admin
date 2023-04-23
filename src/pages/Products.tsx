@@ -13,10 +13,13 @@ import { productGet } from "../utils/urls";
 
 export const Products = () => {
     const [open, setOpen] = useState(false);
+    const [editProduct, setEditProduct] = useState<null>(null);
     const [searchParams, setSearchParams] = useSearchParams();
     const translate = useLanguage();
 
     const { search } = useLocation();
+
+    console.log(editProduct, "editProduct");
 
     const productGetList = useLoad<ProductI, string>(
         { url: productGet + `${search}` },
@@ -52,9 +55,20 @@ export const Products = () => {
                     </button>
                 </div>
             </div>
-            <ProductDrawer open={open} onClose={onClose} />
+            <ProductDrawer
+                open={open}
+                onClose={onClose}
+                editProduct={editProduct}
+                req={request}
+            />
             <div className='products__body'>
-                <ProductTable response={response} loading={loading} pageTo={pageTo} />
+                <ProductTable
+                    response={response}
+                    loading={loading}
+                    pageTo={pageTo}
+                    setEditProduct={setEditProduct}
+                    showDrawer={showDrawer}
+                />
             </div>
         </div>
     );

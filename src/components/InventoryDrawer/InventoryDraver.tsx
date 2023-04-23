@@ -1,15 +1,52 @@
-import { Button, Drawer, Form, Input, Select } from "antd";
+import { Button, Drawer, Form, Input, message, Select } from "antd";
 import { FC } from "react";
+import { useLoad, usePostRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
-import { draverI } from "../../pages/types";
+import { draverI, InventoryDraverI, InventoryPostI } from "../../pages/types";
+import { inventoryPost, productGet } from "../../utils/urls";
+import { ProductI } from "../type";
 
-export const InventoryDrawer: FC<draverI> = ({ open, onClose }) => {
+export const InventoryDrawer: FC<InventoryDraverI> = ({
+    open,
+    onClose,
+    req,
+}) => {
     const translate = useLanguage();
+    const [form] = Form.useForm();
+
+    const ProductList = useLoad<ProductI>({ url: productGet });
+
+    const { response } = ProductList;
+
+    const InventoryPostReq = usePostRequest<InventoryPostI>({
+        url: inventoryPost,
+    });
+
+    const onCloseDriver = () => {
+        form.resetFields();
+        onClose();
+    };
+
+    const onFinish = async (e: InventoryPostI) => {
+        const { product_id, quantity } = e;
+        const { success, error } = await InventoryPostReq.request({
+            data: {
+                product_id,
+                quantity,
+            },
+        });
+        if (success) {
+            message.success("INVENTORY ADDED SUCCESSFULLY");
+            req();
+            onCloseDriver();
+        }
+    };
+
     return (
         <div className='inventory-drawer'>
             <Drawer
                 placement='right'
-                onClose={onClose}
+                onClose={onCloseDriver}
                 open={open}
                 closable={false}
             >
@@ -17,13 +54,13 @@ export const InventoryDrawer: FC<draverI> = ({ open, onClose }) => {
                     <div className='inventory-drawer__title'>
                         {translate("stock")}
                     </div>
-                    <Form>
+                    <Form onFinish={onFinish} form={form}>
                         <div className='inventory-drawer__item'>
                             <p className='inventory-drawer__label'>
                                 {translate("praductT")}
                             </p>
                             <Form.Item
-                                name='username'
+                                name='product_id'
                                 rules={[
                                     {
                                         required: true,
@@ -32,27 +69,13 @@ export const InventoryDrawer: FC<draverI> = ({ open, onClose }) => {
                                 ]}
                             >
                                 <Select
-                                    showSearch
-                                    optionFilterProp='children'
-                                    filterOption={(input, option) =>
-                                        (option?.label ?? "")
-                                            .toLowerCase()
-                                            .includes(input.toLowerCase())
-                                    }
-                                    options={[
-                                        {
-                                            value: "jack",
-                                            label: "Jack",
-                                        },
-                                        {
-                                            value: "lucy",
-                                            label: "Lucy",
-                                        },
-                                        {
-                                            value: "tom",
-                                            label: "Tom",
-                                        },
-                                    ]}
+                                    placeholder='select'
+                                    options={response?.data.result.map(
+                                        (item) => ({
+                                            value: item.id,
+                                            label: item.product_name,
+                                        })
+                                    )}
                                 />
                             </Form.Item>
                         </div>
@@ -61,7 +84,7 @@ export const InventoryDrawer: FC<draverI> = ({ open, onClose }) => {
                                 {translate("quantity")}
                             </p>
                             <Form.Item
-                                name='username'
+                                name='quantity'
                                 rules={[
                                     {
                                         required: true,
@@ -74,12 +97,16 @@ export const InventoryDrawer: FC<draverI> = ({ open, onClose }) => {
                         </div>
                         <div className='inventory-drawer__item'>
                             <Form.Item className='member-driver__btn'>
-                                <Button className='member-driver__cancel'>
+                                <Button
+                                    className='member-driver__cancel'
+                                    onClick={() => onCloseDriver()}
+                                >
                                     {translate("cancel")}
                                 </Button>
                                 <Button
                                     htmlType='submit'
                                     className='member-driver__submit'
+                                    loading={InventoryPostReq.loading}
                                 >
                                     {translate("save")}
                                 </Button>

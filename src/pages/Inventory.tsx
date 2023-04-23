@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { PlusIcon } from "../assets/icons/icons";
 import { FilterPart } from "../components/FilterPart/FilterPart";
 import { InventoryDrawer } from "../components/InventoryDrawer/InventoryDraver";
 import { InventoryTable } from "../components/InventoryTable/INventoryTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
+import { InventoryI } from "../components/type";
 import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
 import { sortData } from "../utils/data";
@@ -11,6 +13,7 @@ import { inventoryGet } from "../utils/urls";
 
 export const Inventory = () => {
     const [open, setOpen] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const showDwawer = () => {
         setOpen(true);
@@ -20,10 +23,21 @@ export const Inventory = () => {
         setOpen(false);
     };
 
-    const inventoryGetReq = useLoad({ url: inventoryGet });
+    const { search } = useLocation();
+
+    const inventoryGetReq = useLoad<InventoryI, string>(
+        {
+            url: inventoryGet + `${search}`,
+        },
+        [search]
+    );
 
     const { response, request, loading } = inventoryGetReq;
 
+    const pageTo = (to: string) => {
+        searchParams.set("page", to);
+        setSearchParams(searchParams);
+    };
 
     const translate = useLanguage();
 
@@ -41,9 +55,9 @@ export const Inventory = () => {
                     </button>
                 </div>
             </div>
-            <InventoryDrawer open={open} onClose={onClose} />
+            <InventoryDrawer open={open} onClose={onClose} req={request} />
             <div className='inventory__body'>
-                <InventoryTable />
+                <InventoryTable response={response} pageTo={pageTo} loading={loading} />
             </div>
         </div>
     );

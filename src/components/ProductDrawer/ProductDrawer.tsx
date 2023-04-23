@@ -1,24 +1,112 @@
-import { Button, Drawer, Form, Input, Select } from "antd";
-import { FC } from "react";
+import { Button, Drawer, Form, Input, message, Select } from "antd";
+import { FC, useEffect } from "react";
+import { useLoad, usePostRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
-import { draverI } from "../../pages/types";
+import { draverI, ProductDriver } from "../../pages/types";
+import { productPost, productPut, productType } from "../../utils/urls";
+import { ProductEditI, ProductPostI, ProductTypeI } from "../type";
 
-export const ProductDrawer: FC<draverI> = ({ open, onClose }) => {
+export const ProductDrawer: FC<ProductDriver> = ({
+    open,
+    onClose,
+    editProduct,
+    req,
+}) => {
     const translate = useLanguage();
+    const [form] = Form.useForm();
+
+    const onCloseDraver = () => {
+        form.resetFields();
+        onClose();
+    };
+
+    const ProductTypeList = useLoad<ProductTypeI>({ url: productType });
+    const { response } = ProductTypeList;
+
+    const ProductPostReq = usePostRequest<ProductPostI>({ url: productPost });
+
+    const ProductPutReq = usePostRequest<ProductEditI>({
+        url: productPut(editProduct?.id as number),
+    });
+
+    const onFinish = async (e: ProductPostI) => {
+        const {
+            product_type_id,
+            product_name,
+            price,
+            discount_percent,
+            supplier,
+            photo,
+        } = e;
+
+        if (editProduct) {
+            const { success, error } = await ProductPutReq.request({
+                data: {
+                    product_type_id,
+                    product_name,
+                    price,
+                    discount_percent,
+                    supplier,
+                    photo,
+                },
+            });
+            if (success) {
+                message.success("PRODUCT UPDATE SUCCESSFULLY");
+                req();
+                onCloseDraver();
+            } else {
+                message.error(error);
+            }
+        } else {
+            const { success, error } = await ProductPostReq.request({
+                data: {
+                    product_type_id,
+                    product_name,
+                    price,
+                    discount_percent,
+                    supplier,
+                    photo,
+                },
+            });
+            if (success) {
+                message.success("PRODUCT ADDED SUCCESSFULLY");
+                req();
+                onCloseDraver();
+            } else {
+                message.error(error);
+            }
+        }
+    };
+
+    // console.log(editProduct, "editProduct");
+
+    useEffect(() => {
+        if (editProduct != null) {
+            form.setFieldsValue({
+                ...editProduct,
+                product_type_id: editProduct.poduct_type,
+            });
+        }
+    }, [editProduct]);
+
     return (
         <div className='product-drawer'>
-            <Drawer open={open} onClose={onClose} closable={false}>
+            <Drawer open={open} onClose={onCloseDraver} closable={false}>
                 <div className='product-drawer__body'>
                     <div className='product-drawer__title'>
                         {translate("newProduct")}
                     </div>
-                    <Form className='product-drawer__form'>
+                    <Form
+                        className='product-drawer__form'
+                        onFinish={onFinish}
+                        form={form}
+                    >
                         <div className='drawer__item'>
                             <p className='drawer__label'>
                                 {translate("praductT")}
                             </p>
                             <Form.Item
-                                name='username'
+                                name='product_type_id'
                                 rules={[
                                     {
                                         required: true,
@@ -27,30 +115,14 @@ export const ProductDrawer: FC<draverI> = ({ open, onClose }) => {
                                 ]}
                             >
                                 <Select
-                                    showSearch
-                                    // placeholder='Select a person'
-                                    optionFilterProp='children'
-                                    // onChange={onChange}
-                                    // onSearch={onSearch}
-                                    filterOption={(input, option) =>
-                                        (option?.label ?? "")
-                                            .toLowerCase()
-                                            .includes(input.toLowerCase())
-                                    }
-                                    options={[
-                                        {
-                                            value: "jack",
-                                            label: "Jack",
-                                        },
-                                        {
-                                            value: "lucy",
-                                            label: "Lucy",
-                                        },
-                                        {
-                                            value: "tom",
-                                            label: "Tom",
-                                        },
-                                    ]}
+                                    placeholder='select'
+                                    className='member-driver__select'
+                                    options={response?.data.result.map(
+                                        (item) => ({
+                                            value: item.id,
+                                            label: item.name,
+                                        })
+                                    )}
                                 />
                             </Form.Item>
                         </div>
@@ -59,7 +131,7 @@ export const ProductDrawer: FC<draverI> = ({ open, onClose }) => {
                                 {translate("productN")}
                             </p>
                             <Form.Item
-                                name='usernamee'
+                                name='product_name'
                                 rules={[
                                     {
                                         required: true,
@@ -75,7 +147,7 @@ export const ProductDrawer: FC<draverI> = ({ open, onClose }) => {
                                 {translate("unitP")}
                             </p>
                             <Form.Item
-                                name='usernamee'
+                                name='price'
                                 rules={[
                                     {
                                         required: true,
@@ -89,7 +161,7 @@ export const ProductDrawer: FC<draverI> = ({ open, onClose }) => {
                         <div className='drawer__item'>
                             <p className='drawer__label'>{translate("disc")}</p>
                             <Form.Item
-                                name='usernamee'
+                                name='discount_percent'
                                 rules={[
                                     {
                                         required: true,
@@ -103,7 +175,21 @@ export const ProductDrawer: FC<draverI> = ({ open, onClose }) => {
                         <div className='drawer__item'>
                             <p className='drawer__label'>{translate("sup")}</p>
                             <Form.Item
-                                name='usernamee'
+                                name='supplier'
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: translate("valName"),
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </div>
+                        <div className='drawer__item'>
+                            <p className='drawer__label'>{translate("img")}</p>
+                            <Form.Item
+                                name='photo'
                                 rules={[
                                     {
                                         required: true,
@@ -116,12 +202,16 @@ export const ProductDrawer: FC<draverI> = ({ open, onClose }) => {
                         </div>
                         <div className='drawer__item'>
                             <Form.Item className='member-driver__btn'>
-                                <Button className='member-driver__cancel'>
+                                <Button
+                                    className='member-driver__cancel'
+                                    onClick={() => onCloseDraver()}
+                                >
                                     Cancel
                                 </Button>
                                 <Button
                                     htmlType='submit'
                                     className='member-driver__submit'
+                                    loading={ProductPostReq.loading}
                                 >
                                     Save
                                 </Button>
