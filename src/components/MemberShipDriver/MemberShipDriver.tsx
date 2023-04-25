@@ -51,7 +51,13 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
     }, [priceA]);
 
     const MemberShipFinish = async (e: MemberShipTypePostI) => {
-        const { membership_type_id, term, start_date, end_date } = e;
+        const {
+            membership_type_id,
+            term,
+            start_date,
+            end_date,
+            payment_method,
+        } = e;
 
         if (memberShipEdit) {
             const { success, error } = await memberShipPutReq.request({
@@ -60,6 +66,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                     term,
                     start_date,
                     end_date,
+                    payment_method,
                 },
             });
             if (success) {
@@ -77,6 +84,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                     membership_type_id,
                     member_id: data?.data.id,
                     start_date,
+                    payment_method,
                 },
             });
             if (success) {
@@ -94,6 +102,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
             form.setFieldsValue({
                 membership_type_id: memberShipEdit.membership_type.id,
                 start_date: moment(memberShipEdit.start_date),
+                payment_method: memberShipEdit.payment_method,
             });
         }
     }, [memberShipEdit]);
@@ -155,6 +164,31 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     ]}
                                 >
                                     <DatePicker />
+                                </Form.Item>
+                            </div>
+                            <div className='drawer__item'>
+                                <div className='drawer__label'>
+                                    {translate("payment")}
+                                </div>
+                                <Form.Item
+                                    name='payment_method'
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: translate("valName"),
+                                        },
+                                    ]}
+                                >
+                                    <Select
+                                        className='member-driver__select'
+                                        options={[
+                                            { value: "cash", label: "cash" },
+                                            {
+                                                value: "credit_card",
+                                                label: "credit_card",
+                                            },
+                                        ]}
+                                    />
                                 </Form.Item>
                             </div>
                             <div className='drawer__item'>

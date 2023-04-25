@@ -42,7 +42,8 @@ export const logout = "/api/auth/logout";
 // product
 export const productGet = "/api/product";
 export const productPost = "/api/product";
-export const productPut = (id: number) => `/api/product${id}`;
+export const productPut = (id: number) => `/api/product/${id}`;
+export const productDelete = (id: number) => `/api/product/${id}`;
 
 // product-type
 export const productType = "/api/product-type";

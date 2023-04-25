@@ -90,6 +90,7 @@ export interface ProductTableI {
     pageTo: (to: any) => void;
     setEditProduct: (item: any) => void;
     showDrawer: () => void;
+    req: () => void;
 }
 // inventory
 export interface InventoryTableI {

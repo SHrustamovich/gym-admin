@@ -19,8 +19,6 @@ export const Products = () => {
 
     const { search } = useLocation();
 
-    console.log(editProduct, "editProduct");
-
     const productGetList = useLoad<ProductI, string>(
         { url: productGet + `${search}` },
         [search]
@@ -68,6 +66,7 @@ export const Products = () => {
                     pageTo={pageTo}
                     setEditProduct={setEditProduct}
                     showDrawer={showDrawer}
+                    req={request}
                 />
             </div>
         </div>

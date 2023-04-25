@@ -31,8 +31,7 @@ export const PaymentTable: FC<PaymentTableI> = ({ response }) => {
         },
         { title: `${translate("payment")}`, dataIndex: "payment_method" },
         { title: `${translate("type")}`, dataIndex: "for_what" },
-        { title: `${translate("term")}`, dataIndex: "moderator_id" },
-        { title: `${translate("paid")}`, dataIndex: "for_what" },
+        { title: `${translate("paid")}`, dataIndex: "paid_by" },
         {
             title: `${translate("action")}`,
             dataIndex: "",
@@ -47,7 +46,16 @@ export const PaymentTable: FC<PaymentTableI> = ({ response }) => {
     ];
     return (
         <div className='payment-table'>
-            <Table columns={columns} dataSource={response?.data.result} />
+            <Table
+                columns={columns}
+                dataSource={response?.data.result.map((item) => ({
+                    created_at: item.created_at,
+                    total: item.total,
+                    payment_method: item.payment_method,
+                    for_what: item.for_what,
+                    paid_by: item.member.fullname,
+                }))}
+            />
             <div className='payment-modal'>
                 <PaymentModal
                     isModalOpen={isModalOpen}

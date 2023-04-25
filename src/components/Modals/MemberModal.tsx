@@ -52,6 +52,7 @@ export const MemberModal: FC<modalI> = ({
                 });
             if (success) {
                 handleCancel();
+                request?.();
                 message.success("MEMBER UPDATE SUCCESSFULLY");
             }
             if (error) {

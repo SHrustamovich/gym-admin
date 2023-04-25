@@ -86,6 +86,7 @@ export interface MemberShipTypePostI {
     term: string;
     start_date: string;
     end_date: string;
+    payment_method: string;
 }
 // membership edit
 export interface MemberShipTypeEditI {
@@ -94,6 +95,7 @@ export interface MemberShipTypeEditI {
     term: string;
     start_date: string;
     end_date: string;
+    payment_method: string;
 }
 
 // membershipId--------------------
@@ -148,15 +150,20 @@ export interface PaymentType {
     total: string;
     updated_at: string;
 }
+export interface PaymentMemberI {
+    fullname: string;
+    id: number;
+}
 export interface PaymentResultI {
     created_at: string;
     for_what: string;
     id: number;
     moderator_id: number;
+    paid_status: string;
     payment_method: string;
     status: string;
     total: string;
-    updated_at: string;
+    member: PaymentMemberI;
 }
 export interface PaymentDataI {
     limit: number;
@@ -191,7 +198,7 @@ export interface HistoryI {
 export interface ProductResultI {
     id: number;
     photo: string;
-    poduct_type: string;
+    product_type: string;
     price: string;
     product_name: string;
     quantity: number;
@@ -261,4 +268,3 @@ export interface InventoryDataI {
 export interface InventoryI {
     data: InventoryDataI;
 }
-

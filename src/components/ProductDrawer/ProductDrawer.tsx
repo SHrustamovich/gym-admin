@@ -1,6 +1,6 @@
 import { Button, Drawer, Form, Input, message, Select } from "antd";
 import { FC, useEffect } from "react";
-import { useLoad, usePostRequest } from "../../hooks/request";
+import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { draverI, ProductDriver } from "../../pages/types";
 import { productPost, productPut, productType } from "../../utils/urls";
@@ -25,19 +25,14 @@ export const ProductDrawer: FC<ProductDriver> = ({
 
     const ProductPostReq = usePostRequest<ProductPostI>({ url: productPost });
 
-    const ProductPutReq = usePostRequest<ProductEditI>({
+    const ProductPutReq = usePutRequest<ProductEditI>({
         url: productPut(editProduct?.id as number),
     });
 
     const onFinish = async (e: ProductPostI) => {
-        const {
-            product_type_id,
-            product_name,
-            price,
-            discount_percent,
-            supplier,
-            photo,
-        } = e;
+        const { product_type_id, product_name, price, supplier, photo } = e;
+
+        console.log(product_type_id, product_name, price, supplier, photo);
 
         if (editProduct) {
             const { success, error } = await ProductPutReq.request({
@@ -45,7 +40,6 @@ export const ProductDrawer: FC<ProductDriver> = ({
                     product_type_id,
                     product_name,
                     price,
-                    discount_percent,
                     supplier,
                     photo,
                 },
@@ -63,7 +57,6 @@ export const ProductDrawer: FC<ProductDriver> = ({
                     product_type_id,
                     product_name,
                     price,
-                    discount_percent,
                     supplier,
                     photo,
                 },
@@ -84,7 +77,7 @@ export const ProductDrawer: FC<ProductDriver> = ({
         if (editProduct != null) {
             form.setFieldsValue({
                 ...editProduct,
-                product_type_id: editProduct.poduct_type,
+                product_type_id: editProduct.product_type,
             });
         }
     }, [editProduct]);
@@ -119,8 +112,8 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                     className='member-driver__select'
                                     options={response?.data.result.map(
                                         (item) => ({
-                                            value: item.id,
                                             label: item.name,
+                                            value: item.id,
                                         })
                                     )}
                                 />
@@ -158,7 +151,7 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                 <Input />
                             </Form.Item>
                         </div>
-                        <div className='drawer__item'>
+                        {/* <div className='drawer__item'>
                             <p className='drawer__label'>{translate("disc")}</p>
                             <Form.Item
                                 name='discount_percent'
@@ -171,7 +164,7 @@ export const ProductDrawer: FC<ProductDriver> = ({
                             >
                                 <Input />
                             </Form.Item>
-                        </div>
+                        </div> */}
                         <div className='drawer__item'>
                             <p className='drawer__label'>{translate("sup")}</p>
                             <Form.Item
