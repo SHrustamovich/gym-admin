@@ -29,10 +29,11 @@ export const ProductDrawer: FC<ProductDriver> = ({
         url: productPut(editProduct?.id as number),
     });
 
+
+
+
     const onFinish = async (e: ProductPostI) => {
         const { product_type_id, product_name, price, supplier, photo } = e;
-
-        console.log(product_type_id, product_name, price, supplier, photo);
 
         if (editProduct) {
             const { success, error } = await ProductPutReq.request({
@@ -71,14 +72,13 @@ export const ProductDrawer: FC<ProductDriver> = ({
         }
     };
 
-    // console.log(editProduct, "editProduct");
-
     useEffect(() => {
         if (editProduct != null) {
+            console.log(editProduct, "edit prpduct");
             form.setFieldsValue({
                 ...editProduct,
-                product_type_id: editProduct.product_type,
             });
+            // form.setFieldValue('product_type_id', editProduct)
         }
     }, [editProduct]);
 
@@ -112,8 +112,8 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                     className='member-driver__select'
                                     options={response?.data.result.map(
                                         (item) => ({
-                                            label: item.name,
                                             value: item.id,
+                                            label: item.name,
                                         })
                                     )}
                                 />
@@ -151,20 +151,6 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                 <Input />
                             </Form.Item>
                         </div>
-                        {/* <div className='drawer__item'>
-                            <p className='drawer__label'>{translate("disc")}</p>
-                            <Form.Item
-                                name='discount_percent'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: translate("valName"),
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                        </div> */}
                         <div className='drawer__item'>
                             <p className='drawer__label'>{translate("sup")}</p>
                             <Form.Item

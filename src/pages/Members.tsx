@@ -29,7 +29,6 @@ export const Members = () => {
 
     const { response, loading, request } = memberRequest;
 
-
     const pageTo = (to: string) => {
         searchParams.set("page", to);
         setSearchParams(searchParams);
@@ -41,6 +40,7 @@ export const Members = () => {
 
     const handleCancel = () => {
         setIsModalOpen(false);
+        setEditMembers(null);
     };
 
     return (

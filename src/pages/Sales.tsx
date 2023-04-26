@@ -13,7 +13,8 @@ export const Sales = () => {
 
     const translate = useLanguage();
 
-    const showDrawer = () => {
+    const handlyProduct = (data: any) => {
+        console.log(data, "iiiiiiiiiiiiiii");
         setOpen(true);
     };
     const onClose = () => {
@@ -37,7 +38,10 @@ export const Sales = () => {
                         <p className='card__title'>{item.product_name}</p>
                         <p className='card__brand'>Brand:{item.supplier}</p>
                         <p className='card__quality'>Quality:{item.quantity}</p>
-                        <button className='card__btn' onClick={showDrawer}>
+                        <button
+                            className='card__btn'
+                            onClick={() => handlyProduct(item)}
+                        >
                             <KarzinkaIcon />
                             <span className='card__text'>
                                 {translate("card")}
@@ -46,7 +50,7 @@ export const Sales = () => {
                     </div>
                 ))}
             </div>
-            <SalesDrawer open={open} onClose={onClose} />
+            <SalesDrawer open={open} onClose={onClose} load={loading} />
         </div>
     );
 };

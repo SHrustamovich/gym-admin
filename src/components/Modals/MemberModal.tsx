@@ -84,6 +84,7 @@ export const MemberModal: FC<modalI> = ({
     };
 
     useEffect(() => {
+        console.log(editMembers, "hiiiiiiiiii");
         if (editMembers != null) {
             form.setFieldsValue({
                 ...editMembers,

@@ -82,6 +82,7 @@ export interface HistoryTableI {
 // payment table
 export interface PaymentTableI {
     response: PaymentI | undefined;
+    pageTo: (to: any) => void;
 }
 // product table
 export interface ProductTableI {
@@ -102,4 +103,11 @@ export interface InventoryTableI {
 export interface InventoryPostI {
     product_id: number;
     quantity: number;
+}
+
+// POS
+export interface PosDrawer {
+    open: boolean;
+    onClose: () => void;
+    load: boolean;
 }
