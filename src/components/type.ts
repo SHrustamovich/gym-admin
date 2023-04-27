@@ -268,3 +268,22 @@ export interface InventoryDataI {
 export interface InventoryI {
     data: InventoryDataI;
 }
+
+// -----------------Statistic----------------
+export interface StatisticTypeI {
+    created_at: string;
+    for_what: string;
+    id: number;
+    paid_status: string;
+    payment_method: string;
+    status: string;
+    total: string;
+}
+
+export interface StatisticI {
+    activeMembers: number;
+    inactiveMembers: number;
+    outOufStockProducts: number;
+    statistics: StatisticTypeI[];
+    todaysVisits: number;
+}

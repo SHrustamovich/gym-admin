@@ -39,6 +39,8 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
             message.success("INVENTORY ADDED SUCCESSFULLY");
             req();
             onCloseDriver();
+        } else {
+            message.error("Oldin qo'shilgan")
         }
     };
 

@@ -11,6 +11,7 @@ import {
     ProductEditI,
     ProductI,
     ProductResultI,
+    StatisticI,
 } from "../components/type";
 import { SortDataI } from "../utils/data";
 
@@ -110,4 +111,9 @@ export interface PosDrawer {
     open: boolean;
     onClose: () => void;
     load: boolean;
+}
+// HomeGraph
+
+export interface HomeGraphI {
+    dataGraph: StatisticI | undefined;
 }

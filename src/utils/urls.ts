@@ -47,3 +47,6 @@ export const productDelete = (id: number) => `/api/product/${id}`;
 
 // product-type
 export const productType = "/api/product-type";
+
+// statistics
+export const statisticsGet = "/api/statistics"
