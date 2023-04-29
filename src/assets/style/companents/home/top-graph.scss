@@ -1,0 +1,63 @@
+.top-graph {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+    }
+    &__money {
+        display: flex;
+        gap: 32px;
+    }
+    &__year {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 20px;
+        color: #9291a5;
+    }
+    &__total {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        color: $textColor;
+    }
+    &__persant {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #9291a5;
+        span {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 16px;
+            color: #04ce00;
+        }
+    }
+    &__btns {
+        background: $backgroundColor;
+        padding: 6px 12px;
+        border-radius: 15px;
+    }
+    &__btn {
+        padding: 10px 15px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        color: #9291a5;
+        &.active {
+            background: #9b74f0;
+            border-radius: 13px;
+            color: $textColor;
+        }
+    }
+}

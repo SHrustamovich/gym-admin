@@ -16,6 +16,7 @@ import {
     HomeIcon,
 } from "../assets/icons/icons";
 import { ILangData, ISidebarData } from "./type";
+import { StaticFilterDataI } from "../pages/types";
 
 export const sideBarData: ISidebarData[] = [
     {
@@ -277,5 +278,23 @@ export const typeData = [
         typeName: "Standart",
         free: "100",
         dis: "10$",
+    },
+];
+
+export const StaticFilterData: StaticFilterDataI[] = [
+    {
+        id: 1,
+        title: "Week",
+        path: "week",
+    },
+    {
+        id: 2,
+        title: "Month",
+        path: "month",
+    },
+    {
+        id: 3,
+        title: "Year",
+        path: "year",
     },
 ];

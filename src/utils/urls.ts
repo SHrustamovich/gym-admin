@@ -22,7 +22,8 @@ export const memberShipDelete = (id: number) => `api/membership/${id}`;
 export const memberShipPut = (id: number) => `api/membership/${id}`;
 
 // membership type
-export const membershipType = "/api/membership-types";
+export const membershipTypeUrl = "/api/membership-types";
+export const membershipTypepost = "/api/membership-types";
 
 // history
 export const historyGet = "/api/visit";
@@ -49,4 +50,4 @@ export const productDelete = (id: number) => `/api/product/${id}`;
 export const productType = "/api/product-type";
 
 // statistics
-export const statisticsGet = "/api/statistics"
+export const statisticsGet = "/api/statistics";

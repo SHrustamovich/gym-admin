@@ -88,7 +88,7 @@ export const MemberModal: FC<modalI> = ({
         if (editMembers != null) {
             form.setFieldsValue({
                 ...editMembers,
-                date_of_birth: moment(editMembers.date_of_birth),
+                date_of_birth: editMembers.date_of_birth,
             });
         }
     }, [editMembers]);

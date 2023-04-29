@@ -4,33 +4,34 @@ import useLanguage from "../../hooks/useLanguage";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { DeleteIcon, EditIcon } from "../../assets/icons/icons";
 import { typeData } from "../../utils/data";
+import { SettingTableI } from "../../pages/types";
+import { Loading } from "../Loading/Loading";
 
-export const SettingTable: FC = () => {
+export const SettingTable: FC<SettingTableI> = ({ response, load }) => {
     const translate = useLanguage();
 
     const handlyProductEdit = (item: any) => {
-        alert(item);
+        console.log(item);
     };
 
-    const handlyDelete = (item: any) => {
-        alert(item);
+    const handlyDelete = (item: number) => {
+        console.log(item);
     };
 
     const columns = [
         {
             title: `${translate("membershipTypeName")}`,
-            dataIndex: "typeName",
-            key: "memberType",
+            dataIndex: "name",
+            key: "name",
         },
         {
-            title: `${translate("free")}`,
-            dataIndex: "free",
-            key: "free",
+            title: `${translate("term")}`,
+            dataIndex: "term",
+            key: "term",
         },
-        { title: `${translate("disc")}`, dataIndex: "dis" },
+        { title: `${translate("price")}`, dataIndex: "price" },
         {
             title: `${translate("action")}`,
-            dataIndex: "",
             render: (record: any) => (
                 <Space size={10}>
                     <Button
@@ -52,7 +53,15 @@ export const SettingTable: FC = () => {
     ];
     return (
         <div className='setting-table'>
-            <Table columns={columns} pagination={false} dataSource={typeData} />
+            {load ? (
+                <Loading />
+            ) : (
+                <Table
+                    columns={columns}
+                    pagination={false}
+                    dataSource={response?.data.result}
+                />
+            )}
         </div>
     );
 };

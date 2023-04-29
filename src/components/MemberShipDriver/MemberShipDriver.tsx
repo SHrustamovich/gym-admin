@@ -5,7 +5,7 @@ import useLanguage from "../../hooks/useLanguage";
 import {
     memberShipPost,
     memberShipPut,
-    membershipType,
+    membershipTypeUrl,
 } from "../../utils/urls";
 import {
     MemberShipTypeEditI,
@@ -32,7 +32,9 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
         onClose();
     };
 
-    const memberShipTypeReq = useLoad<MemberShipTypeI>({ url: membershipType });
+    const memberShipTypeReq = useLoad<MemberShipTypeI>({
+        url: membershipTypeUrl,
+    });
     const { response } = memberShipTypeReq;
 
     const memberShipPutReq = usePutRequest<Partial<MemberShipTypeEditI>>({

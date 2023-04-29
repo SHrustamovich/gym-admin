@@ -1,4 +1,4 @@
-import { NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 import useLanguage from "../hooks/useLanguage";
 import { SelectLang } from "./LangSelect/LangSelect";
 import { sideBarData } from "../utils/data";
@@ -20,7 +20,6 @@ export const Root = () => {
     const LogoutClick = () => {
         logoutPost.request();
     };
-
     return login ? (
         <>
             <div className='root'>

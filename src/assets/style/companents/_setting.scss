@@ -9,6 +9,7 @@
         font-weight: 700;
         @include adaptive-value(font-size, 22, 18, 1);
         @include adaptive-value(line-height, 28, 26, 1);
+        color: $textColor;
     }
     &__btn {
         display: flex;
@@ -42,4 +43,21 @@
         color: $textColor;
         @include adaptive-value(padding-bottom, 32, 26, 1);
     }
+}
+
+.ant-tabs-tab-btn {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 28px;
+    color: $textColor;
+    &:hover {
+        color: $buttonColor !important;
+    }
+}
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: $textColor;
+}
+.ant-tabs-ink-bar {
+    background: $buttonColor !important;
 }

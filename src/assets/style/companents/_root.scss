@@ -28,11 +28,13 @@
         gap: 16px;
         padding: 11px;
         width: 100%;
-    }
-    &__link:hover {
-        background: $sideBarHover;
         border-radius: 16px;
+        &:hover,
+        &.active {
+            background: $sideBarHover;
+        }
     }
+
     &__title {
         font-style: normal;
         font-weight: 700;

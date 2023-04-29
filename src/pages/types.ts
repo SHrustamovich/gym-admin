@@ -4,6 +4,7 @@ import {
     membersEditI,
     MembershipIdType,
     MemberShipResultType,
+    MemberShipTypeDataI,
     MemberShipTypeEditI,
     MemberShipTypeI,
     MemberType,
@@ -25,6 +26,12 @@ export interface modalI {
 export interface draverI {
     open: boolean;
     onClose: () => void;
+}
+
+export interface MemberShipTypeDrawerI {
+    open: boolean;
+    onClose: () => void;
+    req: () => void;
 }
 
 export interface InventoryDraverI {
@@ -116,4 +123,17 @@ export interface PosDrawer {
 
 export interface HomeGraphI {
     dataGraph: StatisticI | undefined;
+}
+
+export interface StaticFilterDataI {
+    id: number;
+    title: string;
+    path: string;
+}
+
+// SettingTable
+
+export interface SettingTableI {
+    response: MemberShipTypeI | undefined;
+    load: boolean;
 }

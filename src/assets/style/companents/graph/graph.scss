@@ -1,3 +1,48 @@
 .graph {
     background: $sidebarColor;
+    padding: 32px 28px 52px 32px;
+    box-shadow: 0px 2px 6px rgba(13, 10, 44, 0.08);
+    border-radius: 20px;
+    height: 537px;
+    canvas {
+        width: 100% !important;
+        // height: inherit !important;
+        // object-fit: contain;
+    }
+}
+
+.statistics-main {
+    padding-top: 36px;
+}
+
+.statistics {
+    display: flex;
+    justify-content: space-between;
+    &-card {
+        display: flex;
+        padding: 12px 34px 12px 12px;
+        background: $sidebarColor;
+        border-radius: 20px;
+        gap: 20px;
+    }
+    &-info {
+        display: flex;
+        flex-direction: column;
+    }
+    &-name {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        text-transform: uppercase;
+        color: $textColor;
+    }
+    &-number {
+        display: flex;
+        justify-content: end;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 42px;
+        line-height: 49px;
+    }
 }

@@ -1,10 +1,46 @@
-import { Button, Drawer, Form, Input } from "antd";
+import { Button, Drawer, Form, Input, message } from "antd";
 import { FC } from "react";
+import { usePostRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
-import { draverI } from "../../pages/types";
+import { draverI, MemberShipTypeDrawerI } from "../../pages/types";
+import { membershipTypepost } from "../../utils/urls";
+import { MemberShipTypePostI } from "../type";
 
-export const SettingDrawer: FC<draverI> = ({ open, onClose }) => {
+export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
+    open,
+    onClose,
+    req,
+}) => {
     const translate = useLanguage();
+    const [form] = Form.useForm();
+
+    const onCloseDrawer = () => {
+        form.resetFields();
+        onClose();
+    };
+
+    const MemberShipTypePost = usePostRequest<MemberShipTypePostI>({
+        url: membershipTypepost,
+    });
+
+    const onFinish = async (e: MemberShipTypePostI) => {
+        const { name, price, term } = e;
+
+        const { success, error } = await MemberShipTypePost.request({
+            data: {
+                name,
+                price,
+                term,
+            },
+        });
+        if (success) {
+            message.success("MEMBERSHIP TYPE ADDED SUCCESS");
+            req();
+            onCloseDrawer();
+        } else {
+            message.error(error);
+        }
+    };
 
     return (
         <div className='setting-drawer'>
@@ -13,11 +49,11 @@ export const SettingDrawer: FC<draverI> = ({ open, onClose }) => {
                     <div className='setting-drawer__title'>
                         {translate("memberType")}
                     </div>
-                    <Form>
+                    <Form onFinish={onFinish} form={form}>
                         <div className='item'>
                             <p className='label'>{translate("memberType")}</p>
                             <Form.Item
-                                name='memberTypeName'
+                                name='name'
                                 rules={[
                                     {
                                         required: true,
@@ -29,9 +65,9 @@ export const SettingDrawer: FC<draverI> = ({ open, onClose }) => {
                             </Form.Item>
                         </div>
                         <div className='item'>
-                            <p className='label'>{translate("fee")}</p>
+                            <p className='label'>{translate("price")}</p>
                             <Form.Item
-                                name='fee'
+                                name='price'
                                 rules={[
                                     {
                                         required: true,
@@ -43,9 +79,9 @@ export const SettingDrawer: FC<draverI> = ({ open, onClose }) => {
                             </Form.Item>
                         </div>
                         <div className='item'>
-                            <p className='label'>{translate("disc")}</p>
+                            <p className='label'>{translate("term")}</p>
                             <Form.Item
-                                name='disc'
+                                name='term'
                                 rules={[
                                     {
                                         required: true,

@@ -62,13 +62,12 @@ export interface MemberShipType {
 // membership type interface
 export interface MemberShipTypeResultI {
     created_at: string;
-    discount_percent: number;
     id: number;
     moderator_id: number;
     name: string;
     price: string;
     status: string;
-    updated_at: string;
+    term: string;
 }
 export interface MemberShipTypeDataI {
     limit: number;
@@ -78,6 +77,12 @@ export interface MemberShipTypeDataI {
 }
 export interface MemberShipTypeI {
     data: MemberShipTypeDataI;
+}
+// membershipType post
+export interface MemberShipTypePostI {
+    name: string;
+    price: number;
+    term: string;
 }
 // membership post
 export interface MemberShipTypePostI {
@@ -286,4 +291,12 @@ export interface StatisticI {
     outOufStockProducts: number;
     statistics: StatisticTypeI[];
     todaysVisits: number;
+}
+
+export interface StatisticPageI {
+    response: StatisticI | undefined;
+}
+
+export interface StatisticTotalI {
+    total: StatisticTypeI[] | undefined;
 }

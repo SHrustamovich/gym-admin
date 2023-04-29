@@ -11,7 +11,6 @@ const UserProvider: FC<UserProviderI> = ({ children }) => {
     const authGetRequest = useLoad<UserDataI>({ url: getauth });
     const { response } = authGetRequest;
 
-    // console.log(response, "response");
 
     useEffect(() => {
         if (response?.status == "active") {
