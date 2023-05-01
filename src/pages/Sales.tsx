@@ -15,8 +15,7 @@ export const Sales = () => {
     const translate = useLanguage();
 
     const handlyProduct = (data: any) => {
-        console.log(data, "iiiiiiiiiiiiiii");
-        setOpen(true);
+        console.log(data);
     };
     const onClose = () => {
         setOpen(false);
