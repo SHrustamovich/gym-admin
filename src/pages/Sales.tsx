@@ -7,6 +7,7 @@ import useLanguage from "../hooks/useLanguage";
 import { cardData, productData } from "../utils/data";
 import { productGet } from "../utils/urls";
 import { ProductI } from "../components/type";
+import { Button } from "antd";
 
 export const Sales = () => {
     const [open, setOpen] = useState(false);
@@ -30,6 +31,12 @@ export const Sales = () => {
         <div className='sales'>
             <div className='sales__search'>
                 <SearchInput />
+                <div className='sales__karzinka'>
+                    <p className='sales__count'>5</p>
+                    <button className='sales__btn'>
+                        <KarzinkaIcon />
+                    </button>
+                </div>
             </div>
             <div className='sales__body'>
                 {response?.data.result.map((item) => (

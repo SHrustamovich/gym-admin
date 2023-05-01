@@ -6,6 +6,33 @@
         // justify-content: space-between;
         gap: 20px;
     }
+    &__search {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__karzinka {
+        position: relative;
+    }
+    &__count {
+        position: absolute;
+        background: $buttonColor;
+        // width: 18px;
+        // height: 18px;
+        padding: 3px 7px;
+        border-radius: 50%;
+        text-align: center;
+        right: 0;
+    }
+    &__btn {
+        background: $sidebarColor;
+        outline: none;
+        border: none !important;
+        // padding: 15px !important;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
 }
 .card {
     background: $sidebarColor;
