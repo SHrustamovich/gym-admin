@@ -253,6 +253,10 @@ export interface ProductTypeDataI {
 export interface ProductTypeI {
     data: ProductTypeDataI;
 }
+// post
+export interface ProductTypePostI {
+    name: string;
+}
 
 // -----------Inventory-----------------
 export interface InventoryResultI {

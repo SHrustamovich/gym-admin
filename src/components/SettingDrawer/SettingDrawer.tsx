@@ -1,15 +1,16 @@
 import { Button, Drawer, Form, Input, message } from "antd";
-import { FC } from "react";
-import { usePostRequest } from "../../hooks/request";
+import { FC, useEffect } from "react";
+import { usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { draverI, MemberShipTypeDrawerI } from "../../pages/types";
-import { membershipTypepost } from "../../utils/urls";
+import { membershipTypeEdit, membershipTypepost } from "../../utils/urls";
 import { MemberShipTypePostI } from "../type";
 
 export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
     open,
     onClose,
     req,
+    editMemberType,
 }) => {
     const translate = useLanguage();
     const [form] = Form.useForm();
@@ -19,28 +20,59 @@ export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
         onClose();
     };
 
+    console.log(editMemberType)
+
     const MemberShipTypePost = usePostRequest<MemberShipTypePostI>({
         url: membershipTypepost,
+    });
+
+    const MemberShipTypeEditReq = usePutRequest({
+        url: membershipTypeEdit(editMemberType?.id as number),
     });
 
     const onFinish = async (e: MemberShipTypePostI) => {
         const { name, price, term } = e;
 
-        const { success, error } = await MemberShipTypePost.request({
-            data: {
-                name,
-                price,
-                term,
-            },
-        });
-        if (success) {
-            message.success("MEMBERSHIP TYPE ADDED SUCCESS");
-            req();
-            onCloseDrawer();
+        if (editMemberType) {
+            const { success, error } = await MemberShipTypeEditReq.request({
+                data: {
+                    name,
+                    price,
+                    term,
+                },
+            });
+            if (success) {
+                message.success("MEMBERSHIPTYPE UPDATE SUCCESSFULLY");
+                req();
+                onCloseDrawer();
+            } else {
+                message.error(error);
+            }
         } else {
-            message.error(error);
+            const { success, error } = await MemberShipTypePost.request({
+                data: {
+                    name,
+                    price,
+                    term,
+                },
+            });
+            if (success) {
+                message.success("MEMBERSHIP TYPE ADDED SUCCESS");
+                req();
+                onCloseDrawer();
+            } else {
+                message.error(error);
+            }
         }
     };
+
+    useEffect(() => {
+        if (editMemberType != null) {
+            form.setFieldsValue({
+                ...editMemberType,
+            });
+        }
+    }, [editMemberType]);
 
     return (
         <div className='setting-drawer'>

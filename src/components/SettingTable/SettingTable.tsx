@@ -1,23 +1,54 @@
-import { Button, Space, Table } from "antd";
-import { FC } from "react";
+import { Button, message, Space, Table } from "antd";
+import { FC, useState } from "react";
 import useLanguage from "../../hooks/useLanguage";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { DeleteIcon, EditIcon } from "../../assets/icons/icons";
 import { typeData } from "../../utils/data";
 import { SettingTableI } from "../../pages/types";
 import { Loading } from "../Loading/Loading";
+import { useDeleteRequest } from "../../hooks/request";
+import { DeleteModal } from "../DeleteModal/DeleteModal";
+import { membershipTypeDelete } from "../../utils/urls";
 
-export const SettingTable: FC<SettingTableI> = ({ response, load }) => {
+export const SettingTable: FC<SettingTableI> = ({
+    response,
+    load,
+    setEditMemberType,
+    showDrawer,
+    req,
+}) => {
     const translate = useLanguage();
+    const [memberShipType, setMemberShipType] = useState<number | null>(null);
+    const [isOpenModal, setIsOpenModal] = useState(false);
+
+    const MemberShipTypeDelete = useDeleteRequest();
 
     const handlyProductEdit = (item: any) => {
-        console.log(item);
+        setEditMemberType(item);
+        showDrawer();
     };
 
     const handlyDelete = (item: number) => {
-        console.log(item);
+        setMemberShipType(item);
+        setIsOpenModal(true);
     };
 
+    const onOkDelete = async () => {
+        const { success } = await MemberShipTypeDelete.request({
+            url: membershipTypeDelete(memberShipType as number),
+        });
+        if (!success) {
+            // setElementLoading(false);
+            setIsOpenModal(false);
+            req();
+            message.success("DELETE MEMBERSHIP TYPE");
+        }
+        if (success) {
+            // setElementLoading(false);
+            setIsOpenModal(false);
+            message.error("SOMETHING WENT WRONG");
+        }
+    };
     const columns = [
         {
             title: `${translate("membershipTypeName")}`,
@@ -62,6 +93,12 @@ export const SettingTable: FC<SettingTableI> = ({ response, load }) => {
                     dataSource={response?.data.result}
                 />
             )}
+            <DeleteModal
+                title={translate("deletePerson")}
+                visible={isOpenModal}
+                onOkDelete={onOkDelete}
+                onCancel={() => setIsOpenModal(false)}
+            />
         </div>
     );
 };

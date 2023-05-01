@@ -74,7 +74,6 @@ export const ProductDrawer: FC<ProductDriver> = ({
 
     useEffect(() => {
         if (editProduct != null) {
-            console.log(editProduct, "edit prpduct");
             form.setFieldsValue({
                 ...editProduct,
             });

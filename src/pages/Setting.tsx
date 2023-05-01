@@ -1,6 +1,7 @@
 import { Tabs, TabsProps } from "antd";
 import { FC } from "react";
 import { MemberShipType } from "../components/MemberShipType/MemberShipType";
+import { ProductType } from "../components/ProductType/ProductType";
 
 export const Setting: FC = () => {
     const items: TabsProps["items"] = [
@@ -12,7 +13,7 @@ export const Setting: FC = () => {
         {
             key: "2",
             label: `PRODUCT TYPES`,
-            children: `Content of Tab Pane 2`,
+            children: <ProductType />,
         },
     ];
     return <Tabs defaultActiveKey='1' items={items} />;

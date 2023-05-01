@@ -43,9 +43,20 @@ export const MemberShipType: FC = () => {
                     <span className='setting__text'>{translate("add")}</span>
                 </button>
             </div>
-            <SettingDrawer open={open} onClose={onClose} req={request} />
+            <SettingDrawer
+                open={open}
+                onClose={onClose}
+                req={request}
+                editMemberType={editMemberType}
+            />
             <div className='setting__body'>
-                <SettingTable response={response} load={loading} />
+                <SettingTable
+                    response={response}
+                    load={loading}
+                    setEditMemberType={setEditMemberType}
+                    showDrawer={showDrawer}
+                    req={request}
+                />
             </div>
         </div>
     );

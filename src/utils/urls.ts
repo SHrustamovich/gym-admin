@@ -24,6 +24,9 @@ export const memberShipPut = (id: number) => `api/membership/${id}`;
 // membership type
 export const membershipTypeUrl = "/api/membership-types";
 export const membershipTypepost = "/api/membership-types";
+export const membershipTypeDelete = (id: number) =>
+    `/api/membership-types/${id}`;
+export const membershipTypeEdit = (id: number) => `/api/membership-types/${id}`;
 
 // history
 export const historyGet = "/api/visit";
@@ -48,6 +51,9 @@ export const productDelete = (id: number) => `/api/product/${id}`;
 
 // product-type
 export const productType = "/api/product-type";
+export const productTypePost = "/api/product-type";
+export const productTypeDelete = (id: number) => `/api/product-type/${id}`
+export const productTypeEditUrl = (id:number) => `/api/product-type/${id}`
 
 // statistics
 export const statisticsGet = "/api/statistics";

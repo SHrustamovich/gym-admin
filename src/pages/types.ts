@@ -7,11 +7,15 @@ import {
     MemberShipTypeDataI,
     MemberShipTypeEditI,
     MemberShipTypeI,
+    MemberShipTypeResultI,
     MemberType,
     PaymentI,
     ProductEditI,
     ProductI,
     ProductResultI,
+    ProductTypeI,
+    ProductTypePostI,
+    ProductTypeResultI,
     StatisticI,
 } from "../components/type";
 import { SortDataI } from "../utils/data";
@@ -32,6 +36,7 @@ export interface MemberShipTypeDrawerI {
     open: boolean;
     onClose: () => void;
     req: () => void;
+    editMemberType: MemberShipTypeResultI | null;
 }
 
 export interface InventoryDraverI {
@@ -136,4 +141,21 @@ export interface StaticFilterDataI {
 export interface SettingTableI {
     response: MemberShipTypeI | undefined;
     load: boolean;
+    setEditMemberType: (item: any) => void;
+    showDrawer: () => void;
+    req: () => void;
+}
+// product type
+export interface ProductTypeTableI {
+    response: ProductTypeI | undefined;
+    loading: boolean;
+    req: () => void;
+    setProductTypeEdit: (item: any) => void;
+    showModal: () => void;
+}
+export interface ProductTypeModalI {
+    openModal: boolean;
+    onCancel: () => void;
+    req: () => void;
+    productTypeEdit: ProductTypeResultI | null;
 }
