@@ -4,35 +4,41 @@ import { SalesDrawer } from "../components/SalesDrawer/SalesDrawer";
 import { SearchInput } from "../components/SearchInput/SearchInput";
 import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
-import { cardData, productData } from "../utils/data";
 import { productGet } from "../utils/urls";
-import { ProductI } from "../components/type";
-import { Button } from "antd";
+import { ProductI, ProductResultI } from "../components/type";
+import { CardItem, useCardContext } from "../context/karzinkaContext";
 
 export const Sales = () => {
     const [open, setOpen] = useState(false);
 
+    const { getData, cardData } = useCardContext();
+
     const translate = useLanguage();
 
-    const handlyProduct = (data: any) => {
-        console.log(data);
+    const handlyProduct = (data: ProductResultI) => {
+        if (data) {
+            console.log(data, "data");
+            getData(data);
+        }
     };
     const onClose = () => {
         setOpen(false);
     };
 
-    // const ProductListReq = useLoad({ url: productGet });
-
     const productListData = useLoad<ProductI>({ url: productGet });
     const { response, request, loading } = productListData;
+
+    const handlyBtnDraver = () => {
+        setOpen(true);
+    };
 
     return (
         <div className='sales'>
             <div className='sales__search'>
                 <SearchInput />
                 <div className='sales__karzinka'>
-                    <p className='sales__count'>5</p>
-                    <button className='sales__btn'>
+                    <p className='sales__count'>{cardData.length}</p>
+                    <button className='sales__btn' onClick={handlyBtnDraver}>
                         <KarzinkaIcon />
                     </button>
                 </div>

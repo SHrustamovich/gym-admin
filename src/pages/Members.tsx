@@ -22,7 +22,7 @@ export const Members = () => {
 
     const memberRequest = useLoad<MemberType, string>(
         {
-            url: memberGet + `${search}`,
+            url: memberGet + search,
         },
         [search]
     );

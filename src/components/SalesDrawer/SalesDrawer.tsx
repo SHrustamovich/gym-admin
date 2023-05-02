@@ -1,5 +1,6 @@
 import { Button, Drawer, Form, Input, Select } from "antd";
 import { FC, useState } from "react";
+import { useCardContext } from "../../context/karzinkaContext";
 import useLanguage from "../../hooks/useLanguage";
 import { draverI, PosDrawer } from "../../pages/types";
 import { cardData } from "../../utils/data";
@@ -8,6 +9,16 @@ import { Loading } from "../Loading/Loading";
 export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
     const [price, setPrice] = useState(23);
     const translate = useLanguage();
+
+    const { cardData, decrementCount, incrementCount } = useCardContext();
+
+    const handlyDec = (id: number) => {
+        decrementCount(id);
+    };
+
+    const handlyInc = (id: number) => {
+        incrementCount(id);
+    };
     return (
         <div className='sales-drawer'>
             {load ? (
@@ -34,10 +45,10 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
                                     <div className='cards__main'>
                                         <div className='cards__info'>
                                             <p className='card__title'>
-                                                {item.title}
+                                                {item.product_type}
                                             </p>
                                             <p className='card__brand   '>
-                                                Brand:{item.brand}
+                                                Brand:{item.product_type}
                                             </p>
                                         </div>
                                         <div className='cards__counter'>
@@ -45,13 +56,23 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
                                                 {price}$
                                             </p>
                                             <div className='cards__btns'>
-                                                <button className='cards__btn'>
+                                                <button
+                                                    className='cards__btn'
+                                                    onClick={() =>
+                                                        handlyDec(item.id)
+                                                    }
+                                                >
                                                     -
                                                 </button>
                                                 <span className='card__title'>
-                                                    1
+                                                    {item.count}
                                                 </span>
-                                                <button className='cards__btn'>
+                                                <button
+                                                    className='cards__btn'
+                                                    onClick={() =>
+                                                        handlyInc(item.id)
+                                                    }
+                                                >
                                                     +
                                                 </button>
                                             </div>
@@ -60,7 +81,8 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
                                 </div>
                             ))}
                         </div>
-                        <div className='sales-drawer__total'>
+                            <div className="sales__fixed">
+                            <div className='sales-drawer__total'>
                             <div className='cards__price'>
                                 {translate("total")}:1234 $
                             </div>
@@ -143,6 +165,7 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
                                 </Button>
                             </Form.Item>
                         </Form>
+                      </div>
                     </div>
                 </Drawer>
             )}

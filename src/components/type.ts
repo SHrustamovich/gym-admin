@@ -203,6 +203,7 @@ export interface HistoryI {
 export interface ProductResultI {
     id: number;
     photo: string;
+    product_type_id: number;
     product_type: string;
     price: string;
     product_name: string;
