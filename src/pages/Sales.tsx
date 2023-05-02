@@ -6,7 +6,7 @@ import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
 import { productGet } from "../utils/urls";
 import { ProductI, ProductResultI } from "../components/type";
-import { CardItem, useCardContext } from "../context/karzinkaContext";
+import { useCardContext } from "../context/karzinkaContext";
 
 export const Sales = () => {
     const [open, setOpen] = useState(false);
