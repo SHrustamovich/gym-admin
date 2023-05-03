@@ -4,15 +4,23 @@
         display: flex;
         flex-wrap: wrap;
         // justify-content: space-between;
+        // background: red;
+        height: 80vh;
+        overflow-y: auto;
         gap: 20px;
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
     &__search {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        // margin-bottom: 40px;
     }
     &__karzinka {
         position: relative;
+        cursor: pointer;
     }
     &__count {
         position: absolute;
@@ -34,7 +42,9 @@
         border-radius: 50%;
     }
     &__fixed {
-        position: relative;
+        position: fixed;
+        // bottom: 0;
+        width: 297px;
     }
 }
 .card {

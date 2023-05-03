@@ -180,6 +180,20 @@ export interface PaymentDataI {
 export interface PaymentI {
     data: PaymentDataI;
 }
+
+export interface PaymentProductI {
+    product_id: number;
+    product_count: number;
+}
+
+export interface PaymentPostI {
+    payment_method: string;
+    for_what: string;
+    paid_status: string;
+    total: number;
+    member_id: number;
+    products: PaymentProductI[];
+}
 // --------------------History get type-----------------------
 export interface HistoryResult {
     id: number;

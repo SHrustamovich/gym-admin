@@ -7,6 +7,7 @@ import useLanguage from "../hooks/useLanguage";
 import { productGet } from "../utils/urls";
 import { ProductI, ProductResultI } from "../components/type";
 import { useCardContext } from "../context/karzinkaContext";
+import { useLocation } from "react-router-dom";
 
 export const Sales = () => {
     const [open, setOpen] = useState(false);
@@ -25,7 +26,14 @@ export const Sales = () => {
         setOpen(false);
     };
 
-    const productListData = useLoad<ProductI>({ url: productGet });
+    const { search } = useLocation();
+
+    const productListData = useLoad<ProductI, string>(
+        {
+            url: productGet + search,
+        },
+        [search]
+    );
     const { response, request, loading } = productListData;
 
     const handlyBtnDraver = () => {
@@ -36,9 +44,9 @@ export const Sales = () => {
         <div className='sales'>
             <div className='sales__search'>
                 <SearchInput />
-                <div className='sales__karzinka'>
+                <div className='sales__karzinka' onClick={handlyBtnDraver}>
                     <p className='sales__count'>{cardData.length}</p>
-                    <button className='sales__btn' onClick={handlyBtnDraver}>
+                    <button className='sales__btn'>
                         <KarzinkaIcon />
                     </button>
                 </div>

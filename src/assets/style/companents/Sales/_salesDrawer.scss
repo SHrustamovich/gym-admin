@@ -1,6 +1,6 @@
 .sales-drawer {
     &__body {
-        @include adaptive-value(padding-top, 94, 64, 1);
+        @include adaptive-value(padding-top, 64, 64, 1);
         @include adaptive-value(padding-inline, 14, 12, 1);
     }
     &__title {
@@ -12,9 +12,15 @@
         @include adaptive-value(padding-bottom, 26, 20, 1);
     }
     &__allCard {
+        // background: red;
+        height: 400px;
         display: flex;
         flex-direction: column;
         gap: 18px;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
     &__total {
         display: flex;
