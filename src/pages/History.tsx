@@ -6,7 +6,6 @@ import { HistoryI } from "../components/type";
 import { useLoad } from "../hooks/request";
 import { sortData } from "../utils/data";
 import { historyGet } from "../utils/urls";
-import { HistoryTableI } from "./types";
 
 export const History = () => {
     const [searchParams, setSearchParams] = useSearchParams();

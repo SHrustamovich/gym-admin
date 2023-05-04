@@ -1,12 +1,12 @@
 import { Button, Form, Input } from "antd";
 import { FC } from "react";
+import useLanguage from "../hooks/useLanguage";
 import {
     EmailIcon,
     LoginPasswordIcon,
     PersonIcon,
     PhoneIcon,
 } from "../assets/icons/icons";
-import useLanguage from "../hooks/useLanguage";
 
 export const Profil: FC = () => {
     const translate = useLanguage();

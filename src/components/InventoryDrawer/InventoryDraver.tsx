@@ -2,7 +2,7 @@ import { Button, Drawer, Form, Input, message, Select } from "antd";
 import { FC } from "react";
 import { useLoad, usePostRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
-import { draverI, InventoryDraverI, InventoryPostI } from "../../pages/types";
+import { InventoryDraverI, InventoryPostI } from "../../pages/types";
 import { inventoryPost, productGet } from "../../utils/urls";
 import { ProductI } from "../type";
 

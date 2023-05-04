@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { KarzinkaIcon } from "../assets/icons/icons";
+import { useLocation } from "react-router-dom";
 import { SalesDrawer } from "../components/SalesDrawer/SalesDrawer";
 import { SearchInput } from "../components/SearchInput/SearchInput";
 import { useLoad } from "../hooks/request";
@@ -7,7 +7,7 @@ import useLanguage from "../hooks/useLanguage";
 import { productGet } from "../utils/urls";
 import { ProductI, ProductResultI } from "../components/type";
 import { useCardContext } from "../context/karzinkaContext";
-import { useLocation } from "react-router-dom";
+import { KarzinkaIcon } from "../assets/icons/icons";
 
 export const Sales = () => {
     const [open, setOpen] = useState(false);
@@ -18,7 +18,6 @@ export const Sales = () => {
 
     const handlyProduct = (data: ProductResultI) => {
         if (data) {
-            console.log(data, "data");
             getData(data);
         }
     };

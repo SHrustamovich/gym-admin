@@ -1,8 +1,7 @@
-// import Search from "antd/es/transfer/search";
 import { FC } from "react";
 import { Input } from "antd";
-import { SearchIcon } from "../../assets/icons/icons";
 import { useSearchParams } from "react-router-dom";
+import { SearchIcon } from "../../assets/icons/icons";
 
 const { Search } = Input;
 

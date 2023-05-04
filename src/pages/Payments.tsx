@@ -2,10 +2,10 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { FilterPart } from "../components/FilterPart/FilterPart";
 import { PaymentTable } from "../components/PaymentTable/PaymentTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
-import { PaymentI } from "../components/type";
 import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
 import { sortData } from "../utils/data";
+import { PaymentI } from "../components/type";
 import { paymentGet } from "../utils/urls";
 
 export const Payments = () => {

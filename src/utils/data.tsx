@@ -2,7 +2,6 @@ import { History } from "../pages/History";
 import { Home } from "../pages/Home";
 import { Inventory } from "../pages/Inventory";
 import { Members } from "../pages/Members";
-import { MemberShip } from "../pages/MemberShip";
 import { Payments } from "../pages/Payments";
 import { Products } from "../pages/Products";
 import { Sales } from "../pages/Sales";
@@ -109,82 +108,6 @@ export const sortData: SortDataI[] = [
         label: "removed",
     },
 ];
-
-export const cardData = [
-    {
-        id: 1,
-        title: "Fitness Gloves",
-        brand: "Adidas",
-        quality: "High",
-    },
-    {
-        id: 2,
-        title: "Fitness Gloves",
-        brand: "Adidas",
-        quality: "High",
-    },
-    {
-        id: 3,
-        title: "Fitness Gloves",
-        brand: "Adidas",
-        quality: "High",
-    },
-];
-
-export const paymentData = [
-    {
-        date: "December 25, 2022 14:17",
-        total: "$100.00",
-        paymentM: "Checks",
-        type: "Standart",
-        term: "1 month",
-        paid: "Cody Garbrandt",
-    },
-];
-
-export const allData = [
-    {
-        id: 1,
-        name: "Cody Garbrandt",
-        phone: "+998904299019",
-        status: 0,
-        type: "Standart",
-        expireTime: "in 3 months",
-        startD: "February 22, 2023",
-        endD: "March 22, 2023",
-    },
-    {
-        id: 2,
-        name: "Cody Garbrandt",
-        phone: "+998904299019",
-        status: 1,
-        type: "Standart",
-        expireTime: "in 3 months",
-        startD: "February 22, 2023",
-        endD: "March 22, 2023",
-    },
-    {
-        id: 3,
-        name: "Cody Garbrandt",
-        phone: "+998904299019",
-        status: 0,
-        type: "Standart",
-        expireTime: "in 3 months",
-        startD: "February 22, 2023",
-        endD: "March 22, 2023",
-    },
-    {
-        id: 4,
-        name: "Cody Garbrandt",
-        phone: "+998904299019",
-        status: 1,
-        type: "Standart",
-        expireTime: "in 3 months",
-        startD: "February 22, 2023",
-        endD: "March 22, 2023",
-    },
-];
-
 export const productData = [
     {
         id: 1,

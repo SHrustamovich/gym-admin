@@ -37,13 +37,11 @@ export const ProductTable: FC<ProductTableI> = ({
             url: productDelete(product as number),
         });
         if (!success) {
-            // setElementLoading(false);
             setIsOpenModal(false);
             req();
             message.success("DELETE MEMBERSHIP");
         }
         if (success) {
-            // setElementLoading(false);
             setIsOpenModal(false);
             message.error("SOMETHING WENT WRONG");
         }

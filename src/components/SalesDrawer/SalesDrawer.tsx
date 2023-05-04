@@ -1,15 +1,14 @@
-import { Button, Drawer, Form, Input, Select } from "antd";
-import { FC, useMemo, useState } from "react";
+import { Button, Drawer, Form, message, Select } from "antd";
+import { FC, useMemo } from "react";
 import { useCardContext } from "../../context/karzinkaContext";
-import { useLoad } from "../../hooks/request";
+import { useLoad, usePostRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { PosDrawer } from "../../pages/types";
-import { memberGet, memberGetU } from "../../utils/urls";
+import { memberGet, paymentList } from "../../utils/urls";
 import { Loading } from "../Loading/Loading";
 import { MemberType, PaymentPostI } from "../type";
 
 export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
-    const [price, setPrice] = useState(23);
     const translate = useLanguage();
 
     const { cardData, decrementCount, incrementCount } = useCardContext();
@@ -18,7 +17,7 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
 
     const { response } = PaymentMemberIdList;
 
-    console.log(response, "ggggggg");
+    const paymentListReq = usePostRequest<PaymentPostI>({ url: paymentList });
 
     const handlyDec = (id: number) => {
         decrementCount(id);
@@ -38,7 +37,30 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
 
     const onFinish = async (e: PaymentPostI) => {
         const { member_id, payment_method, paid_status } = e;
-        console.log(member_id, payment_method, paid_status);
+        const products = cardData.map((item) => ({
+            product_id: item.id,
+            product_count: item.count,
+        }));
+        if (cardData.length) {
+            const { success, error } = await paymentListReq.request({
+                data: {
+                    payment_method: payment_method,
+                    paid_status: paid_status,
+                    total: totalMoney,
+                    member_id: member_id,
+                    products: products,
+                    for_what: "products",
+                },
+            });
+            if (success) {
+                message.success("PRODUCT ADDED SUCCESSFULLY");
+                onClose();
+            } else {
+                message.error(error);
+            }
+        } else {
+            message.error("Product null");
+        }
     };
 
     return (
@@ -198,8 +220,8 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
                                                     label: "Paid",
                                                 },
                                                 {
-                                                    value: "no_paid",
-                                                    label: "No paid",
+                                                    value: "unpaid",
+                                                    label: "unpaid",
                                                 },
                                             ]}
                                         />

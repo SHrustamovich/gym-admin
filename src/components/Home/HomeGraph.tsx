@@ -10,7 +10,6 @@ import {
     Tooltip,
     Filler,
     Legend,
-    ChartOptions,
 } from "chart.js";
 import { HomeGraphI } from "../../pages/types";
 import { TopGraph } from "./TopGraph";

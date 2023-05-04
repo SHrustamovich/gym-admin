@@ -1,10 +1,8 @@
 import { Button, Form, Input, message } from "antd";
-import axios from "axios";
-import Cookies from "js-cookie";
 import { useContext } from "react";
 import { LoginPasswordIcon, PersonIcon } from "../assets/icons/icons";
 import { LogoIcon } from "../assets/icons/logo";
-import { UserDataI, UserI } from "../context/types";
+import { UserDataI } from "../context/types";
 import { UserContext } from "../context/userContext";
 import { usePostRequest } from "../hooks/request";
 import { authLogin, domen } from "../utils/urls";
@@ -26,6 +24,7 @@ export const LogIn = () => {
             return message.warning(error);
         } else {
             if (response !== undefined) {
+                
                 setUserData(response);
             }
         }

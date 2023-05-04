@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
-import { PlusIcon } from "../assets/icons/icons";
 import { FilterPart } from "../components/FilterPart/FilterPart";
 import { InventoryDrawer } from "../components/InventoryDrawer/InventoryDraver";
 import { InventoryTable } from "../components/InventoryTable/INventoryTable";
@@ -10,6 +9,7 @@ import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
 import { sortData } from "../utils/data";
 import { inventoryGet } from "../utils/urls";
+import { PlusIcon } from "../assets/icons/icons";
 
 export const Inventory = () => {
     const [open, setOpen] = useState(false);
@@ -57,7 +57,11 @@ export const Inventory = () => {
             </div>
             <InventoryDrawer open={open} onClose={onClose} req={request} />
             <div className='inventory__body'>
-                <InventoryTable response={response} pageTo={pageTo} loading={loading} />
+                <InventoryTable
+                    response={response}
+                    pageTo={pageTo}
+                    loading={loading}
+                />
             </div>
         </div>
     );

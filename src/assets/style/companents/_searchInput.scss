@@ -1,5 +1,4 @@
 .search {
-    // flex: 1 1 auto;
     align-items: center;
     gap: 16px;
     background: $sidebarColor;
@@ -34,11 +33,6 @@
     padding: 10px !important;
     border-radius: 20px !important;
 }
-
-// .search .ant-input-wrapper {
-//     display: flex;
-//     flex-direction: row-reverse;
-// }
 .search .ant-btn {
     background: $sidebarColor;
 }

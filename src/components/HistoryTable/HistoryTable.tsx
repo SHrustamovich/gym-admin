@@ -1,5 +1,5 @@
-import { Table } from "antd";
 import { FC } from "react";
+import { Table } from "antd";
 import useLanguage from "../../hooks/useLanguage";
 import { HistoryTableI } from "../../pages/types";
 import { Loading } from "../Loading/Loading";

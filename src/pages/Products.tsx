@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
-import { PlusIcon } from "../assets/icons/icons";
 import { FilterPart } from "../components/FilterPart/FilterPart";
 import { ProductDrawer } from "../components/ProductDrawer/ProductDrawer";
 import { ProductTable } from "../components/ProductTable/ProducTable";
 import { SearchInput } from "../components/SearchInput/SearchInput";
-import { ProductI } from "../components/type";
 import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
 import { sortData } from "../utils/data";
+import { ProductI } from "../components/type";
 import { productGet } from "../utils/urls";
+import { PlusIcon } from "../assets/icons/icons";
 
 export const Products = () => {
     const [open, setOpen] = useState(false);

@@ -1,8 +1,6 @@
-import { Button, Space, Table } from "antd";
+import { Table } from "antd";
 import { FC } from "react";
 import useLanguage from "../../hooks/useLanguage";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { productData } from "../../utils/data";
 import { InventoryTableI } from "../../pages/types";
 import { Loading } from "../Loading/Loading";
 

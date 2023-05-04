@@ -1,12 +1,11 @@
 import { Button, DatePicker, Form, Input, message, Modal, Radio } from "antd";
 import { FC, useEffect } from "react";
 import { CaleIcon, PersonIcon, PhoneIcon } from "../../assets/icons/icons";
-import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
+import { usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { modalI } from "../../pages/types";
 import { memberPost, membershipGet, membersPut } from "../../utils/urls";
 import { MemberPostType, membersEditI, MemberShipType } from "../type";
-import moment from "moment";
 import { phoneNamberCheck } from "../../utils/helpers";
 
 export const MemberModal: FC<modalI> = ({
@@ -84,7 +83,6 @@ export const MemberModal: FC<modalI> = ({
     };
 
     useEffect(() => {
-        console.log(editMembers, "hiiiiiiiiii");
         if (editMembers != null) {
             form.setFieldsValue({
                 ...editMembers,

@@ -1,14 +1,12 @@
 import { Button, message, Space, Table } from "antd";
 import { FC, useState } from "react";
 import useLanguage from "../../hooks/useLanguage";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { DeleteIcon, EditIcon } from "../../assets/icons/icons";
-import { typeData } from "../../utils/data";
 import { SettingTableI } from "../../pages/types";
 import { Loading } from "../Loading/Loading";
 import { useDeleteRequest } from "../../hooks/request";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 import { membershipTypeDelete } from "../../utils/urls";
+import { DeleteIcon, EditIcon } from "../../assets/icons/icons";
 
 export const SettingTable: FC<SettingTableI> = ({
     response,
@@ -38,13 +36,11 @@ export const SettingTable: FC<SettingTableI> = ({
             url: membershipTypeDelete(memberShipType as number),
         });
         if (!success) {
-            // setElementLoading(false);
             setIsOpenModal(false);
             req();
             message.success("DELETE MEMBERSHIP TYPE");
         }
         if (success) {
-            // setElementLoading(false);
             setIsOpenModal(false);
             message.error("SOMETHING WENT WRONG");
         }

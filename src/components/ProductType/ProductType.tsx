@@ -25,7 +25,6 @@ export const ProductType: FC = () => {
 
     const { response, request, loading } = productTypeList;
 
-    console.log(response, "productType");
 
     return (
         <div className='product-type'>

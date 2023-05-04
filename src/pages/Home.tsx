@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { HomeGraph } from "../components/Home/HomeGraph";
 import { Statistics } from "../components/Statistics/Statistics";
-import { StatisticI } from "../components/type";
 import { useLoad } from "../hooks/request";
 import useLanguage from "../hooks/useLanguage";
+import { StatisticI } from "../components/type";
 import { statisticsGet } from "../utils/urls";
 
 export const Home = () => {
@@ -20,7 +20,6 @@ export const Home = () => {
 
     const { response, request, loading } = statisticsList;
 
-    console.log(response);
 
     return (
         <div className='home'>

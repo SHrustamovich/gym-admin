@@ -2,7 +2,7 @@ import { Button, Drawer, Form, Input, message, Select } from "antd";
 import { FC, useEffect } from "react";
 import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
-import { draverI, ProductDriver } from "../../pages/types";
+import { ProductDriver } from "../../pages/types";
 import { productPost, productPut, productType } from "../../utils/urls";
 import { ProductEditI, ProductPostI, ProductTypeI } from "../type";
 
@@ -28,9 +28,6 @@ export const ProductDrawer: FC<ProductDriver> = ({
     const ProductPutReq = usePutRequest<ProductEditI>({
         url: productPut(editProduct?.id as number),
     });
-
-
-
 
     const onFinish = async (e: ProductPostI) => {
         const { product_type_id, product_name, price, supplier, photo } = e;

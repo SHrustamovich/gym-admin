@@ -1,8 +1,6 @@
 import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 import useLanguage from "../hooks/useLanguage";
 import { SelectLang } from "./LangSelect/LangSelect";
-import { sideBarData } from "../utils/data";
-import { Avatarca, LogOut, ParametrIcon } from "../assets/icons/icons";
 import { LogoIcon } from "../assets/icons/logo";
 import { Profil } from "../pages/Profil";
 import { Setting } from "../pages/Setting";
@@ -11,6 +9,9 @@ import { LogIn } from "../pages/LogIn";
 import { MemberShip } from "../pages/MemberShip";
 import { usePostRequest } from "../hooks/request";
 import { logout } from "../utils/urls";
+import { sideBarData } from "../utils/data";
+import { Avatarca, LogOut, ParametrIcon } from "../assets/icons/icons";
+
 export const Root = () => {
     const translate = useLanguage();
     const { login } = useAuthentication();
@@ -20,6 +21,7 @@ export const Root = () => {
     const LogoutClick = () => {
         logoutPost.request();
     };
+
     return login ? (
         <>
             <div className='root'>

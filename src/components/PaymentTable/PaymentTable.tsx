@@ -1,8 +1,6 @@
 import { FC, useState } from "react";
-import { EyeOutlined } from "@ant-design/icons";
 import useLanguage from "../../hooks/useLanguage";
 import { Button, Space, Table } from "antd";
-import { paymentData } from "../../utils/data";
 import { PaymentModal } from "../PaymentModal/PaymentModal";
 import { EyeIcon } from "../../assets/icons/icons";
 import { PaymentTableI } from "../../pages/types";

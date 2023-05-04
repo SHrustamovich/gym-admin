@@ -2,7 +2,7 @@ import { Button, Drawer, Form, Input, message } from "antd";
 import { FC, useEffect } from "react";
 import { usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
-import { draverI, MemberShipTypeDrawerI } from "../../pages/types";
+import { MemberShipTypeDrawerI } from "../../pages/types";
 import { membershipTypeEdit, membershipTypepost } from "../../utils/urls";
 import { MemberShipTypePostI } from "../type";
 
@@ -19,8 +19,6 @@ export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
         form.resetFields();
         onClose();
     };
-
-    console.log(editMemberType)
 
     const MemberShipTypePost = usePostRequest<MemberShipTypePostI>({
         url: membershipTypepost,

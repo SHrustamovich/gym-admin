@@ -1,12 +1,10 @@
-import { Button } from "antd";
-import { FC, useEffect, useMemo, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { FC,useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { StaticFilterData } from "../../utils/data";
 import { StatisticTotalI } from "../type";
 
 export const TopGraph: FC<StatisticTotalI> = ({ total }) => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [activePath, setActivePath] = useState("year");
 
     const totalMoney = useMemo(() => {
         return total
