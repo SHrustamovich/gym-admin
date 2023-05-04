@@ -14,9 +14,15 @@ export interface UserDataI {
     username: string;
 }
 
+export interface LoginReqI {
+    accessTokenCookie: string;
+    refreshTokenCookie: string;
+}
+
 export interface UserI {
     user: UserDataI | null;
     setUserData: (value: React.SetStateAction<UserDataI | null>) => void;
+    loginRefetch: () => void;
 }
 
 export interface UserProviderI {

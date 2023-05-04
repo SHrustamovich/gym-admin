@@ -9,8 +9,7 @@ const UserProvider: FC<UserProviderI> = ({ children }) => {
     const [userData, setUserData] = useState<UserDataI | null>(null);
 
     const authGetRequest = useLoad<UserDataI>({ url: getauth });
-    const { response } = authGetRequest;
-
+    const { response, request } = authGetRequest;
 
     useEffect(() => {
         if (response?.status == "active") {
@@ -20,9 +19,13 @@ const UserProvider: FC<UserProviderI> = ({ children }) => {
         }
     }, [response]);
 
+    const loginRefetch = () => {
+        request();
+    };
+
     return (
         <UserContext.Provider
-            value={{ user: userData, setUserData: setUserData }}
+            value={{ user: userData, setUserData: setUserData, loginRefetch }}
         >
             {children}
         </UserContext.Provider>

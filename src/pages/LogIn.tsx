@@ -1,8 +1,9 @@
 import { Button, Form, Input, message } from "antd";
 import { useContext } from "react";
+import Cookies from "universal-cookie";
 import { LoginPasswordIcon, PersonIcon } from "../assets/icons/icons";
 import { LogoIcon } from "../assets/icons/logo";
-import { UserDataI } from "../context/types";
+import { LoginReqI, UserDataI } from "../context/types";
 import { UserContext } from "../context/userContext";
 import { usePostRequest } from "../hooks/request";
 import { authLogin, domen } from "../utils/urls";
@@ -11,25 +12,36 @@ interface LoginAuth {
     password: string;
 }
 
+const cookies = new Cookies();
+
 export const LogIn = () => {
     const loginRequest = usePostRequest<LoginAuth>({ url: authLogin });
-    const { setUserData } = useContext(UserContext);
+    const { setUserData, loginRefetch } = useContext(UserContext);
 
     async function onFinish(params: LoginAuth) {
         const { success, response, error } =
-            await loginRequest.request<UserDataI>({
+            await loginRequest.request<LoginReqI>({
                 data: { username: params.username, password: params.password },
             });
         if (!success && error) {
             return message.warning(error);
         } else {
             if (response !== undefined) {
-                
-                setUserData(response);
+                // cookies.set(
+                //     "accessTokenCookie",
+                //     `${response.accessTokenCookie}`
+                // );
+                document.cookie = response.accessTokenCookie;
+                document.cookie = response.refreshTokenCookie;
+                loginRefetch();
+
+                // setTimeout(() => {
+                // }, 1000 * 3);
+                // setUserData(response);
             }
         }
     }
-    
+
     return (
         <div className='login'>
             <div className='login__card'>
@@ -73,7 +85,7 @@ export const LogIn = () => {
                         </Form.Item>
                     </div>
                     <div className='login__item'>
-                        <Form.Item className="login__btnForm">
+                        <Form.Item className='login__btnForm'>
                             <Button className='login__btn' htmlType='submit'>
                                 <span> LOGIN</span>
                             </Button>

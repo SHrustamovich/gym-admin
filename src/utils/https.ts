@@ -1,7 +1,8 @@
 import axios, { AxiosInstance } from "axios";
 import { UserDataI } from "../context/types";
-import { usePostRequest } from "../hooks/request";
+import { useLoad, usePostRequest } from "../hooks/request";
 import { domen, authRefresh } from "./urls";
+import { getCookie } from "./helpers";
 
 interface Axios extends AxiosInstance {
     [key: string]: any;
@@ -9,16 +10,22 @@ interface Axios extends AxiosInstance {
 
 const $authHost: Axios = axios.create({
     baseURL: `${domen}`,
-    withCredentials: true,
+    headers: {
+        Authorization: `Bearer ${getCookie("Authentication")}`,
+        Refresh: getCookie("refresh"),
+    },
 });
+
 $authHost.interceptors.response.use(
     (response: any) => {
         return response;
     },
-    function (error) {
+    async function (error) {
+        console.log(error);
         if (error.response.status === 401) {
-            const postAuth = usePostRequest<UserDataI>({ url: authRefresh });
-            const { response, error } = postAuth;
+            console.log("up");
+            const res = await $authHost.get(authRefresh);
+            console.log("down");
         }
         return Promise.reject(error);
     }

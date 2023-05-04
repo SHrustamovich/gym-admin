@@ -1,3 +1,5 @@
+import Cookies from "universal-cookie";
+
 export const postData = (obj: any, n = []) => {
     let newObj: any = structuredClone(obj);
     for (let el in newObj) {
@@ -48,3 +50,22 @@ export const phoneNamberCheck = (value: string) => {
 
     return result;
 };
+
+const coookie = new Cookies();
+
+export const getCookie = (key: string): string | null => {
+    return coookie.get(key);
+};
+
+export const clearCookie = (key: string): void => {
+    coookie.remove(key);
+};
+
+export const clearCookieAuth = (): void => {
+    clearCookie("Authentication");
+    clearCookie("Refresh");
+};
+
+// export const saveToCookie = (name:string,value:string) => {
+//     document.cookie = {name}={JSON.stringify(formData)}
+//   }
