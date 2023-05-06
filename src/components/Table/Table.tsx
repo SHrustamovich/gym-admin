@@ -9,6 +9,7 @@ import { membersDelete } from "../../utils/urls";
 import { membersEditI } from "../type";
 import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 const membersInitials = {
     id: null,
     fullname: "",
@@ -104,7 +105,11 @@ export const TableMain: FC<tableI> = ({
             title: `${translate("type")}`,
             dataIndex: "type",
         },
-        { title: `${translate("end")}`, dataIndex: "expireTime" },
+        {
+            title: `${translate("end")}`,
+            dataIndex: "expireTime",
+            // render: (record: string) => moment(record).format("LL"),
+        },
         {
             title: `${translate("action")}`,
             dataIndex: "record",

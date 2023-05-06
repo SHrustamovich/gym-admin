@@ -57,11 +57,15 @@ export const getCookie = (key: string): string | null => {
     return coookie.get(key);
 };
 
-export const clearCookie = (key: string): void => {
+export const setCookie = (key: string, value: string) => {
+    coookie.set(key, value);
+};
+
+export const clearCookie = (key: string) => {
     coookie.remove(key);
 };
 
-export const clearCookieAuth = (): void => {
+export const clearCookieAuth = () => {
     clearCookie("Authentication");
     clearCookie("Refresh");
 };

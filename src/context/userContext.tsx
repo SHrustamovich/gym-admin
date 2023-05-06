@@ -1,32 +1,31 @@
 import { createContext, useState, FC, useEffect } from "react";
 import { useLoad } from "../hooks/request";
 import { getauth } from "../utils/urls";
-import { UserDataI, UserI, UserProviderI } from "./types";
+import { IUser, IUserContext, UserDataI, UserI, UserProviderI } from "./types";
 
-export const UserContext = createContext<UserI>({} as UserI);
+const accessToken = localStorage.getItem("accessToken");
+const refreshToken = localStorage.getItem("refreshToken");
+
+const UserContextInitials = {
+    userData: {
+        user: {} as IUser,
+        tokens: {
+            accessToken: !!accessToken ? (accessToken as string) : "",
+            refreshToken: !!refreshToken ? (accessToken as string) : "",
+        },
+    },
+};
+
+export const UserContext = createContext<IUserContext>(UserContextInitials);
 
 const UserProvider: FC<UserProviderI> = ({ children }) => {
-    const [userData, setUserData] = useState<UserDataI | null>(null);
+    const [userData, setUserData] = useState(UserContextInitials.userData);
 
-    const authGetRequest = useLoad<UserDataI>({ url: getauth });
-    const { response, request } = authGetRequest;
-
-    useEffect(() => {
-        if (response?.status == "active") {
-            setUserData(response);
-        } else {
-            setUserData(null);
-        }
-    }, [response]);
-
-    const loginRefetch = () => {
-        request();
-    };
-
+    function setTokens(accessToken: string, refreshToken: string) {
+        setUserData({ ...userData, tokens: { accessToken, refreshToken } });
+    }
     return (
-        <UserContext.Provider
-            value={{ user: userData, setUserData: setUserData, loginRefetch }}
-        >
+        <UserContext.Provider value={{ userData, setTokens }}>
             {children}
         </UserContext.Provider>
     );

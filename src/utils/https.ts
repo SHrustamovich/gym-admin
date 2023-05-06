@@ -1,8 +1,5 @@
-import axios, { AxiosInstance } from "axios";
-import { UserDataI } from "../context/types";
-import { useLoad, usePostRequest } from "../hooks/request";
+import axios, { AxiosInstance, AxiosRequestHeaders } from "axios";
 import { domen, authRefresh } from "./urls";
-import { getCookie } from "./helpers";
 
 interface Axios extends AxiosInstance {
     [key: string]: any;
@@ -10,22 +7,42 @@ interface Axios extends AxiosInstance {
 
 const $authHost: Axios = axios.create({
     baseURL: `${domen}`,
-    headers: {
-        Authorization: `Bearer ${getCookie("Authentication")}`,
-        Refresh: getCookie("refresh"),
-    },
 });
 
+$authHost.interceptors.request.use(
+    (config) => {
+        const accessToken: string | null = localStorage.getItem("accessToken");
+
+        if (config.headers) {
+            if (Boolean(accessToken)) {
+                config.headers.Authorization = `Bearer ${accessToken}`;
+            }
+        }
+        return config;
+    },
+    (error) => {
+        Promise.reject(error);
+    }
+);
 $authHost.interceptors.response.use(
     (response: any) => {
         return response;
     },
     async function (error) {
-        console.log(error);
-        if (error.response.status === 401) {
-            console.log("up");
-            const res = await $authHost.get(authRefresh);
-            console.log("down");
+        const originalRequest = error.config;
+        let refreshToken = localStorage.getItem("refreshToken");
+
+        if (error.response.status === 401 && !!refreshToken) {
+            const resulttRes = await $authHost.post(authRefresh, {
+                refreshToken: refreshToken,
+            });
+            if (resulttRes.status === 201) {
+                localStorage.setItem(
+                    "accessToken",
+                    resulttRes.data.accessToken
+                );
+                return $authHost(originalRequest);
+            }
         }
         return Promise.reject(error);
     }

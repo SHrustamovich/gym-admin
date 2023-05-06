@@ -4,6 +4,7 @@ import { Button, Space, Table } from "antd";
 import { PaymentModal } from "../PaymentModal/PaymentModal";
 import { EyeIcon } from "../../assets/icons/icons";
 import { PaymentTableI } from "../../pages/types";
+import moment from "moment";
 
 export const PaymentTable: FC<PaymentTableI> = ({ response, pageTo }) => {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -22,6 +23,7 @@ export const PaymentTable: FC<PaymentTableI> = ({ response, pageTo }) => {
             title: `${translate("createDate")}`,
             dataIndex: "created_at",
             key: "memberType",
+            render: (record: string) => moment(record).format("LL"),
         },
         {
             title: `${translate("total")}`,

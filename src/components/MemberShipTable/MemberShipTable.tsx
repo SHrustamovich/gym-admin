@@ -6,6 +6,7 @@ import { useDeleteRequest } from "../../hooks/request";
 import { memberShipDelete } from "../../utils/urls";
 import { MemberShipTableI } from "../../pages/types";
 import { DeleteIcon, EditIcon } from "../../assets/icons/icons";
+import moment from "moment";
 
 export const MemberShipTable: FC<MemberShipTableI> = ({
     response,
@@ -57,8 +58,16 @@ export const MemberShipTable: FC<MemberShipTableI> = ({
             title: `${translate("price")}`,
             dataIndex: "price",
         },
-        { title: `${translate("date")}`, dataIndex: "date" },
-        { title: `${translate("end")}`, dataIndex: "end" },
+        {
+            title: `${translate("date")}`,
+            dataIndex: "date",
+            // render: (record: string) => moment(record).format("LL"),
+        },
+        {
+            title: `${translate("end")}`,
+            dataIndex: "end",
+            // render: (record: string) => moment(record).format("LL"),
+        },
         { title: `${translate("status")}`, dataIndex: "status" },
         {
             title: `${translate("action")}`,

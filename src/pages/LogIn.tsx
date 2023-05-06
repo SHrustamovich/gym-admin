@@ -1,6 +1,5 @@
 import { Button, Form, Input, message } from "antd";
 import { useContext } from "react";
-import Cookies from "universal-cookie";
 import { LoginPasswordIcon, PersonIcon } from "../assets/icons/icons";
 import { LogoIcon } from "../assets/icons/logo";
 import { LoginReqI, UserDataI } from "../context/types";
@@ -12,33 +11,28 @@ interface LoginAuth {
     password: string;
 }
 
-const cookies = new Cookies();
+interface LoginResponseI {
+    refreshToken: string;
+    accessToken: string;
+}
 
 export const LogIn = () => {
-    const loginRequest = usePostRequest<LoginAuth>({ url: authLogin });
-    const { setUserData, loginRefetch } = useContext(UserContext);
+    const loginRequest = usePostRequest({ url: authLogin });
+
+    const { setTokens } = useContext(UserContext);
 
     async function onFinish(params: LoginAuth) {
         const { success, response, error } =
-            await loginRequest.request<LoginReqI>({
+            await loginRequest.request<LoginResponseI>({
                 data: { username: params.username, password: params.password },
             });
-        if (!success && error) {
-            return message.warning(error);
+        if (success && !!response) {
+            const { refreshToken, accessToken } = response;
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+            setTokens?.(accessToken, refreshToken);
         } else {
-            if (response !== undefined) {
-                // cookies.set(
-                //     "accessTokenCookie",
-                //     `${response.accessTokenCookie}`
-                // );
-                document.cookie = response.accessTokenCookie;
-                document.cookie = response.refreshTokenCookie;
-                loginRefetch();
-
-                // setTimeout(() => {
-                // }, 1000 * 3);
-                // setUserData(response);
-            }
+            message.error(error);
         }
     }
 

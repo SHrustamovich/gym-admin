@@ -1,0 +1,11 @@
+.not-found {
+    background: $backgroundColor;
+    height: 100vh;
+
+    &__number {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50);
+    }
+}

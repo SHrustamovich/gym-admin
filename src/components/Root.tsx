@@ -11,18 +11,24 @@ import { usePostRequest } from "../hooks/request";
 import { logout } from "../utils/urls";
 import { sideBarData } from "../utils/data";
 import { Avatarca, LogOut, ParametrIcon } from "../assets/icons/icons";
+import { LogoutModal } from "./LogoutModal/LogoutModal";
+import { useState } from "react";
 
 export const Root = () => {
-    const translate = useLanguage();
-    const { login } = useAuthentication();
-
-    const logoutPost = usePostRequest({ url: logout });
+    const [openMadal, setOpenModal] = useState(false);
 
     const LogoutClick = () => {
-        logoutPost.request();
+        setOpenModal(true);
     };
 
-    return login ? (
+    const handleCancel = () => {
+        setOpenModal(false);
+      };
+
+    const translate = useLanguage();
+    const { isLoggedIn } = useAuthentication();
+
+    return isLoggedIn ? (
         <>
             <div className='root'>
                 <div className='menu'>
@@ -58,6 +64,7 @@ export const Root = () => {
                             </span>
                         </button>
                     </div>
+                    <LogoutModal handleCancel={handleCancel} openMadal={openMadal} />
                 </div>
                 <div className='all'>
                     <div className='header'>

@@ -2,12 +2,21 @@ import { useCallback, useMemo, useContext } from "react";
 import { UserContext } from "../context/userContext";
 
 function useAuthentication() {
-    const { user } = useContext(UserContext);
+    const { userData } = useContext(UserContext);
+    const { tokens } = userData;
 
     const obj = useCallback(() => {
-        return { login: user != null };
-    }, [user]);
-    return useMemo(obj, [user]);
+        return {
+            isLoggedIn:
+                !!Object.values(tokens).length &&
+                Object.values(tokens).every(
+                    (e) => !!e?.trim() && e !== "undefined"
+                ),
+            hasProfileData: false,
+        };
+    }, [tokens]);
+
+    return useMemo(obj, [tokens]);
 }
 
 export default useAuthentication;
