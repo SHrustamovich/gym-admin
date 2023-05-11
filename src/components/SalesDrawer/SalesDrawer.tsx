@@ -56,7 +56,8 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
                 message.success("PRODUCT ADDED SUCCESSFULLY");
                 onClose();
             } else {
-                message.error(error);
+                console.log(error);
+                // message.error(error);
             }
         } else {
             message.error("Product null");
@@ -80,7 +81,7 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
                             {translate("summary")}
                         </div>
                         <div className='sales-drawer__allCard'>
-                            {cardData.map((item) => (
+                            {cardData?.map((item) => (
                                 <div
                                     className='sales-drawer__card cards'
                                     key={item.id}

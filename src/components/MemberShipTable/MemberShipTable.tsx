@@ -61,12 +61,12 @@ export const MemberShipTable: FC<MemberShipTableI> = ({
         {
             title: `${translate("date")}`,
             dataIndex: "date",
-            // render: (record: string) => moment(record).format("LL"),
+            render: (record: string) => moment(record).format("LL"),
         },
         {
             title: `${translate("end")}`,
             dataIndex: "end",
-            // render: (record: string) => moment(record).format("LL"),
+            render: (record: string) => moment(record).format("LL"),
         },
         { title: `${translate("status")}`, dataIndex: "status" },
         {
@@ -105,6 +105,7 @@ export const MemberShipTable: FC<MemberShipTableI> = ({
                     status: item.status,
                     record: item,
                 }))}
+                key='id'
             />
             <DeleteModal
                 title={translate("deletePerson")}

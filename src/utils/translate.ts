@@ -148,11 +148,11 @@ const uz: Trans = {
     yes: "HA",
     no: "YO'Q",
     stockin: "Stok in",
-    exit:"Chiqish"
+    exit: "Chiqish",
 };
 const ru: Trans = {
     home: "Главная",
-    members: "участники",
+    members: "Добавить участников",
     sales: "Продажи",
     inventory: "Инвентарь",
     products: "Продукты",
@@ -224,7 +224,7 @@ const ru: Trans = {
     yes: "Да",
     no: "Нет",
     stockin: "в наличии",
-    exit:"Выход"
+    exit: "Выход",
 };
 const eng: Trans = {
     home: "Home",
@@ -300,7 +300,7 @@ const eng: Trans = {
     yes: "Yes",
     no: "No",
     stockin: "Stock in",
-    exit:"Exit"
+    exit: "Exit",
 };
 interface LanguageKeyValuePairs {
     [key: string]: Trans;

@@ -10,6 +10,7 @@ import { membersEditI } from "../type";
 import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import { CheckIn } from "../CheckInModal/CheckIn";
 const membersInitials = {
     id: null,
     fullname: "",
@@ -27,12 +28,22 @@ export const TableMain: FC<tableI> = ({
     pageTo,
 }) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
+    const [checkInModal, setCheckInModal] = useState(false);
     const [members, setMembers] = useState<membersEditI>(membersInitials);
     const [elementLoading, setElementLoading] = useState(false);
 
     let navigate = useNavigate();
 
     const translate = useLanguage();
+
+    const handlyCheckIn = (item: number) => {
+        setCheckInModal(true);
+        console.log(item);
+    };
+
+    const onCancelModal = () => {
+        setCheckInModal(false)
+    }
 
     const deleteMembers = useDeleteRequest();
 
@@ -108,7 +119,7 @@ export const TableMain: FC<tableI> = ({
         {
             title: `${translate("end")}`,
             dataIndex: "expireTime",
-            // render: (record: string) => moment(record).format("LL"),
+            render: (record: string) => moment(record).format("LL"),
         },
         {
             title: `${translate("action")}`,
@@ -116,7 +127,10 @@ export const TableMain: FC<tableI> = ({
             render: (record: any) => (
                 <Space size={10}>
                     <div className='btn__gate'>
-                        <Button className='table__btn'>
+                        <Button
+                            className='table__btn'
+                            onClick={() => handlyCheckIn(record.id)}
+                        >
                             <ExitIcon />
                         </Button>
                         <Button
@@ -161,6 +175,7 @@ export const TableMain: FC<tableI> = ({
                     }}
                 />
             )}
+            <CheckIn checkInModal={checkInModal} onCancelModal={onCancelModal} />
             <DeleteModal
                 title={translate("deletePerson")}
                 visible={isOpenModal}

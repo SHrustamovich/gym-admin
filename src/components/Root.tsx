@@ -13,6 +13,7 @@ import { sideBarData } from "../utils/data";
 import { Avatarca, LogOut, ParametrIcon } from "../assets/icons/icons";
 import { LogoutModal } from "./LogoutModal/LogoutModal";
 import { useState } from "react";
+import { NotFoundPage } from "./NotFoundPage/NotFoundPage";
 
 export const Root = () => {
     const [openMadal, setOpenModal] = useState(false);
@@ -23,7 +24,7 @@ export const Root = () => {
 
     const handleCancel = () => {
         setOpenModal(false);
-      };
+    };
 
     const translate = useLanguage();
     const { isLoggedIn } = useAuthentication();
@@ -64,7 +65,10 @@ export const Root = () => {
                             </span>
                         </button>
                     </div>
-                    <LogoutModal handleCancel={handleCancel} openMadal={openMadal} />
+                    <LogoutModal
+                        handleCancel={handleCancel}
+                        openMadal={openMadal}
+                    />
                 </div>
                 <div className='all'>
                     <div className='header'>
@@ -97,6 +101,7 @@ export const Root = () => {
                                 path='/membership/:id'
                                 element={<MemberShip />}
                             />
+                            <Route path='*' element={<NotFoundPage />} />
                         </Routes>
                     </div>
                 </div>

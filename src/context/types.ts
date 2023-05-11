@@ -56,3 +56,8 @@ export interface LogoutModalI {
     handleCancel: () => void;
     openMadal: boolean;
 }
+
+export interface CheckInModalI {
+    checkInModal: boolean;
+    onCancelModal: () => void;
+}

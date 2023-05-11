@@ -58,4 +58,6 @@
 .main {
     @include adaptive-value(padding-inline, 60, 50, 1);
     color: $textColor;
+    max-height: calc(100vh - 90px);
+    overflow-y: scroll;
 }

@@ -5,12 +5,8 @@
         flex-wrap: wrap;
         // justify-content: space-between;
         // background: red;
-        height: 80vh;
-        overflow-y: auto;
+
         gap: 20px;
-        &::-webkit-scrollbar {
-            display: none;
-        }
     }
     &__search {
         display: flex;
@@ -101,4 +97,26 @@
         @include adaptive-value(line-height, 19, 16, 1);
         color: $textColor;
     }
+}
+
+// scroll
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: $backgroundColor;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $buttonColor;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $backgroundColor;
 }

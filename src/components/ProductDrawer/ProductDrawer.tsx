@@ -78,6 +78,8 @@ export const ProductDrawer: FC<ProductDriver> = ({
         }
     }, [editProduct]);
 
+    const hi = { name: "hi" };
+
     return (
         <div className='product-drawer'>
             <Drawer open={open} onClose={onCloseDraver} closable={false}>
@@ -161,6 +163,7 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                 <Input />
                             </Form.Item>
                         </div>
+
                         <div className='drawer__item'>
                             <p className='drawer__label'>{translate("img")}</p>
                             <Form.Item

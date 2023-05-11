@@ -23,12 +23,15 @@ export const MemberShip: FC = () => {
 
     const { response, loading, request } = memberSHipGetId;
 
+    console.log(response, "assasasa");
+
     const showDrawer = () => {
         setOpen(true);
     };
 
     const onClose = () => {
         setOpen(false);
+        setEditMemberShip(null);
     };
 
     return (

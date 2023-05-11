@@ -14,6 +14,8 @@ import {
 import { HomeGraphI } from "../../pages/types";
 import { TopGraph } from "./TopGraph";
 import moment from "moment";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { StatisticTypeI } from "../type";
 
 ChartJS.register(
     CategoryScale,
@@ -37,8 +39,12 @@ export const HomeGraph: FC<HomeGraphI> = ({ dataGraph }) => {
         },
     };
 
-    const labels = dataGraph?.statistics.map((item) =>
-        moment(item.created_at).format("LL")
+    const [search] = useSearchParams();
+
+    const labels = dataGraph?.statistics?.map((item) =>
+        moment(item[search.get("sortDateBy") as keyof StatisticTypeI]).format(
+            "LL"
+        )
     );
 
     const data = {
@@ -47,7 +53,7 @@ export const HomeGraph: FC<HomeGraphI> = ({ dataGraph }) => {
             {
                 fill: true,
                 label: "money",
-                data: dataGraph?.statistics.map((item) => item.total),
+                data: dataGraph?.payments?.map((item) => item.total),
 
                 borderColor: "#ffffff",
                 backgroundColor: "#2D2D42",

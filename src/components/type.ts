@@ -121,6 +121,7 @@ export interface MembershipIdMembershipsType {
     end_date: string;
     id: number;
     moderator_id: number;
+    payment_method: string;
     start_date: string;
     status: string;
     term: string;
@@ -295,19 +296,21 @@ export interface InventoryI {
 
 // -----------------Statistic----------------
 export interface StatisticTypeI {
-    created_at: string;
-    for_what: string;
-    id: number;
-    paid_status: string;
-    payment_method: string;
-    status: string;
     total: string;
+    week?: string;
+    year?: string;
+    month?: string;
+}
+export interface PaymentTypeI {
+    total: string;
+    date: string;
 }
 
 export interface StatisticI {
     activeMembers: number;
     inactiveMembers: number;
     outOufStockProducts: number;
+    payments: PaymentTypeI[];
     statistics: StatisticTypeI[];
     todaysVisits: number;
 }

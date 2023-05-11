@@ -7,6 +7,7 @@ import { modalI } from "../../pages/types";
 import { memberPost, membershipGet, membersPut } from "../../utils/urls";
 import { MemberPostType, membersEditI, MemberShipType } from "../type";
 import { phoneNamberCheck } from "../../utils/helpers";
+import moment from "moment";
 
 export const MemberModal: FC<modalI> = ({
     isModalOpen,
@@ -82,11 +83,15 @@ export const MemberModal: FC<modalI> = ({
         }
     };
 
+    // a b
+
     useEffect(() => {
         if (editMembers != null) {
+            console.log(editMembers, "edit");
+            console.log(moment(editMembers.date_of_birth));
             form.setFieldsValue({
                 ...editMembers,
-                date_of_birth: editMembers.date_of_birth,
+                date_of_birth: moment(editMembers.date_of_birth),
             });
         }
     }, [editMembers]);

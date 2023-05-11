@@ -1,0 +1,66 @@
+.check-in {
+    &__form {
+        padding: 10px;
+    }
+    &__title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-style: normal;
+        font-weight: 700;
+        @include adaptive-value(font-size, 22, 16, 1);
+        @include adaptive-value(line-height, 28, 20, 1);
+        color: $textColor;
+    }
+    &__item .ant-form-item-control-input-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none !important;
+    }
+    &__item .ant-form-item-control-input-content:hover {
+        box-shadow: none !important;
+    }
+    &__btn {
+        background: $buttonColor !important;
+        border-radius: 20px;
+        padding: 10px 99px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        color: $textColor;
+    }
+    &__input {
+        background: $backgroundColor;
+        padding: 8px 13px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 38px;
+        color: $textColor;
+        text-align: center;
+    }
+    &__input .ant-input-number-input {
+        height: auto !important;
+        padding: 0;
+        text-align: center;
+        color: $textColor !important;
+    }
+    &__timer {
+        padding: 13px 8px;
+        background: $buttonColor;
+        border-radius: 50%;
+    }
+}
+.input {
+    padding-block: 32px;
+}
+
+.timer {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: $textColor;
+}
