@@ -560,3 +560,19 @@ export const DumbbleIcon = () => (
         />
     </svg>
 );
+
+
+export const RestartTimer = (props: SVGProps<SVGSVGElement>) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" {...props}>
+      <rect width={20} height={16} fill="#fff" rx={2} />
+      <path fill="#9B74F0" d="M2 3.429V2l8 3.571L18 2v1.429L10 7 2 3.429Z" />
+      <g fill="#9B74F0" clipPath="url(#a)">
+        <path d="M10 8.667v-1L8.665 9l1.333 1.333v-1c1.104 0 2 .897 2 2 0 .99-.723 1.81-1.666 1.97v.674A2.666 2.666 0 0 0 10 8.667ZM8 11.333c0-.55.223-1.05.586-1.413l-.473-.473c-.48.483-.78 1.15-.78 1.886 0 1.36 1.017 2.48 2.333 2.644v-.674A2.002 2.002 0 0 1 8 11.333Z" />
+      </g>
+      <defs>
+        <clipPath id="a">
+          <path fill="#fff" d="M6 7h8v8H6z" />
+        </clipPath>
+      </defs>
+    </svg>
+  )
