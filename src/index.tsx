@@ -1,24 +1,23 @@
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import LanguageProvider from "./context/languageContext";
-import "./assets/style/main.scss";
-import UserProvider from "./context/userContext";
 import { KarzinkaContext } from "./context/karzinkaContext";
+import LanguageProvider from "./context/languageContext";
+import UserProvider from "./context/userContext";
+import App from "./App";
+import "./assets/style/main.scss";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
+
 root.render(
     <BrowserRouter>
         <UserProvider>
             <LanguageProvider>
                 <KarzinkaContext>
-                <App />
+                    <App />
                 </KarzinkaContext>
             </LanguageProvider>
         </UserProvider>
     </BrowserRouter>
 );
-
-// hi

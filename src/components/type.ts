@@ -328,3 +328,9 @@ export interface TimerI {
     setTime: Dispatch<SetStateAction<number>>;
     time: number;
 }
+
+// ------------Visit------------
+
+export interface CheckInI {
+    member_id: number;
+}

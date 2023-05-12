@@ -16,15 +16,6 @@ export const Sales = () => {
 
     const translate = useLanguage();
 
-    const handlyProduct = (data: ProductResultI) => {
-        if (data) {
-            getData(data);
-        }
-    };
-    const onClose = () => {
-        setOpen(false);
-    };
-
     const { search } = useLocation();
 
     const productListData = useLoad<ProductI, string>(
@@ -34,6 +25,15 @@ export const Sales = () => {
         [search]
     );
     const { response, request, loading } = productListData;
+
+    const handlyProduct = (data: ProductResultI) => {
+        if (data) {
+            getData(data);
+        }
+    };
+    const onClose = () => {
+        setOpen(false);
+    };
 
     const handlyBtnDraver = () => {
         setOpen(true);

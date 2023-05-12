@@ -70,6 +70,13 @@ export const clearCookieAuth = () => {
     clearCookie("Refresh");
 };
 
-// export const saveToCookie = (name:string,value:string) => {
-//     document.cookie = {name}={JSON.stringify(formData)}
-//   }
+// Local Storage
+type keyLocalStroge = "accessToken" | "refreshToken";
+
+export const getLoclalStorage = (key: keyLocalStroge) => {
+    return localStorage.getItem(key);
+};
+
+export const setLoclalStorage = (key: keyLocalStroge, value: string) => {
+    localStorage.setItem(key, value);
+};

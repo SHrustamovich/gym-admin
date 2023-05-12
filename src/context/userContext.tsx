@@ -1,6 +1,4 @@
 import { createContext, useState, FC, useEffect } from "react";
-import { useLoad } from "../hooks/request";
-import { getauth } from "../utils/urls";
 import { IUser, IUserContext, UserDataI, UserI, UserProviderI } from "./types";
 
 const accessToken = localStorage.getItem("accessToken");
@@ -16,7 +14,7 @@ const UserContextInitials = {
     },
 };
 
-export const UserContext = createContext<IUserContext>(UserContextInitials);
+export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider: FC<UserProviderI> = ({ children }) => {
     const [userData, setUserData] = useState(UserContextInitials.userData);
@@ -24,6 +22,7 @@ const UserProvider: FC<UserProviderI> = ({ children }) => {
     function setTokens(accessToken: string, refreshToken: string) {
         setUserData({ ...userData, tokens: { accessToken, refreshToken } });
     }
+
     return (
         <UserContext.Provider value={{ userData, setTokens }}>
             {children}

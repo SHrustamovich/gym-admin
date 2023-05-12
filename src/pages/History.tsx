@@ -16,6 +16,7 @@ export const History = () => {
         { url: historyGet + `${search}` },
         [search]
     );
+
     const { response, loading } = VisitList;
 
     const pageTo = (to: string) => {

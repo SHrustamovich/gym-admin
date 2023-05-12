@@ -3,10 +3,10 @@ import useLanguage from "../../hooks/useLanguage";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 import { tableI } from "../../pages/types";
 import { Loading } from "../Loading/Loading";
-import { useDeleteRequest } from "../../hooks/request";
+import { useDeleteRequest, usePostRequest } from "../../hooks/request";
 import { Button, message, Space, Table } from "antd";
-import { membersDelete } from "../../utils/urls";
-import { membersEditI } from "../type";
+import { checkInUrl, membersDelete } from "../../utils/urls";
+import { CheckInI, membersEditI } from "../type";
 import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
@@ -29,7 +29,7 @@ export const TableMain: FC<tableI> = ({
 }) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [checkInModal, setCheckInModal] = useState(false);
-    const [checkInIndex,setCheckInIndex] = useState(null)
+    const [checkInIndex, setCheckInIndex] = useState<number | null>(null);
     const [members, setMembers] = useState<membersEditI>(membersInitials);
     const [elementLoading, setElementLoading] = useState(false);
 
@@ -38,15 +38,17 @@ export const TableMain: FC<tableI> = ({
     const translate = useLanguage();
 
     const handlyCheckIn = (item: number) => {
+        setCheckInIndex(item);
         setCheckInModal(true);
-        
     };
 
     const onCancelModal = () => {
-        setCheckInModal(false)
-    }
+        setCheckInModal(false);
+    };
 
     const deleteMembers = useDeleteRequest();
+
+ 
 
     const handlyProductEdit = (item: any) => {
         setEditMembers(item);
@@ -79,9 +81,7 @@ export const TableMain: FC<tableI> = ({
         navigate(`/membership/${id}`);
     };
 
-    const CheckInOk = () => {
-        
-    }
+   
 
     const columns = [
         {
@@ -180,7 +180,11 @@ export const TableMain: FC<tableI> = ({
                     }}
                 />
             )}
-            <CheckIn checkInModal={checkInModal} onCancelModal={onCancelModal} CheckInOk={CheckInOk} />
+            <CheckIn
+                checkInModal={checkInModal}
+                onCancelModal={onCancelModal}
+                checkInIndex={checkInIndex}
+            />
             <DeleteModal
                 title={translate("deletePerson")}
                 visible={isOpenModal}

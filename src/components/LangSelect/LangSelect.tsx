@@ -1,16 +1,18 @@
 import { FC, useContext, useEffect, useRef, useState } from "react";
 import { LanguageContext } from "../../context/languageContext";
+import useModalView from "../../hooks/useModalView";
 import { LangData } from "../../utils/data";
 import { getImage, LangEnums } from "../../utils/helpers";
+
 export const SelectLang: FC = () => {
     const { language, setLang } = useContext(LanguageContext);
-    const [open, setOpen] = useState<boolean>(false);
+    const { open, closeModal, openModal } = useModalView();
     const list = useRef<HTMLUListElement | null>(null);
 
     useEffect(() => {
         const handleOutsideClick = (event: MouseEvent) => {
             if (list.current && !list.current.contains(event.target as Node)) {
-                setOpen(false);
+                closeModal();
                 list.current.style.maxHeight = "0px";
             }
         };
@@ -26,10 +28,10 @@ export const SelectLang: FC = () => {
         e.stopPropagation();
         if (list.current !== null) {
             if (open) {
-                setOpen(false);
+                closeModal();
                 list.current.style.maxHeight = "0px";
             } else {
-                setOpen(true);
+                openModal();
                 list.current.style.maxHeight = list.current.scrollHeight + "px";
             }
         }
@@ -37,7 +39,7 @@ export const SelectLang: FC = () => {
 
     const handlyLang = (e: LangEnums) => {
         setLang?.(e);
-        setOpen(false);
+        closeModal();
     };
 
     return (
@@ -62,3 +64,8 @@ export const SelectLang: FC = () => {
         </div>
     );
 };
+
+// BEM
+// block
+// block__element
+// block__element_modifire

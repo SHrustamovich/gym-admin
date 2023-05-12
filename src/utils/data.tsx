@@ -68,6 +68,7 @@ export const sideBarData: ISidebarData[] = [
         companents: <Payments />,
     },
 ];
+
 export const LangData: ILangData[] = [
     {
         id: 1,
@@ -108,6 +109,7 @@ export const sortData: SortDataI[] = [
         label: "removed",
     },
 ];
+
 export const productData = [
     {
         id: 1,

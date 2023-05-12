@@ -5,19 +5,18 @@ interface LanguageProProps {
     children: ReactElement;
 }
 
-interface LanguageContext {
+interface LanguageContextI {
     language: LangEnums | string;
-    setLang?: (a: LangEnums) => void;
+    setLang: (newLang: LangEnums) => void;
 }
-const LanguageContextInitials = {
-    language: LangEnums.UZ,
-};
-export const LanguageContext = createContext<LanguageContext>(
-    LanguageContextInitials
+
+export const LanguageContext = createContext<LanguageContextI>(
+    {} as LanguageContextI
 );
+
 const LanguageProvider: FC<LanguageProProps> = ({ children }) => {
     const localLang = localStorage.getItem("language");
-    const initialLanguage = localLang || "uz";
+    const initialLanguage = localLang || LangEnums.UZ;
     const [language, setLanguage] = useState(initialLanguage);
 
     function setLang(lang: LangEnums) {

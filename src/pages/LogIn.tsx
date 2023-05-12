@@ -1,11 +1,12 @@
-import { Button, Form, Input, message } from "antd";
 import { useContext } from "react";
+import { Button, Form, Input, message } from "antd";
 import { LoginPasswordIcon, PersonIcon } from "../assets/icons/icons";
 import { LogoIcon } from "../assets/icons/logo";
 import { LoginReqI, UserDataI } from "../context/types";
 import { UserContext } from "../context/userContext";
 import { usePostRequest } from "../hooks/request";
 import { authLogin, domen } from "../utils/urls";
+
 interface LoginAuth {
     username: string;
     password: string;
@@ -30,7 +31,7 @@ export const LogIn = () => {
             const { refreshToken, accessToken } = response;
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
-            setTokens?.(accessToken, refreshToken);
+            setTokens(accessToken, refreshToken);
         } else {
             message.error(error);
         }
@@ -63,6 +64,7 @@ export const LogIn = () => {
                             <Input prefix={<PersonIcon />} />
                         </Form.Item>
                     </div>
+
                     <div className='login__item'>
                         <p className='login__label'>Password</p>
                         <Form.Item
@@ -78,6 +80,7 @@ export const LogIn = () => {
                             <Input.Password prefix={<LoginPasswordIcon />} />
                         </Form.Item>
                     </div>
+
                     <div className='login__item'>
                         <Form.Item className='login__btnForm'>
                             <Button className='login__btn' htmlType='submit'>

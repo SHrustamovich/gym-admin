@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
 @import "./generals/varebles";
 @import "./generals/mixins";
 @import "./generals/narmalize";
+
 @import "./generals/generals";
 @import "./companents/login";
 @import "./companents/root";
@@ -26,7 +28,7 @@
 @import "./companents/profil";
 @import "./companents/home/home";
 @import "./companents/setting";
-@import "./companents//loading/loading";
+@import "./companents/loading/loading";
 @import "./companents/graph/graph.scss";
 @import "./companents/home/top-graph.scss";
 @import "./companents/notFound";

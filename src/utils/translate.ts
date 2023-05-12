@@ -75,6 +75,7 @@ interface Trans {
     exit: string;
     search: string;
 }
+
 const uz: Trans = {
     home: "Asosiy",
     members: "A'zolar",
@@ -152,6 +153,7 @@ const uz: Trans = {
     exit: "Chiqish",
     search: "Qidiruv",
 };
+
 const ru: Trans = {
     home: "Главная",
     members: "Добавить участников",
@@ -229,6 +231,7 @@ const ru: Trans = {
     exit: "Выход",
     search: "Поиск",
 };
+
 const eng: Trans = {
     home: "Home",
     members: "Members",
@@ -306,6 +309,7 @@ const eng: Trans = {
     exit: "Exit",
     search: "Search",
 };
+
 interface LanguageKeyValuePairs {
     [key: string]: Trans;
 }

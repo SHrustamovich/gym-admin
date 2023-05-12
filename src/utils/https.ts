@@ -1,4 +1,5 @@
-import axios, { AxiosInstance, AxiosRequestHeaders } from "axios";
+import axios, { AxiosInstance } from "axios";
+import { getLoclalStorage, setLoclalStorage } from "./helpers";
 import { domen, authRefresh } from "./urls";
 
 interface Axios extends AxiosInstance {
@@ -11,7 +12,7 @@ const $authHost: Axios = axios.create({
 
 $authHost.interceptors.request.use(
     (config) => {
-        const accessToken: string | null = localStorage.getItem("accessToken");
+        const accessToken = getLoclalStorage("accessToken");
 
         if (config.headers) {
             if (Boolean(accessToken)) {
@@ -24,26 +25,27 @@ $authHost.interceptors.request.use(
         Promise.reject(error);
     }
 );
+
 $authHost.interceptors.response.use(
-    (response: any) => {
+    (response) => {
         return response;
     },
     async function (error) {
         const originalRequest = error.config;
-        let refreshToken = localStorage.getItem("refreshToken");
+        let refreshToken = getLoclalStorage("refreshToken");
 
         if (error.response.status === 401 && !!refreshToken) {
             const resulttRes = await $authHost.post(authRefresh, {
                 refreshToken: refreshToken,
             });
+
             if (resulttRes.status === 201) {
-                localStorage.setItem(
-                    "accessToken",
-                    resulttRes.data.accessToken
-                );
+                setLoclalStorage("accessToken", resulttRes.data.accessToken);
+
                 return $authHost(originalRequest);
             }
         }
+
         return Promise.reject(error);
     }
 );

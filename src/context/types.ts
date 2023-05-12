@@ -49,7 +49,7 @@ export interface IUserData {
 
 export interface IUserContext {
     userData: IUserData;
-    setTokens?: (a: string, b: string) => void;
+    setTokens: (key: string, value: string) => void;
 }
 
 export interface LogoutModalI {
@@ -60,5 +60,5 @@ export interface LogoutModalI {
 export interface CheckInModalI {
     checkInModal: boolean;
     onCancelModal: () => void;
-    CheckInOk: () => void;
+    checkInIndex: number | null;
 }

@@ -2,7 +2,6 @@
 export const domen = "https://unitor-gym-api.main-gate.appx.uz";
 
 // auth
-
 export const authRefresh = "/api/auth/refresh";
 export const authLogin = "/api/auth/login";
 export const getauth = "/api/auth";
@@ -14,6 +13,7 @@ export const memberPost = "/api/member";
 export const membershipGet = "/api/membership?detail=true";
 export const membersDelete = (id: number) => `api/member/${id}`;
 export const membersPut = (id: number) => `api/member/${id}`;
+
 
 // membership
 export const memberShipGet = "/api/membership";
@@ -32,7 +32,6 @@ export const membershipTypeEdit = (id: number) => `/api/membership-types/${id}`;
 export const historyGet = "/api/visit";
 
 // payment
-
 export const paymentGet = "/api/payment";
 
 // inventory
@@ -60,7 +59,7 @@ export const statisticsGet = "/api/statistics";
 
 // payment
 export const paymentList = "/api/payment";
+export const paymentListUrl = "/api/payment";
 
-// check-in and check-out
-
-// export const checkIn
+// visit
+export const checkInUrl = "/api/visit/check-in"

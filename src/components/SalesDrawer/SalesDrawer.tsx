@@ -11,7 +11,8 @@ import { MemberType, PaymentPostI } from "../type";
 export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
     const translate = useLanguage();
 
-    const { cardData, decrementCount, incrementCount } = useCardContext();
+    const { cardData, decrementCount, incrementCount, setCardData } =
+        useCardContext();
 
     const PaymentMemberIdList = useLoad<MemberType>({ url: memberGet });
 
@@ -55,7 +56,7 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
             if (success) {
                 message.success("PRODUCT ADDED SUCCESSFULLY");
                 onClose();
-                
+                setCardData([]);
             } else {
                 console.log(error);
                 // message.error(error);
