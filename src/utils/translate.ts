@@ -73,6 +73,7 @@ interface Trans {
     no: string;
     stockin: string;
     exit: string;
+    search: string;
 }
 const uz: Trans = {
     home: "Asosiy",
@@ -149,6 +150,7 @@ const uz: Trans = {
     no: "YO'Q",
     stockin: "Stok in",
     exit: "Chiqish",
+    search: "Qidiruv",
 };
 const ru: Trans = {
     home: "Главная",
@@ -225,6 +227,7 @@ const ru: Trans = {
     no: "Нет",
     stockin: "в наличии",
     exit: "Выход",
+    search: "Поиск",
 };
 const eng: Trans = {
     home: "Home",
@@ -301,6 +304,7 @@ const eng: Trans = {
     no: "No",
     stockin: "Stock in",
     exit: "Exit",
+    search: "Search",
 };
 interface LanguageKeyValuePairs {
     [key: string]: Trans;

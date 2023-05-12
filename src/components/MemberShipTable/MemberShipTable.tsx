@@ -68,7 +68,18 @@ export const MemberShipTable: FC<MemberShipTableI> = ({
             dataIndex: "end",
             render: (record: string) => moment(record).format("LL"),
         },
-        { title: `${translate("status")}`, dataIndex: "status" },
+        {
+            title: `${translate("status")}`, dataIndex: "status", render: (status: string) => (
+                <>
+                     {status == "active" ? (
+                        <p className='status'>{translate("active")}</p>
+                    ) : status == "inactive" ? (
+                        <p className='status no'>{translate("inActive")}</p>
+                    ) : (
+                        <p className='status no'>{translate("removed")}</p>
+                    )}
+                </>
+        ) },
         {
             title: `${translate("action")}`,
             dataIndex: "record",

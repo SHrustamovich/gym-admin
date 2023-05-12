@@ -142,6 +142,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     ]}
                                 >
                                     <Select
+                                        placeholder='Select'
                                         className='member-driver__select'
                                         options={response?.data.result.map(
                                             (item) => ({
@@ -182,6 +183,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     ]}
                                 >
                                     <Select
+                                        placeholder={translate("payment")}
                                         className='member-driver__select'
                                         options={[
                                             { value: "cash", label: "cash" },

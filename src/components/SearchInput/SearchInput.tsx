@@ -2,11 +2,14 @@ import { FC } from "react";
 import { Input } from "antd";
 import { useSearchParams } from "react-router-dom";
 import { SearchIcon } from "../../assets/icons/icons";
+import useLanguage from "../../hooks/useLanguage";
 
 const { Search } = Input;
 
 export const SearchInput: FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
+
+    const translate = useLanguage();
 
     const searchParamsSet = (value: string) => {
         if (value === "") {
@@ -31,6 +34,7 @@ export const SearchInput: FC = () => {
     return (
         <div className='search'>
             <Search
+                placeholder={translate("search")}
                 onSearch={onSearch}
                 onChange={(e) => onChange(e)}
                 prefix={<SearchIcon />}

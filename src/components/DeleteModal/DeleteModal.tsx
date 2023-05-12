@@ -8,14 +8,13 @@ export const DeleteModal: FC<deleteModalI> = ({
     visible,
     onOkDelete,
     onCancel,
-    
 }) => {
     const translate = useLanguage();
 
     return (
         <div className='delete-modal'>
             <Modal
-                title={title}
+                title={"Delete"}
                 centered
                 open={visible}
                 onOk={onOkDelete}

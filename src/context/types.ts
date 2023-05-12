@@ -60,4 +60,5 @@ export interface LogoutModalI {
 export interface CheckInModalI {
     checkInModal: boolean;
     onCancelModal: () => void;
+    CheckInOk: () => void;
 }

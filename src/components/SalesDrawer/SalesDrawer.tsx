@@ -55,6 +55,7 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
             if (success) {
                 message.success("PRODUCT ADDED SUCCESSFULLY");
                 onClose();
+                
             } else {
                 console.log(error);
                 // message.error(error);

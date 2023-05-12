@@ -32,12 +32,14 @@ export const ProductDrawer: FC<ProductDriver> = ({
     const onFinish = async (e: ProductPostI) => {
         const { product_type_id, product_name, price, supplier, photo } = e;
 
+        console.log(product_type_id, product_name, price, supplier, photo);
+
         if (editProduct) {
             const { success, error } = await ProductPutReq.request({
                 data: {
                     product_type_id,
                     product_name,
-                    price,
+                    price: Number(price),
                     supplier,
                     photo,
                 },
@@ -54,7 +56,7 @@ export const ProductDrawer: FC<ProductDriver> = ({
                 data: {
                     product_type_id,
                     product_name,
-                    price,
+                    price: Number(price),
                     supplier,
                     photo,
                 },

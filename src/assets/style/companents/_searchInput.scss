@@ -39,3 +39,10 @@
 .search .ant-input-affix-wrapper {
     border-radius: 20px !important;
 }
+.search .ant-input::placeholder {
+    color: $textColor !important;
+}
+
+.ant-input::placeholder {
+    color: $textColor !important;
+}

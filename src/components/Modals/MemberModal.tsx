@@ -133,7 +133,10 @@ export const MemberModal: FC<modalI> = ({
                                         },
                                     ]}
                                 >
-                                    <Input prefix={<PersonIcon />} />
+                                    <Input
+                                        prefix={<PersonIcon />}
+                                        placeholder={translate("firstName")}
+                                    />
                                 </Form.Item>
                             </div>
                             <div className='modal__name'>
@@ -150,7 +153,10 @@ export const MemberModal: FC<modalI> = ({
                                         },
                                     ]}
                                 >
-                                    <Input prefix={<PhoneIcon />} />
+                                    <Input
+                                        prefix={<PhoneIcon />}
+                                        placeholder={translate("phone")}
+                                    />
                                 </Form.Item>
                             </div>
                         </div>

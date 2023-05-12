@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import  { FC, useEffect } from "react";
 import { RestartTimer } from "../../assets/icons/icons";
+import { TimerI } from "../type";
 
-export const Timer: React.FC = () => {
-    const [time, setTime] = useState(60);
+export const Timer:FC<TimerI> = ({setTime,time}) => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {

@@ -60,3 +60,7 @@ export const statisticsGet = "/api/statistics";
 
 // payment
 export const paymentList = "/api/payment";
+
+// check-in and check-out
+
+// export const checkIn

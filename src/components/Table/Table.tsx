@@ -29,6 +29,7 @@ export const TableMain: FC<tableI> = ({
 }) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [checkInModal, setCheckInModal] = useState(false);
+    const [checkInIndex,setCheckInIndex] = useState(null)
     const [members, setMembers] = useState<membersEditI>(membersInitials);
     const [elementLoading, setElementLoading] = useState(false);
 
@@ -38,7 +39,7 @@ export const TableMain: FC<tableI> = ({
 
     const handlyCheckIn = (item: number) => {
         setCheckInModal(true);
-        console.log(item);
+        
     };
 
     const onCancelModal = () => {
@@ -77,6 +78,10 @@ export const TableMain: FC<tableI> = ({
     const changePathFunc = (id: number) => {
         navigate(`/membership/${id}`);
     };
+
+    const CheckInOk = () => {
+        
+    }
 
     const columns = [
         {
@@ -175,7 +180,7 @@ export const TableMain: FC<tableI> = ({
                     }}
                 />
             )}
-            <CheckIn checkInModal={checkInModal} onCancelModal={onCancelModal} />
+            <CheckIn checkInModal={checkInModal} onCancelModal={onCancelModal} CheckInOk={CheckInOk} />
             <DeleteModal
                 title={translate("deletePerson")}
                 visible={isOpenModal}

@@ -45,8 +45,7 @@ export const MemberShip: FC = () => {
                     </div>
                     <div className='member-ship__header'>
                         <div className='member-ship__text'>
-                            <p>MEMBERSHIPS</p>{" "}
-                            <span>{response?.data.status}</span>
+                            <p>MEMBERSHIPS</p>
                         </div>
                         <button
                             className='member-ship__btn'

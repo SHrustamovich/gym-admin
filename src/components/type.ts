@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 // ---------------------------member type -----------------------------------
 export interface MemberResultType {
     created_at: string;
@@ -241,7 +243,6 @@ export interface ProductPostI {
     supplier: string;
     photo: string;
     price: number;
-    discount_percent: number;
 }
 // edit
 export interface ProductEditI {
@@ -321,4 +322,9 @@ export interface StatisticPageI {
 
 export interface StatisticTotalI {
     total: StatisticTypeI[] | undefined;
+}
+
+export interface TimerI {
+    setTime: Dispatch<SetStateAction<number>>;
+    time: number;
 }

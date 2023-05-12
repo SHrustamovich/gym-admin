@@ -53,7 +53,7 @@ export const HomeGraph: FC<HomeGraphI> = ({ dataGraph }) => {
             {
                 fill: true,
                 label: "money",
-                data: dataGraph?.payments?.map((item) => item.total),
+                data: dataGraph?.statistics?.map((item) => item.total),
 
                 borderColor: "#ffffff",
                 backgroundColor: "#2D2D42",

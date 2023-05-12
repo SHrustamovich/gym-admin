@@ -40,7 +40,7 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
             req();
             onCloseDriver();
         } else {
-            message.error("Oldin qo'shilgan")
+            message.error("Oldin qo'shilgan");
         }
     };
 
@@ -94,7 +94,7 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
                                     },
                                 ]}
                             >
-                                <Input />
+                                <Input placeholder={translate("quantity")} />
                             </Form.Item>
                         </div>
                         <div className='inventory-drawer__item'>
