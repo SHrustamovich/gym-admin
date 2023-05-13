@@ -334,3 +334,11 @@ export interface TimerI {
 export interface CheckInI {
     member_id: number;
 }
+
+// ----------media------------
+export interface MediaTypeI {
+    uid: string;
+    name: string;
+    status: string;
+    url: string;
+}

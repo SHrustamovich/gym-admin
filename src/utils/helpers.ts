@@ -1,4 +1,6 @@
+import { AES } from "crypto-ts";
 import Cookies from "universal-cookie";
+import { encString, secretString } from "../config";
 
 export const postData = (obj: any, n = []) => {
     let newObj: any = structuredClone(obj);
@@ -79,4 +81,15 @@ export const getLoclalStorage = (key: keyLocalStroge) => {
 
 export const setLoclalStorage = (key: keyLocalStroge, value: string) => {
     localStorage.setItem(key, value);
+};
+
+export const handlyEncrypted = () => {
+    return AES.encrypt(
+        JSON.stringify({
+            client: "gym",
+            secret: secretString,
+            time: Date.now(),
+        }),
+        encString
+    ).toString()
 };

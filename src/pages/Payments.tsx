@@ -42,7 +42,7 @@ export const Payments = () => {
                 <span className='payment__span'>{1234}</span>
             </div>
             <div className='payment__body'>
-                <PaymentTable response={response} pageTo={pageTo} />
+                <PaymentTable response={response} pageTo={pageTo} loading={loading} />
             </div>
         </div>
     );

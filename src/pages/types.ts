@@ -1,6 +1,7 @@
 import {
     HistoryI,
     InventoryI,
+    InventoryResultI,
     membersEditI,
     MembershipIdType,
     MemberShipResultType,
@@ -43,6 +44,7 @@ export interface InventoryDraverI {
     open: boolean;
     onClose: () => void;
     req: () => void;
+    editInventory: InventoryResultI | null;
 }
 
 export interface ProductDriver {
@@ -96,6 +98,7 @@ export interface HistoryTableI {
 export interface PaymentTableI {
     response: PaymentI | undefined;
     pageTo: (to: any) => void;
+    loading: boolean;
 }
 // product table
 export interface ProductTableI {
@@ -111,11 +114,14 @@ export interface InventoryTableI {
     response: InventoryI | undefined;
     pageTo: (to: any) => void;
     loading: boolean;
+    setEditInventory: (item: any) => void;
+    showDwawer: () => void;
+    request: () => void;
 }
 // inventory post
 export interface InventoryPostI {
     product_id: number;
-    quantity: number;
+    stocks: number;
 }
 
 // POS

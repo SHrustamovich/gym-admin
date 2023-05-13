@@ -14,6 +14,7 @@ import { PlusIcon } from "../assets/icons/icons";
 export const Inventory = () => {
     const [open, setOpen] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [editInventory, setEditInventory] = useState<null>(null);
 
     const showDwawer = () => {
         setOpen(true);
@@ -55,12 +56,20 @@ export const Inventory = () => {
                     </button>
                 </div>
             </div>
-            <InventoryDrawer open={open} onClose={onClose} req={request} />
+            <InventoryDrawer
+                open={open}
+                onClose={onClose}
+                req={request}
+                editInventory={editInventory}
+            />
             <div className='inventory__body'>
                 <InventoryTable
                     response={response}
                     pageTo={pageTo}
                     loading={loading}
+                    setEditInventory={setEditInventory}
+                    showDwawer={showDwawer}
+                    request={request}
                 />
             </div>
         </div>

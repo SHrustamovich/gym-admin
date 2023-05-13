@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { getLoclalStorage, setLoclalStorage } from "./helpers";
-import { domen, authRefresh } from "./urls";
+import { domen, authRefresh, mediaApi } from "./urls";
 
 interface Axios extends AxiosInstance {
     [key: string]: any;
@@ -8,6 +8,10 @@ interface Axios extends AxiosInstance {
 
 const $authHost: Axios = axios.create({
     baseURL: `${domen}`,
+});
+
+export const $mediaApi: Axios = axios.create({
+    baseURL: `${mediaApi}`,
 });
 
 $authHost.interceptors.request.use(

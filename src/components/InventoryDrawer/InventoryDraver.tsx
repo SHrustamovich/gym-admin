@@ -1,15 +1,20 @@
 import { Button, Drawer, Form, Input, message, Select } from "antd";
-import { FC } from "react";
-import { useLoad, usePostRequest } from "../../hooks/request";
+import { FC, useEffect } from "react";
+import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { InventoryDraverI, InventoryPostI } from "../../pages/types";
-import { inventoryPost, productGet } from "../../utils/urls";
+import {
+    inventoryPost,
+    inventoryUpdateUrl,
+    productGet,
+} from "../../utils/urls";
 import { ProductI } from "../type";
 
 export const InventoryDrawer: FC<InventoryDraverI> = ({
     open,
     onClose,
     req,
+    editInventory,
 }) => {
     const translate = useLanguage();
     const [form] = Form.useForm();
@@ -22,27 +27,57 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
         url: inventoryPost,
     });
 
+    const InventoryUpdateReq = usePutRequest({
+        url: inventoryUpdateUrl(editInventory?.id as number),
+    });
+
     const onCloseDriver = () => {
         form.resetFields();
         onClose();
     };
 
+    console.log(editInventory, "ddddddddddd");
+
     const onFinish = async (e: InventoryPostI) => {
-        const { product_id, quantity } = e;
-        const { success, error } = await InventoryPostReq.request({
-            data: {
-                product_id,
-                quantity,
-            },
-        });
-        if (success) {
-            message.success("INVENTORY ADDED SUCCESSFULLY");
-            req();
-            onCloseDriver();
+        const { product_id, stocks } = e;
+        if (editInventory) {
+            const { success, error } = await InventoryUpdateReq.request({
+                data: {
+                    product_id,
+                    stocks,
+                },
+            });
+            if (success) {
+                message.success("INVENTORY UPDATE SUCCESSFULLY");
+                req();
+                onCloseDriver();
+            } else {
+                message.error(error);
+            }
         } else {
-            message.error("Oldin qo'shilgan");
+            const { success } = await InventoryPostReq.request({
+                data: {
+                    product_id,
+                    stocks,
+                },
+            });
+            if (success) {
+                message.success("INVENTORY ADDED SUCCESSFULLY");
+                req();
+                onCloseDriver();
+            } else {
+                message.error("Oldin qo'shilgan");
+            }
         }
     };
+
+    useEffect(() => {
+        if (editInventory != null) {
+            form.setFieldsValue({
+                ...editInventory,
+            });
+        }
+    }, [editInventory]);
 
     return (
         <div className='inventory-drawer'>
@@ -86,7 +121,7 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
                                 {translate("quantity")}
                             </p>
                             <Form.Item
-                                name='quantity'
+                                name='stocks'
                                 rules={[
                                     {
                                         required: true,
