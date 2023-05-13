@@ -55,7 +55,7 @@
         color: $textColor;
         border: none;
         &:hover {
-            color: red;
+            color: red !important;
         }
         span:hover {
             color: $textColor;

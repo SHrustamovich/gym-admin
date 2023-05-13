@@ -28,10 +28,12 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
         incrementCount(id);
     };
 
+    console.log(cardData, "llllllll");
+
     const totalMoney = useMemo(() => {
         if (!!cardData.length) {
             return cardData
-                ?.map((item) => +item.price)
+                ?.map((item) => +item.price * item.count)
                 .reduce((acc, cur) => acc + cur);
         }
     }, [cardData]);
@@ -234,6 +236,7 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
                                     <Button
                                         htmlType='submit'
                                         className='sales-drawer__btn'
+                                        loading={paymentListReq.loading}
                                     >
                                         {translate("mPayment")}
                                     </Button>
