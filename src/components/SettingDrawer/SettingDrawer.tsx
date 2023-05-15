@@ -1,8 +1,9 @@
-import { Button, Drawer, Form, Input, message } from "antd";
+import { Button, Drawer, Form, Input, message, Select } from "antd";
 import { FC, useEffect } from "react";
 import { usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { MemberShipTypeDrawerI } from "../../pages/types";
+import { termData } from "../../utils/data";
 import { membershipTypeEdit, membershipTypepost } from "../../utils/urls";
 import { MemberShipTypePostI } from "../type";
 
@@ -119,7 +120,13 @@ export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
                                     },
                                 ]}
                             >
-                                <Input />
+                                <Select
+                                    placeholder='select'
+                                    options={termData.map((item) => ({
+                                        value: item.term,
+                                        label: item.term,
+                                    }))}
+                                />
                             </Form.Item>
                         </div>
                         <div className='item'>
@@ -130,6 +137,7 @@ export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
                                 <Button
                                     htmlType='submit'
                                     className='member-driver__submit'
+                                    loading={MemberShipTypePost.loading}
                                 >
                                     {translate("save")}
                                 </Button>

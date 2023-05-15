@@ -7,14 +7,31 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 240px;
+    padding-top: 160px;
+}
+.mini-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // padding-top: 100px;
 }
 .ant-spin .ant-spin-dot {
-    width: 200px !important;
-    height: 200px !important;
+    width: 180px !important;
+    height: 180px !important;
 }
 .ant-spin-dot-item {
     width: 60px !important;
     height: 60px !important;
+    background: $buttonColor !important;
+}
+
+.mini-loading .ant-spin .ant-spin-dot {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.mini-loading .ant-spin-dot-item {
+    width: 30px !important;
+    height: 30px !important;
     background: $buttonColor !important;
 }

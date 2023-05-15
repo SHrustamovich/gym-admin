@@ -3,10 +3,10 @@ import useLanguage from "../../hooks/useLanguage";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 import { tableI } from "../../pages/types";
 import { Loading } from "../Loading/Loading";
-import { useDeleteRequest, usePostRequest } from "../../hooks/request";
+import { useDeleteRequest, useLoad, usePostRequest } from "../../hooks/request";
 import { Button, message, Space, Table } from "antd";
-import { checkInUrl, membersDelete } from "../../utils/urls";
-import { CheckInI, membersEditI } from "../type";
+import { checkInUrl, historyGet, membersDelete } from "../../utils/urls";
+import { CheckInI, HistoryI, membersEditI } from "../type";
 import { DeleteIcon, EditIcon, ExitIcon } from "../../assets/icons/icons";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
@@ -46,9 +46,9 @@ export const TableMain: FC<tableI> = ({
         setCheckInModal(false);
     };
 
-    const deleteMembers = useDeleteRequest();
+    console.log(response, "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 
- 
+    const deleteMembers = useDeleteRequest();
 
     const handlyProductEdit = (item: any) => {
         setEditMembers(item);
@@ -81,7 +81,11 @@ export const TableMain: FC<tableI> = ({
         navigate(`/membership/${id}`);
     };
 
-   
+    const VisitList = useLoad<HistoryI>({ url: historyGet });
+
+    const { response: visitListItem } = VisitList;
+
+    // console.log(visitListItem, "visitListItem");
 
     const columns = [
         {
@@ -133,11 +137,14 @@ export const TableMain: FC<tableI> = ({
                 <Space size={10}>
                     <div className='btn__gate'>
                         <Button
+                            disabled={visitListItem?.data.result.some(
+                                (item) => item.member.id == record.id
+                            )}
                             className='table__btn'
                             onClick={() => handlyCheckIn(record.id)}
                         >
                             <ExitIcon />
-                        </Button>
+                        </Button>       
                         <Button
                             onClick={() => handlyProductEdit(record)}
                             className='table__btn'

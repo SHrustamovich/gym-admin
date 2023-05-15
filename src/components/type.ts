@@ -1,3 +1,4 @@
+import { FormInstance } from "rc-field-form";
 import { Dispatch, SetStateAction } from "react";
 
 // ---------------------------member type -----------------------------------
@@ -205,6 +206,7 @@ export interface HistoryResult {
     date: string;
     moderator_id: number;
     updated_at: string;
+    member: MemberResultType;
 }
 export interface HistoryDataI {
     limit: number;
@@ -335,10 +337,36 @@ export interface CheckInI {
     member_id: number;
 }
 
+export interface VisitProductResultI {
+    id: number;
+    moderator_id: number;
+    price: string;
+    product_count: number;
+    product_id: number;
+    product_name: string;
+    product_type: string;
+    supplier: string;
+}
+
+export interface VisitProductI {
+    limit: number;
+    page: number;
+    total: number;
+    result: VisitProductResultI[];
+}
+
+export interface VisitProductDataI {
+    data: VisitProductI;
+}
 // ----------media------------
 export interface MediaTypeI {
     uid: string;
     name: string;
     status: string;
     url: string;
+}
+
+export interface MediaPropsI {
+    form: FormInstance;
+    name: string;
 }

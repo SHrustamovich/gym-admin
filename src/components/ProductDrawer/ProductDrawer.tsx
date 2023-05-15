@@ -4,6 +4,7 @@ import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { ProductDriver } from "../../pages/types";
 import { productPost, productPut, productType } from "../../utils/urls";
+import { MediaApi } from "../MediaApi/MediaApi";
 import { ProductEditI, ProductPostI, ProductTypeI } from "../type";
 
 export const ProductDrawer: FC<ProductDriver> = ({
@@ -166,7 +167,7 @@ export const ProductDrawer: FC<ProductDriver> = ({
                             </Form.Item>
                         </div>
 
-                        <div className='drawer__item'>
+                        <div className='drawer__item_img'>
                             <p className='drawer__label'>{translate("img")}</p>
                             <Form.Item
                                 name='photo'
@@ -177,7 +178,7 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                     },
                                 ]}
                             >
-                                <Input />
+                                <MediaApi form={form} name='photo' />
                             </Form.Item>
                         </div>
                         <div className='drawer__item'>

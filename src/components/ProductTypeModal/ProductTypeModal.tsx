@@ -108,7 +108,11 @@ export const ProductTypeModal: FC<ProductTypeModalI> = ({
                                 <Button
                                     htmlType='submit'
                                     className='member-driver__submit'
-                                    loading={ProductTypePostReq.loading}
+                                    loading={
+                                        productTypeEdit
+                                            ? ProductTypeEditReq.loading
+                                            : ProductTypePostReq.loading
+                                    }
                                 >
                                     Save
                                 </Button>

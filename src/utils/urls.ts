@@ -63,6 +63,7 @@ export const statisticsGet = "/api/statistics";
 // payment
 export const paymentList = "/api/payment";
 export const paymentListUrl = "/api/payment";
+export const paymentDetailsUrl = (id: number) => `/api/payment/details/${id}`;
 
 // visit
 export const checkInUrl = "/api/visit/check-in";

@@ -3,6 +3,7 @@ import { Table } from "antd";
 import useLanguage from "../../hooks/useLanguage";
 import { HistoryTableI } from "../../pages/types";
 import { Loading } from "../Loading/Loading";
+import moment from "moment";
 
 export const HistoryTable: FC<HistoryTableI> = ({
     response,
@@ -11,6 +12,8 @@ export const HistoryTable: FC<HistoryTableI> = ({
 }) => {
     const translate = useLanguage();
 
+    console.log(response?.data.result, "kkkkkkkkkkkkk");
+
     const columns = [
         {
             title: `${translate("membersName")}`,
@@ -18,11 +21,15 @@ export const HistoryTable: FC<HistoryTableI> = ({
             key: "membersName",
         },
         {
-            title: `${translate("visitTime")}`,
-            dataIndex: "created_at",
-            key: "visitTime",
+            title: `${translate("name")}`,
+            dataIndex: "fullname",
+            key: "fullname",
         },
-        { title: `${translate("visitDate")}`, dataIndex: "date" },
+        {
+            title: `${translate("visitDate")}`,
+            dataIndex: "date",
+            render: (record: string) => moment(record).format("LL"),
+        },
     ];
     return (
         <div className='history-table'>
@@ -31,7 +38,11 @@ export const HistoryTable: FC<HistoryTableI> = ({
             ) : (
                 <Table
                     columns={columns}
-                    dataSource={response?.data.result}
+                    dataSource={response?.data.result.map((item) => ({
+                        checked_in_by: item.checked_in_by,
+                        fullname: item.member.fullname,
+                        date: item.date,
+                    }))}
                     pagination={{
                         total: response?.data.total,
                         current: response?.data.page,

@@ -12,10 +12,9 @@ export const History = () => {
 
     const { search } = useLocation();
 
-    const VisitList = useLoad<HistoryI, string>(
-        { url: historyGet + `${search}` },
-        [search]
-    );
+    const VisitList = useLoad<HistoryI, string>({ url: historyGet + search }, [
+        search,
+    ]);
 
     const { response, loading } = VisitList;
 
@@ -36,7 +35,8 @@ export const History = () => {
             </div>
             <div className='history__body'>
                 <div className='history__title'>
-                    Total Number of Visitors Today: 0
+                    Total Number of Visitors Today:{" "}
+                    {response?.data.result.length}
                 </div>
                 <div className='history__table'>
                     <HistoryTable

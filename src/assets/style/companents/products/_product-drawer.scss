@@ -11,3 +11,10 @@
         @include adaptive-value(padding-bottom, 32, 26, 1);
     }
 }
+
+.drawer__item_img .ant-form-item-control-input-content {
+    background: none !important;
+}
+.drawer__item_img .ant-form-item-control-input-content:hover {
+    box-shadow: none !important;
+}

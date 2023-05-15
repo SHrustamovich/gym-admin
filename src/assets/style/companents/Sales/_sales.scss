@@ -78,7 +78,7 @@
         @include adaptive-value(padding-bottom, 23, 20, 1);
     }
     &__btn {
-        padding-block: 6px;
+        padding-block: 12px;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -121,3 +121,9 @@
     background: $backgroundColor;
 }
 
+.card__btn .and-btn {
+    border: none !important;
+}
+.ant-btn-default:disabled {
+    border-color: red !important;
+}

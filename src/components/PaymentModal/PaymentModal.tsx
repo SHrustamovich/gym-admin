@@ -1,25 +1,45 @@
 import { Modal, Table } from "antd";
 import { FC } from "react";
+import { useLoad } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { modalI } from "../../pages/types";
-import { productData } from "../../utils/data";
+import { paymentDetailsUrl } from "../../utils/urls";
+import { MiniLoading } from "../Loading/MiniLoading";
+import { VisitProductDataI, VisitProductI } from "../type";
 
-export const PaymentModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
+export const PaymentModal: FC<modalI> = ({
+    isModalOpen,
+    handleCancel,
+    paymentId,
+}) => {
     const translate = useLanguage();
+
+    const paymentDetailsList = useLoad<
+        VisitProductDataI,
+        number | null | undefined
+    >(
+        {
+            url: paymentDetailsUrl(paymentId as number),
+        },
+        [paymentId]
+    );
+
+    const { response, loading } = paymentDetailsList;
+
+    console.log(response);
 
     const columns = [
         {
             title: `${translate("productN")}`,
-            dataIndex: "name",
+            dataIndex: "product_name",
         },
         {
             title: `${translate("productT")}`,
-            dataIndex: "productType",
+            dataIndex: "product_type",
         },
-        { title: `${translate("sup")}`, dataIndex: "sup" },
+        { title: `${translate("sup")}`, dataIndex: "supplier" },
         { title: `${translate("unitP")}`, dataIndex: "price" },
-        { title: `${translate("pur")}`, dataIndex: "id" },
-        { title: `${translate("disc")}`, dataIndex: "stocks" },
+        { title: `${translate("pur")}`, dataIndex: "product_count" },
     ];
 
     return (
@@ -36,11 +56,15 @@ export const PaymentModal: FC<modalI> = ({ isModalOpen, handleCancel }) => {
                     <div className='payment-modal__title'>
                         {translate("info")}
                     </div>
-                    <Table
-                        columns={columns}
-                        dataSource={productData}
-                        pagination={false}
-                    />
+                    {loading ? (
+                        <MiniLoading />
+                    ) : (
+                        <Table
+                            columns={columns}
+                            dataSource={response?.data.result}
+                            pagination={false}
+                        />
+                    )}
                     <div className='payment-modal__btn'>
                         <button onClick={handleCancel}>
                             {translate("close")}

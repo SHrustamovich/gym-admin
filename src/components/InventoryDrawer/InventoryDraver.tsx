@@ -39,12 +39,12 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
     console.log(editInventory, "ddddddddddd");
 
     const onFinish = async (e: InventoryPostI) => {
-        const { product_id, stocks } = e;
+        const { product_id, quantity } = e;
         if (editInventory) {
             const { success, error } = await InventoryUpdateReq.request({
                 data: {
                     product_id,
-                    stocks,
+                    quantity,
                 },
             });
             if (success) {
@@ -58,7 +58,7 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
             const { success } = await InventoryPostReq.request({
                 data: {
                     product_id,
-                    stocks,
+                    quantity,
                 },
             });
             if (success) {
@@ -121,7 +121,7 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
                                 {translate("quantity")}
                             </p>
                             <Form.Item
-                                name='stocks'
+                                name='quantity'
                                 rules={[
                                     {
                                         required: true,

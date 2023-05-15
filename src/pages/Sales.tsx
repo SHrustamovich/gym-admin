@@ -8,6 +8,7 @@ import { productGet } from "../utils/urls";
 import { ProductI, ProductResultI } from "../components/type";
 import { useCardContext } from "../context/karzinkaContext";
 import { KarzinkaIcon } from "../assets/icons/icons";
+import { Button } from "antd";
 
 export const Sales = () => {
     const [open, setOpen] = useState(false);
@@ -57,7 +58,8 @@ export const Sales = () => {
                         <p className='card__title'>{item.product_name}</p>
                         <p className='card__brand'>Brand:{item.supplier}</p>
                         <p className='card__quality'>Quality:{item.quantity}</p>
-                        <button
+                        <Button
+                            disabled={item.quantity == 0}
                             className='card__btn'
                             onClick={() => handlyProduct(item)}
                         >
@@ -65,7 +67,7 @@ export const Sales = () => {
                             <span className='card__text'>
                                 {translate("card")}
                             </span>
-                        </button>
+                        </Button>
                     </div>
                 ))}
             </div>

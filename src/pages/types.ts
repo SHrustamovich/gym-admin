@@ -26,6 +26,7 @@ export interface modalI {
     handleCancel: () => void;
     request?: () => void;
     editMembers?: membersEditI | null;
+    paymentId?: number | null;
 }
 
 export interface draverI {
@@ -121,7 +122,7 @@ export interface InventoryTableI {
 // inventory post
 export interface InventoryPostI {
     product_id: number;
-    stocks: number;
+    quantity: number;
 }
 
 // POS

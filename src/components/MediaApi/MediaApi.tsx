@@ -4,23 +4,25 @@ import { FC, useState } from "react";
 import { handlyEncrypted } from "../../utils/helpers";
 import { $mediaApi } from "../../utils/https";
 import { mediaAdd } from "../../utils/urls";
-import { MediaTypeI } from "../type";
+import { MediaPropsI, MediaTypeI } from "../type";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 
-export const MediaApi: FC = () => {
+export const MediaApi: FC<MediaPropsI> = ({ form, name }) => {
     const [fileList, setFileList] = useState<UploadFile<MediaTypeI>[]>([]);
     const [loading, setLoading] = useState(false);
     const [previewImage, setPreviewImage] = useState("");
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewTitle, setPreviewTitle] = useState("");
 
-    const onPreview = async ({ file }: any) => {
+    const onPreview = async (file: any) => {
         setPreviewImage(file.url);
         setPreviewOpen(true);
         setPreviewTitle(file.url);
     };
 
-    const handlyChange = async ({ file }: any) => {
+    const handleCancel = () => setPreviewOpen(false);
+
+    const handlyChange = async ({file}: any) => {
         setLoading(true);
         if (
             file.type == "image/jpeg" ||
@@ -55,6 +57,8 @@ export const MediaApi: FC = () => {
                         name: file.name,
                     },
                 ]);
+
+                form.setFieldValue(name, data.url);
             } catch (error) {
                 setFileList([
                     ...fileList,
@@ -94,11 +98,21 @@ export const MediaApi: FC = () => {
                 fileList={fileList as UploadFile[]}
                 customRequest={handlyChange}
                 onPreview={onPreview}
+                listType='picture-card'
             >
                 {fileList.length == 1 ? null : uploadButton}
             </Upload>
-            <Modal open={previewOpen} title={previewTitle}>
-                <img src={previewImage} alt='' />
+            <Modal
+                open={previewOpen}
+                title={previewTitle}
+                footer={null}
+                onCancel={handleCancel}
+            >
+                <img
+                    alt='example'
+                    style={{ width: "100%" }}
+                    src={previewImage}
+                />
             </Modal>
         </div>
     );

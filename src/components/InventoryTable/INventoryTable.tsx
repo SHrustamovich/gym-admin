@@ -56,7 +56,7 @@ export const InventoryTable: FC<InventoryTableI> = ({
             dataIndex: "product_name",
         },
         { title: `${translate("sup")}`, dataIndex: "supplier" },
-        { title: `${translate("stock")}`, dataIndex: "stocks" },
+        { title: `${translate("quantity")}`, dataIndex: "quantity" },
         {
             title: `${translate("status")}`,
             dataIndex: "status",

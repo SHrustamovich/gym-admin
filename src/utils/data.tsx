@@ -110,102 +110,6 @@ export const sortData: SortDataI[] = [
     },
 ];
 
-export const productData = [
-    {
-        id: 1,
-        productType: "Drinks",
-        name: "Aquafina Bottled Water (0.5L)",
-        sup: "Aquafina",
-        stocks: 6,
-        status: 0,
-        price: "20,5",
-    },
-    {
-        id: 2,
-        productType: "Drinks",
-        name: "Aquafina Bottled Water (0.5L)",
-        sup: "Aquafina",
-        stocks: 6,
-        status: 1,
-        price: "20,5",
-    },
-    {
-        id: 3,
-        productType: "Drinks",
-        name: "Aquafina Bottled Water (0.5L)",
-        sup: "Aquafina",
-        stocks: 8,
-        status: 0,
-        price: "20,5",
-    },
-    {
-        id: 4,
-        productType: "Drinks",
-        name: "Aquafina Bottled Water (0.5L)",
-        sup: "Aquafina",
-        stocks: 3,
-        status: 1,
-        price: "20,5",
-    },
-    {
-        id: 5,
-        productType: "Drinks",
-        name: "Aquafina Bottled Water (0.5L)",
-        sup: "Aquafina",
-        stocks: 6,
-        status: 0,
-        price: "20,5",
-    },
-];
-
-export const visitData = [
-    {
-        id: 1,
-        membersName: "Michael Oliveira",
-        visitTime: "3 months ago (At 11:23)",
-        visitData: "December 22, 2022",
-    },
-    {
-        id: 2,
-        membersName: "Michael Oliveira",
-        visitTime: "3 months ago (At 11:23)",
-        visitData: "December 22, 2022",
-    },
-    {
-        id: 3,
-        membersName: "Michael Oliveira",
-        visitTime: "3 months ago (At 11:23)",
-        visitData: "December 22, 2022",
-    },
-    {
-        id: 4,
-        membersName: "Michael Oliveira",
-        visitTime: "3 months ago (At 11:23)",
-        visitData: "December 22, 2022",
-    },
-];
-
-export const typeData = [
-    {
-        id: 1,
-        typeName: "Standart",
-        free: "100",
-        dis: "10$",
-    },
-    {
-        id: 2,
-        typeName: "Standart",
-        free: "100",
-        dis: "10$",
-    },
-    {
-        id: 3,
-        typeName: "Standart",
-        free: "100",
-        dis: "10$",
-    },
-];
-
 export const StaticFilterData: StaticFilterDataI[] = [
     {
         id: 1,
@@ -221,5 +125,49 @@ export const StaticFilterData: StaticFilterDataI[] = [
         id: 3,
         title: "Year",
         path: "year",
+    },
+];
+
+interface termDataI {
+    id: number;
+    term: string;
+}
+
+export const termData: termDataI[] = [
+    {
+        id: 1,
+        term: "oneday",
+    },
+    {
+        id: 2,
+        term: "fiftenday",
+    },
+    {
+        id: 3,
+        term: "week",
+    },
+    {
+        id: 4,
+        term: "onemonth",
+    },
+    {
+        id: 5,
+        term: "twomonth",
+    },
+    {
+        id: 6,
+        term: "threemonth",
+    },
+    {
+        id: 7,
+        term: "fourday",
+    },
+    {
+        id: 8,
+        term: "fiveday",
+    },
+    {
+        id: 9,
+        term: "sixday",
     },
 ];

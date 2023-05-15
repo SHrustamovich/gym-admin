@@ -7,6 +7,7 @@ import useLanguage from "../hooks/useLanguage";
 import { sortData } from "../utils/data";
 import { PaymentI } from "../components/type";
 import { paymentGet } from "../utils/urls";
+import { useMemo } from "react";
 
 export const Payments = () => {
     const translate = useLanguage();
@@ -21,6 +22,12 @@ export const Payments = () => {
     );
 
     const { response, request, loading } = paymentGetReq;
+
+    const totalMoney = useMemo(() => {
+        return response?.data.result
+            ?.map((item) => +item.total)
+            ?.reduce((acc, cur) => acc + cur, 0);
+    }, [response?.data.result]);
 
     const pageTo = (to: string) => {
         searchParams.set("page", to);
@@ -39,10 +46,14 @@ export const Payments = () => {
             </div>
             <div className='payment__title'>
                 {translate("allPayment")}:{" "}
-                <span className='payment__span'>{1234}</span>
+                <span className='payment__span'>{totalMoney?.toLocaleString()}</span>
             </div>
             <div className='payment__body'>
-                <PaymentTable response={response} pageTo={pageTo} loading={loading} />
+                <PaymentTable
+                    response={response}
+                    pageTo={pageTo}
+                    loading={loading}
+                />
             </div>
         </div>
     );

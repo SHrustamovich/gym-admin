@@ -13,12 +13,18 @@ export const PaymentTable: FC<PaymentTableI> = ({
     loading,
 }) => {
     const [isModalOpen, setModalOpen] = useState(false);
+    const [paymentId, setPaymentId] = useState<number | null>(null);
 
     const translate = useLanguage();
 
-    const showModal = () => {
+    // console.log(paymentId, "response");
+
+    const showModal = (id: number) => {
+        setPaymentId(id);
         setModalOpen(true);
     };
+
+    // console.log(response, "responseresponseresponseresponseresponse");
 
     const handleCancel = () => {
         setModalOpen(false);
@@ -40,13 +46,17 @@ export const PaymentTable: FC<PaymentTableI> = ({
         {
             title: `${translate("action")}`,
             dataIndex: "record",
-            render: (record: any) => (
-                <Space size={10}>
-                    <Button onClick={showModal} className='table__btn'>
-                        <EyeIcon />
-                    </Button>
-                </Space>
-            ),
+            render: (record: any) =>
+                record.for_what == "products" ? (
+                    <Space size={10}>
+                        <Button
+                            onClick={() => showModal(record.id)}
+                            className='table__btn'
+                        >
+                            <EyeIcon />
+                        </Button>
+                    </Space>
+                ) : null,
         },
     ];
     return (
@@ -76,6 +86,7 @@ export const PaymentTable: FC<PaymentTableI> = ({
                 <PaymentModal
                     isModalOpen={isModalOpen}
                     handleCancel={handleCancel}
+                    paymentId={paymentId}
                 />
             </div>
         </div>
