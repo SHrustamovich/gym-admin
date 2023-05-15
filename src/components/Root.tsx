@@ -18,6 +18,10 @@ import { NotFoundPage } from "./NotFoundPage/NotFoundPage";
 export const Root = () => {
     const [openMadal, setOpenModal] = useState(false);
 
+    const { request: logoutReq } = usePostRequest({
+        url: logout,
+    });
+
     const LogoutClick = () => {
         setOpenModal(true);
     };
@@ -64,6 +68,7 @@ export const Root = () => {
                 <LogoutModal
                     handleCancel={handleCancel}
                     openMadal={openMadal}
+                    logoutReq={logoutReq}
                 />
             </div>
             <div className='all'>

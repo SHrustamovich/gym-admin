@@ -30,8 +30,8 @@ export interface UserProviderI {
 }
 
 export interface ITokens {
-    accessToken: string;
-    refreshToken: string;
+    accessToken: string | null;
+    refreshToken: string | null;
 }
 
 export interface IUser {
@@ -55,6 +55,7 @@ export interface IUserContext {
 export interface LogoutModalI {
     handleCancel: () => void;
     openMadal: boolean;
+    logoutReq: () => void;
 }
 
 export interface CheckInModalI {

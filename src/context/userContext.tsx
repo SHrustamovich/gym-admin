@@ -5,22 +5,24 @@ const accessToken = localStorage.getItem("accessToken");
 const refreshToken = localStorage.getItem("refreshToken");
 
 const UserContextInitials = {
-    userData: {
-        user: {} as IUser,
-        tokens: {
-            accessToken: !!accessToken ? (accessToken as string) : "",
-            refreshToken: !!refreshToken ? (accessToken as string) : "",
-        },
+    user: {} as IUser,
+    tokens: {
+        accessToken,
+        refreshToken,
     },
 };
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider: FC<UserProviderI> = ({ children }) => {
-    const [userData, setUserData] = useState(UserContextInitials.userData);
+    const [userData, setUserData] = useState(UserContextInitials);
 
     function setTokens(accessToken: string, refreshToken: string) {
         setUserData({ ...userData, tokens: { accessToken, refreshToken } });
+    }
+
+    function oldTokens() {
+        setUserData(UserContextInitials);
     }
 
     return (
