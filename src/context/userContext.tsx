@@ -1,5 +1,5 @@
-import { createContext, useState, FC, useEffect } from "react";
-import { IUser, IUserContext, UserDataI, UserI, UserProviderI } from "./types";
+import { createContext, useState, FC } from "react";
+import { IUser, IUserContext, UserProviderI } from "./types";
 
 const accessToken = localStorage.getItem("accessToken");
 const refreshToken = localStorage.getItem("refreshToken");
@@ -19,10 +19,6 @@ const UserProvider: FC<UserProviderI> = ({ children }) => {
 
     function setTokens(accessToken: string, refreshToken: string) {
         setUserData({ ...userData, tokens: { accessToken, refreshToken } });
-    }
-
-    function oldTokens() {
-        setUserData(UserContextInitials);
     }
 
     return (

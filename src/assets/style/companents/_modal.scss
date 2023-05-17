@@ -174,3 +174,17 @@
         fill: $textColor !important;
     }
 }
+
+.delete__btn {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}
+.delete__btn .ant-btn {
+    background: $backgroundColor;
+    border: none;
+    color: $textColor;
+    span {
+        text-transform: uppercase;
+    }
+}

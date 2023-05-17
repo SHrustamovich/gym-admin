@@ -10,6 +10,7 @@
         @include adaptive-value(font-size, 22, 18, 1);
         @include adaptive-value(line-height, 28, 26, 1);
         color: $textColor;
+        text-transform: uppercase;
     }
     &__btn {
         display: flex;
@@ -60,4 +61,16 @@
 }
 .ant-tabs-ink-bar {
     background: $buttonColor !important;
+}
+
+.ant-tabs-tab-btn {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 28px;
+    text-transform: uppercase;
+}
+
+.ant-empty-description {
+    color: $textColor !important;
 }

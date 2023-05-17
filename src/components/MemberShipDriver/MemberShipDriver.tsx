@@ -14,6 +14,7 @@ import {
 } from "../type";
 import { MemberShipDraverI } from "../../pages/types";
 import moment from "moment";
+import { formLabel } from "../../utils/helpers";
 
 export const MemberShipDriver: FC<MemberShipDraverI> = ({
     open,
@@ -130,14 +131,15 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                         >
                             <div className='drawer__item'>
                                 <div className='drawer__label'>
-                                    {translate("membershipType")}
+                                    {translate("memberType")}
                                 </div>
                                 <Form.Item
                                     name='membership_type_id'
                                     rules={[
                                         {
                                             required: true,
-                                            message: translate("valName"),
+                                            message:
+                                                "Please select your membership",
                                         },
                                     ]}
                                 >
@@ -158,13 +160,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     {translate("date")}
                                 </div>
                                 <Form.Item
-                                    name='start_date'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: translate("valName"),
-                                        },
-                                    ]}
+                                    {...formLabel("Start date", "start_date")}
                                 >
                                     <DatePicker />
                                 </Form.Item>
@@ -178,7 +174,8 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     rules={[
                                         {
                                             required: true,
-                                            message: translate("valName"),
+                                            message:
+                                                "Please select your Payment method",
                                         },
                                     ]}
                                 >
@@ -202,13 +199,25 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                             </div>
                             <div className='drawer__item'>
                                 <Form.Item className='member-driver__btn'>
-                                    <Button className='member-driver__cancel'>
+                                    <Button
+                                        className='member-driver__cancel'
+                                        disabled={
+                                            memberShipEdit
+                                                ? memberShipPutReq.loading
+                                                : loading
+                                        }
+                                        onClick={() => onCloseDriver()}
+                                    >
                                         Cancel
                                     </Button>
                                     <Button
                                         htmlType='submit'
                                         className='member-driver__submit'
-                                        loading={loading}
+                                        loading={
+                                            memberShipEdit
+                                                ? memberShipPutReq.loading
+                                                : loading
+                                        }
                                     >
                                         Submit
                                     </Button>

@@ -1,10 +1,15 @@
 import { FC, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+import useLanguage from "../../hooks/useLanguage";
 import { StaticFilterData } from "../../utils/data";
 import { StatisticTotalI } from "../type";
 
 export const TopGraph: FC<StatisticTotalI> = ({ total }) => {
     const [searchParams, setSearchParams] = useSearchParams();
+
+    const translate = useLanguage();
+
+    const date = new Date();
 
     const totalMoney = useMemo(() => {
         return total
@@ -30,11 +35,13 @@ export const TopGraph: FC<StatisticTotalI> = ({ total }) => {
     return (
         <div className='top-graph'>
             <div className='top-graph__info'>
-                <p className='top-graph__year'>Продажи 2022</p>
+                <p className='top-graph__year'>
+                    {translate("sales")} <span>{date.getFullYear()}</span>
+                </p>
                 <div className='top-graph__money'>
-                    <p className='top-gaph__total'>
-                        Total sum : {totalMoney?.toLocaleString()}
-                         sum
+                    <p className='top-graph__total'>
+                        {translate("allSum")} : {totalMoney?.toLocaleString()}
+                        <span> sum</span>
                     </p>
                 </div>
             </div>
@@ -47,7 +54,7 @@ export const TopGraph: FC<StatisticTotalI> = ({ total }) => {
                         key={item.id}
                         onClick={() => funcChangeData(item.path)}
                     >
-                        {item.title}
+                        {translate(item.title)}
                     </button>
                 ))}
             </div>

@@ -3,6 +3,7 @@ import { FC, useEffect } from "react";
 import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { ProductDriver } from "../../pages/types";
+import { formLabel } from "../../utils/helpers";
 import { productPost, productPut, productType } from "../../utils/urls";
 import { MediaApi } from "../MediaApi/MediaApi";
 import { ProductEditI, ProductPostI, ProductTypeI } from "../type";
@@ -32,8 +33,6 @@ export const ProductDrawer: FC<ProductDriver> = ({
 
     const onFinish = async (e: ProductPostI) => {
         const { product_type_id, product_name, price, supplier, photo } = e;
-
-        console.log(product_type_id, product_name, price, supplier, photo);
 
         if (editProduct) {
             const { success, error } = await ProductPutReq.request({
@@ -104,7 +103,8 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                 rules={[
                                     {
                                         required: true,
-                                        message: translate("valName"),
+                                        message:
+                                            "Please select your Product type",
                                     },
                                 ]}
                             >
@@ -125,45 +125,30 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                 {translate("productN")}
                             </p>
                             <Form.Item
-                                name='product_name'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: translate("valName"),
-                                    },
-                                ]}
+                                {...formLabel("Product name", "product_name")}
                             >
-                                <Input />
+                                <Input placeholder={translate("productN")} />
                             </Form.Item>
                         </div>
                         <div className='drawer__item'>
                             <p className='drawer__label'>
                                 {translate("unitP")}
                             </p>
-                            <Form.Item
-                                name='price'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: translate("valName"),
-                                    },
-                                ]}
-                            >
-                                <Input />
+                            <Form.Item {...formLabel("Price", "price")}>
+                                <Input
+                                    onKeyPress={(event) => {
+                                        if (!/[0-9]/.test(event.key)) {
+                                            event.preventDefault();
+                                        }
+                                    }}
+                                    placeholder={translate("price")}
+                                />
                             </Form.Item>
                         </div>
                         <div className='drawer__item'>
                             <p className='drawer__label'>{translate("sup")}</p>
-                            <Form.Item
-                                name='supplier'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: translate("valName"),
-                                    },
-                                ]}
-                            >
-                                <Input />
+                            <Form.Item {...formLabel("Supplier", "supplier")}>
+                                <Input placeholder={translate("sup")} />
                             </Form.Item>
                         </div>
 
@@ -186,13 +171,22 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                 <Button
                                     className='member-driver__cancel'
                                     onClick={() => onCloseDraver()}
+                                    disabled={
+                                        editProduct
+                                            ? ProductPutReq.loading
+                                            : ProductPostReq.loading
+                                    }
                                 >
                                     Cancel
                                 </Button>
                                 <Button
                                     htmlType='submit'
                                     className='member-driver__submit'
-                                    loading={ProductPostReq.loading}
+                                    loading={
+                                        editProduct
+                                            ? ProductPutReq.loading
+                                            : ProductPostReq.loading
+                                    }
                                 >
                                     Save
                                 </Button>

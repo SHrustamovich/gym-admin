@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { Line } from "react-chartjs-2";
 import {
     Chart as ChartJS,
@@ -41,18 +41,32 @@ export const HomeGraph: FC<HomeGraphI> = ({ dataGraph }) => {
 
     const [search] = useSearchParams();
 
-    const labels = dataGraph?.statistics?.map((item) =>
-        moment(item[search.get("sortDateBy") as keyof StatisticTypeI]).format(
-            "LL"
-        )
-    );
+    type ObjT = {
+        week: (item: StatisticTypeI) => string;
+        month: (item: StatisticTypeI) => string;
+        year: (item: StatisticTypeI) => string;
+    };
+
+    const obj: ObjT = {
+        week: (item) => moment(item.week).format("ddd"),
+        month: (item) => moment(item.month).format("LL"),
+        year: (item) => moment(item.year).format("MMM"),
+    };
+
+    const labels = useMemo(() => {
+        return dataGraph?.statistics?.map((item) => {
+            return search.get("sortDateBy")
+                ? obj[search.get("sortDateBy") as keyof ObjT](item)
+                : null;
+        });
+    }, [dataGraph]);
 
     const data = {
         labels,
         datasets: [
             {
                 fill: true,
-                label: "money",
+                label: "Money",
                 data: dataGraph?.statistics?.map((item) => item.total),
 
                 borderColor: "#ffffff",

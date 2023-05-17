@@ -36,7 +36,6 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
         onClose();
     };
 
-    console.log(editInventory, "ddddddddddd");
 
     const onFinish = async (e: InventoryPostI) => {
         const { product_id, quantity } = e;

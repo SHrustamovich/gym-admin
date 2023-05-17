@@ -26,6 +26,8 @@ export const SettingTable: FC<SettingTableI> = ({
         showDrawer();
     };
 
+    // console.log(response, "ffffffffffffffff");
+
     const handlyDelete = (item: number) => {
         setMemberShipType(item);
         setIsOpenModal(true);
@@ -56,7 +58,12 @@ export const SettingTable: FC<SettingTableI> = ({
             dataIndex: "term",
             key: "term",
         },
-        { title: `${translate("price")}`, dataIndex: "price" },
+        {
+            title: `${translate("price")}`,
+            dataIndex: "price",
+            render: (item: string) => <>{Number(item).toLocaleString()}</>,
+        },
+
         {
             title: `${translate("action")}`,
             render: (record: any) => (
@@ -94,6 +101,7 @@ export const SettingTable: FC<SettingTableI> = ({
                 visible={isOpenModal}
                 onOkDelete={onOkDelete}
                 onCancel={() => setIsOpenModal(false)}
+                loading={MemberShipTypeDelete.loading}
             />
         </div>
     );

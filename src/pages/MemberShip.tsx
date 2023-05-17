@@ -23,8 +23,6 @@ export const MemberShip: FC = () => {
 
     const { response, loading, request } = memberSHipGetId;
 
-    console.log(response, "assasasa");
-
     const showDrawer = () => {
         setOpen(true);
     };
@@ -45,14 +43,16 @@ export const MemberShip: FC = () => {
                     </div>
                     <div className='member-ship__header'>
                         <div className='member-ship__text'>
-                            <p>MEMBERSHIPS</p>
+                            <p>{translate("addmem")}</p>
                         </div>
                         <button
                             className='member-ship__btn'
                             onClick={showDrawer}
                         >
                             <PlusIcon />
-                            <span className='title'>{translate("addmem")}</span>
+                            <span className='title'>
+                                {translate("membership")}
+                            </span>
                         </button>
                     </div>
                     <MemberShipDriver

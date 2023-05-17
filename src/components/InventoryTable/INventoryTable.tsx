@@ -61,9 +61,15 @@ export const InventoryTable: FC<InventoryTableI> = ({
             title: `${translate("status")}`,
             dataIndex: "status",
             key: "status",
-            render: (status: any) => (
+            render: (status: string) => (
                 <>
-                    <p className='status'>{status}</p>
+                    {status == "active" ? (
+                        <p className='status'>{translate("active")}</p>
+                    ) : status == "inactive" ? (
+                        <p className='status no'>{translate("inActive")}</p>
+                    ) : (
+                        <p className='status no'>{translate("removed")}</p>
+                    )}
                 </>
             ),
         },
@@ -108,6 +114,7 @@ export const InventoryTable: FC<InventoryTableI> = ({
                 visible={isModalDeleteOpen}
                 onOkDelete={onOkDelete}
                 onCancel={() => setIsModalDeleteOpen(false)}
+                loading={inventoryDeleteReq.loading}
             />
         </div>
     );

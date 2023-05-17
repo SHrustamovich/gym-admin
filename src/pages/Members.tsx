@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { FilterPart } from "../components/FilterPart/FilterPart";
 import { MemberModal } from "../components/Modals/MemberModal";
@@ -42,6 +42,18 @@ export const Members = () => {
         setIsModalOpen(false);
         setEditMembers(null);
     };
+
+
+    useEffect(() => {
+        const page = searchParams.get("page");
+        if (page !== null) {
+            if (response?.data.result.length == 0 && +page > 1) {
+                let result = +page - 1;
+                searchParams.set("page", result.toString());
+                setSearchParams(searchParams);
+            }
+        }
+    }, [response]);
 
     return (
         <div className='members'>

@@ -4,6 +4,7 @@ import { usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { MemberShipTypeDrawerI } from "../../pages/types";
 import { termData } from "../../utils/data";
+import { formLabel } from "../../utils/helpers";
 import { membershipTypeEdit, membershipTypepost } from "../../utils/urls";
 import { MemberShipTypePostI } from "../type";
 
@@ -75,7 +76,7 @@ export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
 
     return (
         <div className='setting-drawer'>
-            <Drawer open={open} onClose={onClose} closable={false}>
+            <Drawer open={open} onClose={onCloseDrawer} closable={false}>
                 <div className='setting-drawer__body'>
                     <div className='setting-drawer__title'>
                         {translate("memberType")}
@@ -83,45 +84,30 @@ export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
                     <Form onFinish={onFinish} form={form}>
                         <div className='item'>
                             <p className='label'>{translate("memberType")}</p>
-                            <Form.Item
-                                name='name'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: translate("valName"),
-                                    },
-                                ]}
-                            >
-                                <Input />
+                            <Form.Item {...formLabel("Name", "name")}>
+                                <Input placeholder={translate("memberType")} />
                             </Form.Item>
                         </div>
                         <div className='item'>
                             <p className='label'>{translate("price")}</p>
-                            <Form.Item
-                                name='price'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: translate("valName"),
-                                    },
-                                ]}
-                            >
-                                <Input />
+                            <Form.Item {...formLabel("Price", "price")}>
+                                <Input placeholder={translate("price")} />
                             </Form.Item>
                         </div>
                         <div className='item'>
                             <p className='label'>{translate("term")}</p>
                             <Form.Item
-                                name='term'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: translate("valName"),
-                                    },
-                                ]}
+                                // name='term'
+                                // rules={[
+                                //     {
+                                //         required: true,
+                                //         message: translate("valName"),
+                                //     },
+                                // ]}
+                                {...formLabel("Term", "term")}
                             >
                                 <Select
-                                    placeholder='select'
+                                    placeholder={translate("select")}
                                     options={termData.map((item) => ({
                                         value: item.term,
                                         label: item.term,
@@ -131,7 +117,10 @@ export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
                         </div>
                         <div className='item'>
                             <Form.Item className='member-driver__btn'>
-                                <Button className='member-driver__cancel'>
+                                <Button
+                                    className='member-driver__cancel'
+                                    onClick={() => onCloseDrawer()}
+                                >
                                     {translate("cancel")}
                                 </Button>
                                 <Button

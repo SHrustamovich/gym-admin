@@ -74,6 +74,16 @@ interface Trans {
     stockin: string;
     exit: string;
     search: string;
+    allSum: string;
+    week: string;
+    month: string;
+    year: string;
+    activeMember: string;
+    expriredMember: string;
+    todayVisit: string;
+    outStocks: string;
+    price: string;
+    select: string;
 }
 
 const uz: Trans = {
@@ -96,7 +106,7 @@ const uz: Trans = {
     gender: "Jins",
     male: "Erkak",
     female: "Ayol",
-    addmem: "A'ZOLIK QO'SHISH",
+    addmem: "A'ZOLIK",
     memberType: "A'zolik turi",
     term: "Muddati",
     date: "Boshlanash sanasi",
@@ -152,6 +162,16 @@ const uz: Trans = {
     stockin: "Stok in",
     exit: "Chiqish",
     search: "Qidiruv",
+    allSum: "Umumiy pul miqdori",
+    week: "hafta",
+    month: "oy",
+    year: "yil",
+    activeMember: "FAOL A'ZOLAR",
+    expriredMember: "Muddati o'tgan a'zolar",
+    todayVisit: "Bugungi tashriflar",
+    outStocks: "Stoksiz mahsulotlar",
+    price: "Bahosi",
+    select: "Tanlash",
 };
 
 const ru: Trans = {
@@ -174,7 +194,7 @@ const ru: Trans = {
     gender: "Пол",
     male: "Мужской",
     female: "Женский",
-    addmem: "ДОБАВИТЬ ЧЛЕНСТВО",
+    addmem: "Членство",
     memberType: "Тип членства",
     term: "Срок",
     date: "Дата начала",
@@ -230,6 +250,16 @@ const ru: Trans = {
     stockin: "в наличии",
     exit: "Выход",
     search: "Поиск",
+    allSum: "Итого",
+    week: "неделя",
+    month: "месяц",
+    year: "год",
+    activeMember: "Активные участники",
+    expriredMember: "Просроченные участники",
+    todayVisit: "Сегодня посещает",
+    outStocks: "Продукты, которых нет в наличии",
+    price: "Цена",
+    select: "Выбирать",
 };
 
 const eng: Trans = {
@@ -252,7 +282,7 @@ const eng: Trans = {
     gender: "Gender",
     male: "Male",
     female: "Female",
-    addmem: "ADD MEMBERSHIP",
+    addmem: "MEMBERSHIPS",
     memberType: "Membership Type",
     term: "Term",
     date: "Start Date",
@@ -308,6 +338,16 @@ const eng: Trans = {
     stockin: "Stock in",
     exit: "Exit",
     search: "Search",
+    allSum: "Total sum",
+    week: "week",
+    month: "month",
+    year: "year",
+    activeMember: "ACTIVE MEMBERS",
+    expriredMember: "Exprired Members",
+    todayVisit: "Today Visits",
+    outStocks: "Out of Stock Products",
+    price: "Price",
+    select: "Select",
 };
 
 interface LanguageKeyValuePairs {

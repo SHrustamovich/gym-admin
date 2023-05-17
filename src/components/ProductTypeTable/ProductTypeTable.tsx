@@ -13,7 +13,7 @@ export const ProductTypeTable: FC<ProductTypeTableI> = ({
     loading,
     req,
     setProductTypeEdit,
-    showModal
+    showModal,
 }) => {
     const translate = useLanguage();
     const [productType, setProductType] = useState<number | null>(null);
@@ -23,7 +23,7 @@ export const ProductTypeTable: FC<ProductTypeTableI> = ({
 
     const handlyProductTypeEdit = (item: any) => {
         setProductTypeEdit(item);
-        showModal()
+        showModal();
     };
 
     const handlyDelete = (id: number) => {
@@ -86,6 +86,7 @@ export const ProductTypeTable: FC<ProductTypeTableI> = ({
                 visible={isModalDeleteOpen}
                 onOkDelete={onOkDelete}
                 onCancel={() => setIsModalDeleteOpen(false)}
+                loading={productTypeDeleteReq.loading}
             />
         </div>
     );

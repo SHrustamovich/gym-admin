@@ -1,4 +1,11 @@
-import { createContext, Dispatch, FC, ReactNode, SetStateAction, useContext } from "react";
+import {
+    createContext,
+    Dispatch,
+    FC,
+    ReactNode,
+    SetStateAction,
+    useContext,
+} from "react";
 import { useLocalStorage } from "../hooks/useLacalStorage";
 
 interface KarzinkaContextProps {
@@ -25,7 +32,7 @@ interface CardContextI {
     incrementCount: (id: number) => void;
     decrementCount: (id: number) => void;
     cardData: CardData[];
-    setCardData: Dispatch<SetStateAction<CardData[]>>
+    setCardData: Dispatch<SetStateAction<CardData[]>>;
 }
 const CardContext = createContext({} as CardContextI);
 
@@ -65,19 +72,15 @@ export const KarzinkaContext: FC<KarzinkaContextProps> = ({ children }) => {
     }
 
     function decrementCount(id: number) {
-        const contationArr = cardData.find((el) => el.id === id);
-        if (contationArr?.count === 1) {
-            setCardData(cardData.filter((item) => item.id != id));
-        } else {
-            setCardData((item) => {
-                return item.map((el) =>
-                    el.id === id && el.count > 1
-                        ? { ...el, count: el.count - 1 }
-                        : el
-                );
-            });
-        }
+        setCardData((item) => {
+            return item.map((el) =>
+                el.id === id && el.count > 1
+                    ? { ...el, count: el.count - 1 }
+                    : el
+            );
+        });
     }
+
     return (
         <div>
             <CardContext.Provider
@@ -86,7 +89,7 @@ export const KarzinkaContext: FC<KarzinkaContextProps> = ({ children }) => {
                     cardData,
                     incrementCount,
                     decrementCount,
-                    setCardData
+                    setCardData,
                 }}
             >
                 {children}

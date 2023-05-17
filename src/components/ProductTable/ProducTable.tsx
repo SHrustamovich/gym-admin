@@ -57,7 +57,11 @@ export const ProductTable: FC<ProductTableI> = ({
             dataIndex: "product_name",
             key: "productN",
         },
-        { title: `${translate("unitP")}`, dataIndex: "price" },
+        {
+            title: `${translate("unitP")}`,
+            dataIndex: "price",
+            render: (item: string) => <>{Number(item).toLocaleString()}</>,
+        },
         { title: `${translate("sup")}`, dataIndex: "supplier" },
 
         {
@@ -108,6 +112,7 @@ export const ProductTable: FC<ProductTableI> = ({
                 visible={isOpenModal}
                 onOkDelete={onOkDelete}
                 onCancel={() => setIsOpenModal(false)}
+                loading={deleteProduct.loading}
             />
         </div>
     );

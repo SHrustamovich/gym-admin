@@ -57,6 +57,7 @@ export const MemberShipTable: FC<MemberShipTableI> = ({
         {
             title: `${translate("price")}`,
             dataIndex: "price",
+            render: (item: string) => <>{Number(item).toLocaleString()}</>,
         },
         {
             title: `${translate("date")}`,
@@ -69,9 +70,11 @@ export const MemberShipTable: FC<MemberShipTableI> = ({
             render: (record: string) => moment(record).format("LL"),
         },
         {
-            title: `${translate("status")}`, dataIndex: "status", render: (status: string) => (
+            title: `${translate("status")}`,
+            dataIndex: "status",
+            render: (status: string) => (
                 <>
-                     {status == "active" ? (
+                    {status == "active" ? (
                         <p className='status'>{translate("active")}</p>
                     ) : status == "inactive" ? (
                         <p className='status no'>{translate("inActive")}</p>
@@ -79,7 +82,8 @@ export const MemberShipTable: FC<MemberShipTableI> = ({
                         <p className='status no'>{translate("removed")}</p>
                     )}
                 </>
-        ) },
+            ),
+        },
         {
             title: `${translate("action")}`,
             dataIndex: "record",
@@ -123,6 +127,7 @@ export const MemberShipTable: FC<MemberShipTableI> = ({
                 visible={isOpenModal}
                 onOkDelete={onOkDelete}
                 onCancel={() => setIsOpenModal(false)}
+                loading={deleteMemberShip.loading}
             />
         </div>
     );

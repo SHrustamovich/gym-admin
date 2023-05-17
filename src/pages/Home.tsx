@@ -20,7 +20,6 @@ export const Home = () => {
 
     const { response, request, loading } = statisticsList;
 
-    console.log(response, "jjjjjjjjjjjjjj");
     return (
         <div className='home'>
             <div className='home__title'>{translate("money")}</div>

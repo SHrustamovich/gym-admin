@@ -113,17 +113,17 @@ export const sortData: SortDataI[] = [
 export const StaticFilterData: StaticFilterDataI[] = [
     {
         id: 1,
-        title: "Week",
+        title: "week",
         path: "week",
     },
     {
         id: 2,
-        title: "Month",
+        title: "month",
         path: "month",
     },
     {
         id: 3,
-        title: "Year",
+        title: "year",
         path: "year",
     },
 ];

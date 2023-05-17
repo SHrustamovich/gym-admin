@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { Button, Modal } from "antd";
 import { FC } from "react";
 import useLanguage from "../../hooks/useLanguage";
 import { deleteModalI } from "../../pages/types";
@@ -8,21 +8,37 @@ export const DeleteModal: FC<deleteModalI> = ({
     visible,
     onOkDelete,
     onCancel,
+    loading,
 }) => {
     const translate = useLanguage();
+
+    const handlyBtn = () => {
+        onOkDelete();
+    };
+
+    const handlyCancel = () => {
+        onCancel();
+    };
 
     return (
         <div className='delete-modal'>
             <Modal
-                title={"Delete"}
+                title={title}
                 centered
                 open={visible}
-                onOk={onOkDelete}
-                okText={translate("yes")}
-                cancelText={translate("no")}
                 okType='danger'
                 onCancel={onCancel}
-            />
+                footer={false}
+            >
+                <div className='delete__btn'>
+                    <Button onClick={handlyCancel} danger disabled={loading}>
+                        {translate("no")}
+                    </Button>
+                    <Button loading={loading} onClick={handlyBtn}>
+                        {translate("yes")}
+                    </Button>
+                </div>
+            </Modal>
         </div>
     );
 };

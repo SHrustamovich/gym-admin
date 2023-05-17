@@ -12,7 +12,6 @@ export const HistoryTable: FC<HistoryTableI> = ({
 }) => {
     const translate = useLanguage();
 
-    console.log(response?.data.result, "kkkkkkkkkkkkk");
 
     const columns = [
         {

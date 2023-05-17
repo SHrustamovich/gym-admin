@@ -46,8 +46,6 @@ export const TableMain: FC<tableI> = ({
         setCheckInModal(false);
     };
 
-    console.log(response, "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-
     const deleteMembers = useDeleteRequest();
 
     const handlyProductEdit = (item: any) => {
@@ -84,8 +82,6 @@ export const TableMain: FC<tableI> = ({
     const VisitList = useLoad<HistoryI>({ url: historyGet });
 
     const { response: visitListItem } = VisitList;
-
-    // console.log(visitListItem, "visitListItem");
 
     const columns = [
         {
@@ -144,7 +140,7 @@ export const TableMain: FC<tableI> = ({
                             onClick={() => handlyCheckIn(record.id)}
                         >
                             <ExitIcon />
-                        </Button>       
+                        </Button>
                         <Button
                             onClick={() => handlyProductEdit(record)}
                             className='table__btn'
@@ -197,6 +193,7 @@ export const TableMain: FC<tableI> = ({
                 visible={isOpenModal}
                 onOkDelete={onOkDelete}
                 onCancel={() => setIsOpenModal(false)}
+                loading={deleteMembers.loading}
             />
         </div>
     );

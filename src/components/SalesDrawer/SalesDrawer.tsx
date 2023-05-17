@@ -28,7 +28,6 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
         incrementCount(id);
     };
 
-    console.log(cardData, "llllllll");
 
     const totalMoney = useMemo(() => {
         if (!!cardData.length) {
@@ -60,7 +59,6 @@ export const SalesDrawer: FC<PosDrawer> = ({ open, onClose, load }) => {
                 onClose();
                 setCardData([]);
             } else {
-                console.log(error);
                 // message.error(error);
             }
         } else {

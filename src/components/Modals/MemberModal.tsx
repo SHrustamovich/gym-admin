@@ -6,7 +6,7 @@ import useLanguage from "../../hooks/useLanguage";
 import { modalI } from "../../pages/types";
 import { memberPost, membershipGet, membersPut } from "../../utils/urls";
 import { MemberPostType, membersEditI, MemberShipType } from "../type";
-import { phoneNamberCheck } from "../../utils/helpers";
+import { formLabel, phoneNamberCheck } from "../../utils/helpers";
 import moment from "moment";
 
 export const MemberModal: FC<modalI> = ({
@@ -71,24 +71,19 @@ export const MemberModal: FC<modalI> = ({
                 });
             if (success) {
                 message.success("MEMBER ADDED SUCCESSFULLY");
-                handleCancel();
+                handlyCancel();
                 request?.();
                 form.resetFields();
             }
             if (error) {
                 message.error("SOMETHING WENT WRONG");
-                handleCancel();
-                form.resetFields();
             }
         }
     };
 
-    // a b
 
     useEffect(() => {
         if (editMembers != null) {
-            console.log(editMembers, "edit");
-            console.log(moment(editMembers.date_of_birth));
             form.setFieldsValue({
                 ...editMembers,
                 date_of_birth: moment(editMembers.date_of_birth),
@@ -125,13 +120,7 @@ export const MemberModal: FC<modalI> = ({
                                 </div>
                                 <Form.Item
                                     className='modal__item'
-                                    name='fullname'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: translate("valName"),
-                                        },
-                                    ]}
+                                    {...formLabel("Fullname", "fullname")}
                                 >
                                     <Input
                                         prefix={<PersonIcon />}
@@ -145,13 +134,7 @@ export const MemberModal: FC<modalI> = ({
                                 </div>
                                 <Form.Item
                                     className='modal__item'
-                                    name='phone'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: translate("valName"),
-                                        },
-                                    ]}
+                                    {...formLabel("Phone number", "phone")}
                                 >
                                     <Input
                                         prefix={<PhoneIcon />}
@@ -167,13 +150,10 @@ export const MemberModal: FC<modalI> = ({
                                 </div>
                                 <Form.Item
                                     className='modal__item'
-                                    name='date_of_birth'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: translate("valName"),
-                                        },
-                                    ]}
+                                    {...formLabel(
+                                        "Date of birth",
+                                        "date_of_birth"
+                                    )}
                                 >
                                     <DatePicker
                                         suffixIcon={<CaleIcon />}
@@ -192,7 +172,7 @@ export const MemberModal: FC<modalI> = ({
                                     rules={[
                                         {
                                             required: true,
-                                            message: translate("valName"),
+                                            message: "Plase select your gender",
                                         },
                                     ]}
                                 >
@@ -209,7 +189,11 @@ export const MemberModal: FC<modalI> = ({
                             <div className='modal__btn'>
                                 <Button
                                     className='member-modal__cancel'
-                                    disabled={loading}
+                                    disabled={
+                                        editMembers
+                                            ? membersPutReq.loading
+                                            : loading
+                                    }
                                     onClick={handlyCancel}
                                 >
                                     {translate("cancel")}
@@ -217,7 +201,11 @@ export const MemberModal: FC<modalI> = ({
                                 <Button
                                     className='member-modal__create'
                                     htmlType='submit'
-                                    loading={loading}
+                                    loading={
+                                        editMembers
+                                            ? membersPutReq.loading
+                                            : loading
+                                    }
                                 >
                                     {translate("create")}
                                 </Button>

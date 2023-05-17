@@ -68,6 +68,7 @@ export interface deleteModalI {
     visible: boolean;
     onOkDelete: () => void;
     onCancel: () => void;
+    loading: boolean;
 }
 
 export interface tableI {

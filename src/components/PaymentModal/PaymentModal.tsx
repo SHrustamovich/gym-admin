@@ -26,8 +26,6 @@ export const PaymentModal: FC<modalI> = ({
 
     const { response, loading } = paymentDetailsList;
 
-    console.log(response);
-
     const columns = [
         {
             title: `${translate("productN")}`,
@@ -38,7 +36,11 @@ export const PaymentModal: FC<modalI> = ({
             dataIndex: "product_type",
         },
         { title: `${translate("sup")}`, dataIndex: "supplier" },
-        { title: `${translate("unitP")}`, dataIndex: "price" },
+        {
+            title: `${translate("unitP")}`,
+            dataIndex: "price",
+            render: (item: string) => <>{Number(item).toLocaleString()}</>,
+        },
         { title: `${translate("pur")}`, dataIndex: "product_count" },
     ];
 

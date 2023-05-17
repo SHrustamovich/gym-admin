@@ -70,6 +70,16 @@ export const handlyEncrypted = () => {
             secret: secretString,
             time: Date.now(),
         }),
-        encString
+        encString as string
     ).toString();
 };
+
+export const formLabel = (title: string, name: string) => ({
+    name: name,
+    rules: [
+        {
+            required: true,
+            message: `Please input your ${title}!`,
+        },
+    ],
+});

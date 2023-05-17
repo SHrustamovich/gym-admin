@@ -17,14 +17,12 @@ export const PaymentTable: FC<PaymentTableI> = ({
 
     const translate = useLanguage();
 
-    // console.log(paymentId, "response");
 
     const showModal = (id: number) => {
         setPaymentId(id);
         setModalOpen(true);
     };
 
-    // console.log(response, "responseresponseresponseresponseresponse");
 
     const handleCancel = () => {
         setModalOpen(false);
