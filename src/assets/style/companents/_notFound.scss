@@ -5,12 +5,6 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    // &__number {
-    //     position: absolute;
-    //     top: 50%;
-    //     left: 50%;
-    //     transform: translate(-50%, -50%);
-    // }
     &__stone {
         position: absolute;
         top: 27%;
@@ -25,31 +19,3 @@
         color: #e2e2e2;
     }
 }
-
-// @keyframes topName {
-//     from {
-//         transform: translate(0, 20deg);
-//     }
-//     to {
-//         rotate: -20deg;
-//         top: -10px;
-//     }
-// }
-// @keyframes bottomName {
-//     from {
-//         transform: translate(0, 10deg);
-//     }
-//     to {
-//         rotate: -25deg;
-//         top: 20px;
-//     }
-// }
-
-// @keyframes name {
-//     from {
-//         transform: translate(0, 35px);
-//     }
-//     to {
-//         transform: translate(0, 0);
-//     }
-// }

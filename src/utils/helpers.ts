@@ -1,5 +1,4 @@
 import { AES } from "crypto-ts";
-import Cookies from "universal-cookie";
 import { encString, secretString } from "../config";
 
 export const postData = (obj: any, n = []) => {
@@ -53,25 +52,6 @@ export const phoneNamberCheck = (value: string) => {
     return result;
 };
 
-const coookie = new Cookies();
-
-export const getCookie = (key: string): string | null => {
-    return coookie.get(key);
-};
-
-export const setCookie = (key: string, value: string) => {
-    coookie.set(key, value);
-};
-
-export const clearCookie = (key: string) => {
-    coookie.remove(key);
-};
-
-export const clearCookieAuth = () => {
-    clearCookie("Authentication");
-    clearCookie("Refresh");
-};
-
 // Local Storage
 type keyLocalStroge = "accessToken" | "refreshToken";
 
@@ -91,5 +71,5 @@ export const handlyEncrypted = () => {
             time: Date.now(),
         }),
         encString
-    ).toString()
+    ).toString();
 };

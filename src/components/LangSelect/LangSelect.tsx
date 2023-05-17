@@ -54,18 +54,13 @@ export const SelectLang: FC = () => {
                         key={item.id}
                         onClick={() => handlyLang(item.key as LangEnums)}
                     >
-                        <div className='select__item__img'>
+                        <div className='select__item_img'>
                             <img src={item.icon} alt='' />
                         </div>
-                        <span className='select__item__text'>{item.title}</span>
+                        <span className='select__item_text'>{item.title}</span>
                     </li>
                 ))}
             </ul>
         </div>
     );
 };
-
-// BEM
-// block
-// block__element
-// block__element_modifire

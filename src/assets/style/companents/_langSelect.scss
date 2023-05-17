@@ -38,7 +38,7 @@
             padding-bottom: 12px;
         }
 
-        &__img {
+        &_img {
             width: 24px;
             height: 24px;
             border-radius: 50%;
@@ -47,7 +47,7 @@
                 height: 100%;
             }
         }
-        &__text {
+        &_text {
             font-style: normal;
             font-weight: 500;
             @include adaptive-value(font-size, 16, 12, 1);

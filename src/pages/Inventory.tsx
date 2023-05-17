@@ -50,7 +50,7 @@ export const Inventory = () => {
                     <FilterPart filterData={sortData} />
                     <button className='inventory__btn' onClick={showDwawer}>
                         <PlusIcon />
-                        <span className='inventory__btn__text'>
+                        <span className='inventory__btn_text'>
                             {translate("stock")}
                         </span>
                     </button>
