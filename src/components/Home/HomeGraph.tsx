@@ -1,5 +1,6 @@
 import { FC, useMemo } from "react";
 import { Line } from "react-chartjs-2";
+import { useSearchParams } from "react-router-dom";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -13,9 +14,8 @@ import {
 } from "chart.js";
 import { HomeGraphI } from "../../pages/types";
 import { TopGraph } from "./TopGraph";
-import moment from "moment";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { StatisticTypeI } from "../type";
+import moment from "moment";
 
 ChartJS.register(
     CategoryScale,

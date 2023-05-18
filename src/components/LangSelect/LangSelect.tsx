@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import { FC, useContext, useEffect, useRef } from "react";
 import { LanguageContext } from "../../context/languageContext";
 import useModalView from "../../hooks/useModalView";
 import { LangData } from "../../utils/data";

@@ -2,10 +2,9 @@ import { useContext } from "react";
 import { Button, Form, Input, message } from "antd";
 import { LoginPasswordIcon, PersonIcon } from "../assets/icons/icons";
 import { LogoIcon } from "../assets/icons/logo";
-import { LoginReqI, UserDataI } from "../context/types";
 import { UserContext } from "../context/userContext";
 import { usePostRequest } from "../hooks/request";
-import { authLogin, domen } from "../utils/urls";
+import { authLogin } from "../utils/urls";
 
 interface LoginAuth {
     username: string;
@@ -83,8 +82,12 @@ export const LogIn = () => {
 
                     <div className='login__item'>
                         <Form.Item className='login__btnForm'>
-                            <Button className='login__btn' htmlType='submit'>
-                                <span> LOGIN</span>
+                            <Button
+                                className='login__btn'
+                                htmlType='submit'
+                                loading={loginRequest.loading}
+                            >
+                                <span>LOGIN</span>
                             </Button>
                         </Form.Item>
                     </div>

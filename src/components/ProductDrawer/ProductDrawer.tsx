@@ -76,7 +76,6 @@ export const ProductDrawer: FC<ProductDriver> = ({
             form.setFieldsValue({
                 ...editProduct,
             });
-            // form.setFieldValue('product_type_id', editProduct)
         }
     }, [editProduct]);
 

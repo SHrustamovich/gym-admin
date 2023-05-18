@@ -26,8 +26,6 @@ export const SettingTable: FC<SettingTableI> = ({
         showDrawer();
     };
 
-    // console.log(response, "ffffffffffffffff");
-
     const handlyDelete = (item: number) => {
         setMemberShipType(item);
         setIsOpenModal(true);

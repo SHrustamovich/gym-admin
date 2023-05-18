@@ -2,10 +2,10 @@ import { FC, useState } from "react";
 import useLanguage from "../../hooks/useLanguage";
 import { Button, Space, Table } from "antd";
 import { PaymentModal } from "../PaymentModal/PaymentModal";
+import { Loading } from "../Loading/Loading";
 import { EyeIcon } from "../../assets/icons/icons";
 import { PaymentTableI } from "../../pages/types";
 import moment from "moment";
-import { Loading } from "../Loading/Loading";
 
 export const PaymentTable: FC<PaymentTableI> = ({
     response,

@@ -96,16 +96,7 @@ export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
                         </div>
                         <div className='item'>
                             <p className='label'>{translate("term")}</p>
-                            <Form.Item
-                                // name='term'
-                                // rules={[
-                                //     {
-                                //         required: true,
-                                //         message: translate("valName"),
-                                //     },
-                                // ]}
-                                {...formLabel("Term", "term")}
-                            >
+                            <Form.Item {...formLabel("Term", "term")}>
                                 <Select
                                     placeholder={translate("select")}
                                     options={termData.map((item) => ({

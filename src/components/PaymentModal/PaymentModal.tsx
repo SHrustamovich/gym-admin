@@ -2,10 +2,10 @@ import { Modal, Table } from "antd";
 import { FC } from "react";
 import { useLoad } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
+import { MiniLoading } from "../Loading/MiniLoading";
 import { modalI } from "../../pages/types";
 import { paymentDetailsUrl } from "../../utils/urls";
-import { MiniLoading } from "../Loading/MiniLoading";
-import { VisitProductDataI, VisitProductI } from "../type";
+import { VisitProductDataI } from "../type";
 
 export const PaymentModal: FC<modalI> = ({
     isModalOpen,

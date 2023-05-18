@@ -7,13 +7,13 @@ import { Setting } from "../pages/Setting";
 import useAuthentication from "../hooks/useAuth";
 import { LogIn } from "../pages/LogIn";
 import { MemberShip } from "../pages/MemberShip";
+import { LogoutModal } from "./LogoutModal/LogoutModal";
+import { NotFoundPage } from "./NotFoundPage/NotFoundPage";
 import { usePostRequest } from "../hooks/request";
 import { logout } from "../utils/urls";
 import { sideBarData } from "../utils/data";
 import { Avatarca, LogOut, ParametrIcon } from "../assets/icons/icons";
-import { LogoutModal } from "./LogoutModal/LogoutModal";
 import { useState } from "react";
-import { NotFoundPage } from "./NotFoundPage/NotFoundPage";
 
 export const Root = () => {
     const [openMadal, setOpenModal] = useState(false);

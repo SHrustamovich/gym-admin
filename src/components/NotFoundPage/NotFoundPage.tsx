@@ -1,10 +1,5 @@
 import { FC } from "react";
-import {
-    DumbbleBottomIcon,
-    DumbbleIcon,
-    DumbbleTopIcon,
-    FoundNumberIcon,
-} from "../../assets/icons/icons";
+import { DumbbleIcon, FoundNumberIcon } from "../../assets/icons/icons";
 export const NotFoundPage: FC = () => {
     return (
         <div className='not-found'>

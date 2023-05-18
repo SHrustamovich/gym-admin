@@ -1,11 +1,11 @@
 import { FC } from "react";
+import useLanguage from "../../hooks/useLanguage";
 import {
     ActiveIcon,
     ExpriredIcon,
     StockIcon,
     VisitIcon,
 } from "../../assets/icons/icons";
-import useLanguage from "../../hooks/useLanguage";
 import { StatisticPageI } from "../type";
 
 export const Statistics: FC<StatisticPageI> = ({ response }) => {

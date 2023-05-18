@@ -1,8 +1,8 @@
 import { Modal } from "antd";
 import { FC } from "react";
-import { LogoutModalI } from "../../context/types";
-import { usePostRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
+import { usePostRequest } from "../../hooks/request";
+import { LogoutModalI } from "../../context/types";
 import { logout } from "../../utils/urls";
 
 export const LogoutModal: FC<LogoutModalI> = ({ handleCancel, openMadal }) => {
