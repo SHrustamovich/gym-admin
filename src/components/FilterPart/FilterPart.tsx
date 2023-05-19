@@ -40,7 +40,7 @@ export const FilterPart: FC<filterI> = ({ filterData }) => {
         searchParams.set("status", target);
         setSearchParams(searchParams);
     };
-
+    
     return (
         <div className='filter'>
             <div className='filter__header' onClick={openFilterBody}>

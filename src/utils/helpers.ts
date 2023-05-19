@@ -1,6 +1,7 @@
 import { AES } from "crypto-ts";
 import { encString, secretString } from "../config";
 
+
 export const postData = (obj: any, n = []) => {
     let newObj: any = structuredClone(obj);
     for (let el in newObj) {
@@ -79,7 +80,7 @@ export const formLabel = (title: string, name: string) => ({
     rules: [
         {
             required: true,
-            message: `Please input your ${title}!`,
+            message: ` ${title}!`,
         },
     ],
 });

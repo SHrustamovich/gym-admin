@@ -131,7 +131,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                         >
                             <div className='drawer__item'>
                                 <div className='drawer__label'>
-                                    {translate("memberType")}
+                                    {translate("membershipTypeName")}
                                 </div>
                                 <Form.Item
                                     name='membership_type_id'
@@ -144,7 +144,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     ]}
                                 >
                                     <Select
-                                        placeholder='Select'
+                                        placeholder={translate("select")}
                                         className='member-driver__select'
                                         options={response?.data.result.map(
                                             (item) => ({
@@ -162,7 +162,9 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                 <Form.Item
                                     {...formLabel("Start date", "start_date")}
                                 >
-                                    <DatePicker />
+                                    <DatePicker
+                                        placeholder={translate("selectDate")}
+                                    />
                                 </Form.Item>
                             </div>
                             <div className='drawer__item'>
@@ -208,7 +210,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                         }
                                         onClick={() => onCloseDriver()}
                                     >
-                                        Cancel
+                                        {translate("cancel")}
                                     </Button>
                                     <Button
                                         htmlType='submit'
@@ -219,7 +221,7 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                                 : loading
                                         }
                                     >
-                                        Submit
+                                        {translate("submit")}
                                     </Button>
                                 </Form.Item>
                             </div>
