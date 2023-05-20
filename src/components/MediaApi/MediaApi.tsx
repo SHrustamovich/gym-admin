@@ -1,6 +1,6 @@
-import { message, Modal, Upload } from "antd";
+import { Form, message, Modal, Upload } from "antd";
 import { UploadFile } from "antd/es/upload/interface";
-import { FC, useState } from "react";
+import { FC, useEffect, useId, useState } from "react";
 import { handlyEncrypted } from "../../utils/helpers";
 import { $mediaApi } from "../../utils/https";
 import { mediaAdd } from "../../utils/urls";
@@ -8,15 +8,14 @@ import { MediaPropsI, MediaTypeI } from "../type";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import useLanguage from "../../hooks/useLanguage";
 
-export const MediaApi: FC<MediaPropsI> = ({
-    form,
-    name,
-}) => {
+export const MediaApi: FC<MediaPropsI> = ({ form, name }) => {
     const [fileList, setFileList] = useState<UploadFile<MediaTypeI>[]>([]);
     const [loading, setLoading] = useState(false);
     const [previewImage, setPreviewImage] = useState("");
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewTitle, setPreviewTitle] = useState("");
+
+    const ID = useId();
 
     const translate = useLanguage();
 
@@ -97,6 +96,25 @@ export const MediaApi: FC<MediaPropsI> = ({
             <div className='upload'>{translate("upload")}</div>
         </div>
     );
+
+    // edit
+    const imageUrl = Form.useWatch("photo", form);
+
+    console.log(fileList, "yyyyyyy");
+
+    useEffect(() => {
+        console.log("render");
+        if (typeof imageUrl === "string" && !!imageUrl.trim()) {
+            setFileList([
+                {
+                    uid: ID,
+                    status: "done",
+                    url: imageUrl,
+                    name: imageUrl,
+                },
+            ]);
+        }
+    }, [imageUrl]);
 
     return (
         <div className='media'>

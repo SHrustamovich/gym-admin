@@ -32,7 +32,7 @@ export const PaymentModal: FC<modalI> = ({
             dataIndex: "product_name",
         },
         {
-            title: `${translate("productT")}`,
+            title: `${translate("praductT")}`,
             dataIndex: "product_type",
         },
         { title: `${translate("sup")}`, dataIndex: "supplier" },
