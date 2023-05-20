@@ -138,8 +138,11 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     rules={[
                                         {
                                             required: true,
-                                            message:
-                                                "Please select your membership",
+                                            message: `${translate(
+                                                "pleaseS"
+                                            )} ${translate(
+                                                "membershipTypeName"
+                                            )}`,
                                         },
                                     ]}
                                 >
@@ -160,7 +163,12 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     {translate("date")}
                                 </div>
                                 <Form.Item
-                                    {...formLabel("Start date", "start_date")}
+                                    {...formLabel(
+                                        `${translate("pleaseS")} ${translate(
+                                            "date"
+                                        )}`,
+                                        "start_date"
+                                    )}
                                 >
                                     <DatePicker
                                         placeholder={translate("selectDate")}
@@ -176,13 +184,14 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                     rules={[
                                         {
                                             required: true,
-                                            message:
-                                                "Please select your Payment method",
+                                            message: `${translate(
+                                                "pleaseS"
+                                            )} ${translate("payment")}`,
                                         },
                                     ]}
                                 >
                                     <Select
-                                        placeholder={translate("payment")}
+                                        placeholder={translate("paymentS")}
                                         className='member-driver__select'
                                         options={[
                                             { value: "cash", label: "cash" },
@@ -221,7 +230,9 @@ export const MemberShipDriver: FC<MemberShipDraverI> = ({
                                                 : loading
                                         }
                                     >
-                                        {translate("submit")}
+                                        {memberShipEdit
+                                            ? translate("update")
+                                            : translate("submit")}
                                     </Button>
                                 </Form.Item>
                             </div>

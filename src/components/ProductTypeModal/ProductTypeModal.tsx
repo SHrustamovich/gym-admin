@@ -90,7 +90,9 @@ export const ProductTypeModal: FC<ProductTypeModalI> = ({
                                 rules={[
                                     {
                                         required: true,
-                                        message: translate("valName"),
+                                        message: `${translate(
+                                            "please"
+                                        )} ${translate("praductT")}`,
                                     },
                                 ]}
                             >
@@ -103,7 +105,7 @@ export const ProductTypeModal: FC<ProductTypeModalI> = ({
                                     className='member-driver__cancel'
                                     onClick={() => removeModal()}
                                 >
-                                    Cancel
+                                    {translate("cancel")}
                                 </Button>
                                 <Button
                                     htmlType='submit'
@@ -114,7 +116,7 @@ export const ProductTypeModal: FC<ProductTypeModalI> = ({
                                             : ProductTypePostReq.loading
                                     }
                                 >
-                                    Save
+                                    {translate("save")}
                                 </Button>
                             </Form.Item>
                         </div>

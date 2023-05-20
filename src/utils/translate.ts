@@ -87,6 +87,14 @@ interface Trans {
     please: string;
     selectDate: string;
     submit: string;
+    paymentS: string;
+    pleaseS: string;
+    upload: string;
+    img: string;
+    update: string;
+    checkIn: string;
+    delete: string;
+    noProduct: string;
 }
 
 const uz: Trans = {
@@ -175,9 +183,17 @@ const uz: Trans = {
     outStocks: "Stoksiz mahsulotlar",
     price: "Bahosi",
     select: "Tanlash",
-    please: "Iltimos,kiriting",
+    please: "Iltimos, kiriting",
     selectDate: "Vaqtni tanlash",
     submit: "Tasdiqlamoq",
+    paymentS: "To'lov turini tanlang",
+    pleaseS: "Iltimos, tanlang",
+    upload: "Yuklash",
+    img: "Rasm",
+    update: "O'zgartirish",
+    checkIn: "Tasdiqlash",
+    delete: "O'chirmoqchimisiz?",
+    noProduct: "Mahsulot topilmadi!",
 };
 
 const ru: Trans = {
@@ -267,8 +283,16 @@ const ru: Trans = {
     price: "Цена",
     select: "Выбирать",
     selectDate: "Выбор времени",
-    please: "Пожалуйста, введите ваш",
+    please: "Пожалуйста, введите",
     submit: "Подтверждать",
+    paymentS: "Выберите тип оплаты",
+    pleaseS: "Пожалуйста, выберите",
+    upload: "Загрузить",
+    img: "Изображение",
+    update: "Обновлять",
+    checkIn: "Подтверждение",
+    delete: "Вы хотите удалить?",
+    noProduct: "Товар не найден!",
 };
 
 const eng: Trans = {
@@ -360,6 +384,14 @@ const eng: Trans = {
     selectDate: "Select date",
     please: "Please input your",
     submit: "Submit",
+    paymentS: "Select the payment type",
+    pleaseS: "Please select",
+    upload: "Upload",
+    img: "Image",
+    update: "Update",
+    checkIn: "Check in",
+    delete: "Do you want to delete?",
+    noProduct: "Product not found!",
 };
 
 interface LanguageKeyValuePairs {

@@ -9,6 +9,7 @@
         @include adaptive-value(line-height, 28, 26, 1);
         color: $textColor;
         @include adaptive-value(padding-bottom, 32, 26, 1);
+        text-transform: uppercase;
     }
 }
 
@@ -17,4 +18,8 @@
 }
 .drawer__item_img .ant-form-item-control-input-content:hover {
     box-shadow: none !important;
+}
+
+.ant-input::placeholder {
+    color: #939393 !important;
 }

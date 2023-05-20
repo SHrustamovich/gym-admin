@@ -48,7 +48,7 @@ export const InventoryTable: FC<InventoryTableI> = ({
 
     const columns = [
         {
-            title: `${translate("productT")}`,
+            title: `${translate("praductT")}`,
             dataIndex: "product_type",
         },
         {

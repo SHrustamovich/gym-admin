@@ -1,4 +1,4 @@
-import { message, Modal } from "antd";
+import { Button, message, Modal } from "antd";
 import { FC } from "react";
 import { CheckInModalI } from "../../context/types";
 import { usePostRequest } from "../../hooks/request";
@@ -45,8 +45,21 @@ export const CheckIn: FC<CheckInModalI> = ({
                 centered
                 open={checkInModal}
                 onCancel={handlyCancel}
-                onOk={checkInOk}
-            />
+                footer={false}
+            >
+                <div className='delete__btn'>
+                    <Button
+                        onClick={handlyCancel}
+                        danger
+                        disabled={checkInPost.loading}
+                    >
+                        {translate("no")}
+                    </Button>
+                    <Button loading={checkInPost.loading} onClick={checkInOk}>
+                        {translate("yes")}
+                    </Button>
+                </div>
+            </Modal>
         </div>
     );
 };

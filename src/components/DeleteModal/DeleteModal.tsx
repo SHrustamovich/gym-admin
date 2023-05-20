@@ -23,7 +23,7 @@ export const DeleteModal: FC<deleteModalI> = ({
     return (
         <div className='delete-modal'>
             <Modal
-                title={title}
+                title={translate("delete")}
                 centered
                 open={visible}
                 okType='danger'

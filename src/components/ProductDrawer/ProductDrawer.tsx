@@ -1,12 +1,12 @@
-import { Button, Drawer, Form, Input, message, Select } from "antd";
-import { FC, useEffect } from "react";
+import { Button, Drawer, Form, Input, message, Select, UploadFile } from "antd";
+import { FC, useEffect, useState } from "react";
 import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { ProductDriver } from "../../pages/types";
 import { formLabel } from "../../utils/helpers";
 import { productPost, productPut, productType } from "../../utils/urls";
 import { MediaApi } from "../MediaApi/MediaApi";
-import { ProductEditI, ProductPostI, ProductTypeI } from "../type";
+import { MediaTypeI, ProductEditI, ProductPostI, ProductTypeI } from "../type";
 
 export const ProductDrawer: FC<ProductDriver> = ({
     open,
@@ -15,6 +15,8 @@ export const ProductDrawer: FC<ProductDriver> = ({
     req,
 }) => {
     const translate = useLanguage();
+    const [fileList, setFileList] = useState<UploadFile<MediaTypeI>[]>([]);
+
     const [form] = Form.useForm();
 
     const onCloseDraver = () => {
@@ -71,6 +73,8 @@ export const ProductDrawer: FC<ProductDriver> = ({
         }
     };
 
+    console.log(editProduct, "product");
+
     useEffect(() => {
         if (editProduct != null) {
             form.setFieldsValue({
@@ -78,8 +82,6 @@ export const ProductDrawer: FC<ProductDriver> = ({
             });
         }
     }, [editProduct]);
-
-    const hi = { name: "hi" };
 
     return (
         <div className='product-drawer'>
@@ -98,17 +100,15 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                 {translate("praductT")}
                             </p>
                             <Form.Item
-                                name='product_type_id'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message:
-                                            "Please select your Product type",
-                                    },
-                                ]}
+                                {...formLabel(
+                                    `${translate("pleaseS")} ${translate(
+                                        "praductT"
+                                    )}`,
+                                    "product_type_id"
+                                )}
                             >
                                 <Select
-                                    placeholder='select'
+                                    placeholder={translate("select")}
                                     className='member-driver__select'
                                     options={response?.data.result.map(
                                         (item) => ({
@@ -124,7 +124,12 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                 {translate("productN")}
                             </p>
                             <Form.Item
-                                {...formLabel("Product name", "product_name")}
+                                {...formLabel(
+                                    `${translate("please")} ${translate(
+                                        "productN"
+                                    )}`,
+                                    "product_name"
+                                )}
                             >
                                 <Input placeholder={translate("productN")} />
                             </Form.Item>
@@ -133,7 +138,14 @@ export const ProductDrawer: FC<ProductDriver> = ({
                             <p className='drawer__label'>
                                 {translate("unitP")}
                             </p>
-                            <Form.Item {...formLabel("Price", "price")}>
+                            <Form.Item
+                                {...formLabel(
+                                    `${translate("please")} ${translate(
+                                        "unitP"
+                                    )}`,
+                                    "price"
+                                )}
+                            >
                                 <Input
                                     onKeyPress={(event) => {
                                         if (!/[0-9]/.test(event.key)) {
@@ -146,7 +158,14 @@ export const ProductDrawer: FC<ProductDriver> = ({
                         </div>
                         <div className='drawer__item'>
                             <p className='drawer__label'>{translate("sup")}</p>
-                            <Form.Item {...formLabel("Supplier", "supplier")}>
+                            <Form.Item
+                                {...formLabel(
+                                    `${translate("please")} ${translate(
+                                        "sup"
+                                    )}`,
+                                    "supplier"
+                                )}
+                            >
                                 <Input placeholder={translate("sup")} />
                             </Form.Item>
                         </div>
@@ -154,13 +173,12 @@ export const ProductDrawer: FC<ProductDriver> = ({
                         <div className='drawer__item_img'>
                             <p className='drawer__label'>{translate("img")}</p>
                             <Form.Item
-                                name='photo'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: translate("valName"),
-                                    },
-                                ]}
+                                {...formLabel(
+                                    `${translate("please")} ${translate(
+                                        "img"
+                                    )}`,
+                                    "photo"
+                                )}
                             >
                                 <MediaApi form={form} name='photo' />
                             </Form.Item>
@@ -176,7 +194,7 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                             : ProductPostReq.loading
                                     }
                                 >
-                                    Cancel
+                                    {translate("cancel")}
                                 </Button>
                                 <Button
                                     htmlType='submit'
@@ -187,7 +205,9 @@ export const ProductDrawer: FC<ProductDriver> = ({
                                             : ProductPostReq.loading
                                     }
                                 >
-                                    Save
+                                    {editProduct
+                                        ? translate("update")
+                                        : translate("save")}
                                 </Button>
                             </Form.Item>
                         </div>

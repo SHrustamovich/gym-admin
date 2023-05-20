@@ -40,6 +40,7 @@ export const Sales = () => {
         setOpen(true);
     };
 
+    console.log(Boolean(response?.data.result.length), "rrrrrrrrrrrrrrrrrr");
     return (
         <div className='sales'>
             <div className='sales__search'>
@@ -52,24 +53,30 @@ export const Sales = () => {
                 </div>
             </div>
             <div className='sales__body'>
-                {response?.data.result.map((item) => (
-                    <div className='sales__card card' key={item.id}>
-                        <div className='card__top'></div>
-                        <p className='card__title'>{item.product_name}</p>
-                        <p className='card__brand'>Brand:{item.supplier}</p>
-                        <p className='card__quality'>Quality:{item.quantity}</p>
-                        <Button
-                            disabled={item.quantity == 0}
-                            className='card__btn'
-                            onClick={() => handlyProduct(item)}
-                        >
-                            <KarzinkaIcon />
-                            <span className='card__text'>
-                                {translate("card")}
-                            </span>
-                        </Button>
-                    </div>
-                ))}
+                {response?.data.result.length ? (
+                    response?.data.result.map((item) => (
+                        <div className='sales__card card' key={item.id}>
+                            <div className='card__top'></div>
+                            <p className='card__title'>{item.product_name}</p>
+                            <p className='card__brand'>Brand:{item.supplier}</p>
+                            <p className='card__quality'>
+                                Quality:{item.quantity}
+                            </p>
+                            <Button
+                                disabled={item.quantity == 0}
+                                className='card__btn'
+                                onClick={() => handlyProduct(item)}
+                            >
+                                <KarzinkaIcon />
+                                <span className='card__text'>
+                                    {translate("card")}
+                                </span>
+                            </Button>
+                        </div>
+                    ))
+                ) : (
+                    <div className='no-data'>{translate("noProduct")}</div>
+                )}
             </div>
             <SalesDrawer open={open} onClose={onClose} load={loading} />
         </div>

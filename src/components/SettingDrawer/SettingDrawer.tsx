@@ -111,15 +111,26 @@ export const SettingDrawer: FC<MemberShipTypeDrawerI> = ({
                                 <Button
                                     className='member-driver__cancel'
                                     onClick={() => onCloseDrawer()}
+                                    disabled={
+                                        editMemberType
+                                            ? MemberShipTypeEditReq.loading
+                                            : MemberShipTypePost.loading
+                                    }
                                 >
                                     {translate("cancel")}
                                 </Button>
                                 <Button
                                     htmlType='submit'
                                     className='member-driver__submit'
-                                    loading={MemberShipTypePost.loading}
+                                    loading={
+                                        editMemberType
+                                            ? MemberShipTypeEditReq.loading
+                                            : MemberShipTypePost.loading
+                                    }
                                 >
-                                    {translate("save")}
+                                    {editMemberType
+                                        ? translate("update")
+                                        : translate("save")}
                                 </Button>
                             </Form.Item>
                         </div>

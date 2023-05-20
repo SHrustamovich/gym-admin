@@ -6,13 +6,19 @@ import { $mediaApi } from "../../utils/https";
 import { mediaAdd } from "../../utils/urls";
 import { MediaPropsI, MediaTypeI } from "../type";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import useLanguage from "../../hooks/useLanguage";
 
-export const MediaApi: FC<MediaPropsI> = ({ form, name }) => {
+export const MediaApi: FC<MediaPropsI> = ({
+    form,
+    name,
+}) => {
     const [fileList, setFileList] = useState<UploadFile<MediaTypeI>[]>([]);
     const [loading, setLoading] = useState(false);
     const [previewImage, setPreviewImage] = useState("");
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewTitle, setPreviewTitle] = useState("");
+
+    const translate = useLanguage();
 
     const onPreview = async (file: any) => {
         setPreviewImage(file.url);
@@ -22,7 +28,7 @@ export const MediaApi: FC<MediaPropsI> = ({ form, name }) => {
 
     const handleCancel = () => setPreviewOpen(false);
 
-    const handlyChange = async ({file}: any) => {
+    const handlyChange = async ({ file }: any) => {
         setLoading(true);
         if (
             file.type == "image/jpeg" ||
@@ -88,7 +94,7 @@ export const MediaApi: FC<MediaPropsI> = ({ form, name }) => {
     const uploadButton = (
         <div>
             {loading ? <LoadingOutlined /> : <PlusOutlined />}
-            <div>Upload</div>
+            <div className='upload'>{translate("upload")}</div>
         </div>
     );
 

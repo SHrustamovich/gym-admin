@@ -22,6 +22,7 @@ export const Inventory = () => {
 
     const onClose = () => {
         setOpen(false);
+        setEditInventory(null);
     };
 
     const { search } = useLocation();

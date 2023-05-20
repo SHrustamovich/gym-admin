@@ -3,6 +3,7 @@ import { FC, useEffect } from "react";
 import { useLoad, usePostRequest, usePutRequest } from "../../hooks/request";
 import useLanguage from "../../hooks/useLanguage";
 import { InventoryDraverI, InventoryPostI } from "../../pages/types";
+import { formLabel } from "../../utils/helpers";
 import {
     inventoryPost,
     inventoryUpdateUrl,
@@ -35,7 +36,6 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
         form.resetFields();
         onClose();
     };
-
 
     const onFinish = async (e: InventoryPostI) => {
         const { product_id, quantity } = e;
@@ -96,13 +96,12 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
                                 {translate("praductT")}
                             </p>
                             <Form.Item
-                                name='product_id'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: translate("valName"),
-                                    },
-                                ]}
+                                {...formLabel(
+                                    `${translate("pleaseS")} ${translate(
+                                        "praductT"
+                                    )}`,
+                                    "product_id"
+                                )}
                             >
                                 <Select
                                     placeholder='select'
@@ -120,13 +119,12 @@ export const InventoryDrawer: FC<InventoryDraverI> = ({
                                 {translate("quantity")}
                             </p>
                             <Form.Item
-                                name='quantity'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: translate("valName"),
-                                    },
-                                ]}
+                                {...formLabel(
+                                    `${translate("pleaseS")} ${translate(
+                                        "praductT"
+                                    )}`,
+                                    "quantity"
+                                )}
                             >
                                 <Input placeholder={translate("quantity")} />
                             </Form.Item>

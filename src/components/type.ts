@@ -1,3 +1,4 @@
+import { UploadFile } from "antd";
 import { FormInstance } from "rc-field-form";
 import { Dispatch, SetStateAction } from "react";
 

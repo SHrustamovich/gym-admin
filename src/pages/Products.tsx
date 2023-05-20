@@ -37,6 +37,7 @@ export const Products = () => {
 
     const onClose = () => {
         setOpen(false);
+        setEditProduct(null);
     };
 
     return (

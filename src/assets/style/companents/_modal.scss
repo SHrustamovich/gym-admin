@@ -13,6 +13,7 @@
         @include adaptive-value(line-height, 28, 24, 1);
         color: $textColor;
         padding-bottom: 26px;
+        text-transform: uppercase;
     }
     &__form {
         display: flex;

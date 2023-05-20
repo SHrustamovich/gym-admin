@@ -81,7 +81,6 @@ export const MemberModal: FC<modalI> = ({
         }
     };
 
-
     useEffect(() => {
         if (editMembers != null) {
             form.setFieldsValue({
@@ -120,11 +119,16 @@ export const MemberModal: FC<modalI> = ({
                                 </div>
                                 <Form.Item
                                     className='modal__item'
-                                    {...formLabel("Fullname", "fullname")}
+                                    {...formLabel(
+                                        `${translate("please")} ${translate(
+                                            "name"
+                                        )}`,
+                                        "fullname"
+                                    )}
                                 >
                                     <Input
                                         prefix={<PersonIcon />}
-                                        placeholder={translate("firstName")}
+                                        placeholder={translate("name")}
                                     />
                                 </Form.Item>
                             </div>
@@ -134,7 +138,12 @@ export const MemberModal: FC<modalI> = ({
                                 </div>
                                 <Form.Item
                                     className='modal__item'
-                                    {...formLabel("Phone number", "phone")}
+                                    {...formLabel(
+                                        `${translate("please")} ${translate(
+                                            "phone"
+                                        )}`,
+                                        "phone"
+                                    )}
                                 >
                                     <Input
                                         prefix={<PhoneIcon />}
@@ -151,7 +160,9 @@ export const MemberModal: FC<modalI> = ({
                                 <Form.Item
                                     className='modal__item'
                                     {...formLabel(
-                                        "Date of birth",
+                                        `${translate("pleaseS")} ${translate(
+                                            "bday"
+                                        )}`,
                                         "date_of_birth"
                                     )}
                                 >
@@ -172,7 +183,9 @@ export const MemberModal: FC<modalI> = ({
                                     rules={[
                                         {
                                             required: true,
-                                            message: "Plase select your gender",
+                                            message: `${translate(
+                                                "pleaseS"
+                                            )} ${translate("gender")}`,
                                         },
                                     ]}
                                 >
@@ -207,7 +220,9 @@ export const MemberModal: FC<modalI> = ({
                                             : loading
                                     }
                                 >
-                                    {translate("create")}
+                                    {editMembers
+                                        ? translate("update")
+                                        : translate("create")}
                                 </Button>
                             </div>
                         </div>
