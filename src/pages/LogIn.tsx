@@ -32,7 +32,7 @@ export const LogIn = () => {
             localStorage.setItem("refreshToken", refreshToken);
             setTokens(accessToken, refreshToken);
         } else {
-            message.error(error);
+            message.error("Incorrect username or password");
         }
     }
 

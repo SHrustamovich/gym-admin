@@ -303,7 +303,7 @@ const eng: Trans = {
     products: "Products",
     history: "Story",
     payments: "Payments",
-    logout: "Go out",
+    logout: "Log out",
     add: "Add new",
     success: "Member added successfully",
     wrong: "Something went wrong",
